@@ -39,7 +39,7 @@ nav:
         - Remote Sensing Precipitation: o-rsp.md
         - Data: o-data.md
     - Methodology: 
-        - Developing event-identification threhold: m-eit.md
+        - Developing event-identification threshold: m-eit.md
         - Find areas aat risk of flooding: m-rof.md
         - Evaluating alert quality: m-eaq.md
         - Novelty, limitation and constraint: m-nlc.md
