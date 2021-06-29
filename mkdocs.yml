@@ -1,0 +1,56 @@
+site_name: ERM
+site_description: Extreme rainfall monitoring, will it trigger a flood?
+site_url: "https://wfpidn.github.io/ERM"
+repo_url: https://github.com/wfpidn/ERM
+repo_name: wfpidn/ERM
+
+
+theme:
+  name: material
+  palette:
+    scheme: default
+    primary: blue
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/library
+  font:
+    text: Roboto
+    code: Roboto Mono
+  feature:
+    - navigation.tabs
+    - navigation.tabs.sticky
+
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+
+
+extra_javascript:
+  - javascripts/config.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+
+nav:
+    - About: index.md
+    - Overview: 
+        - Hydrometeorological Disasters: o-hd.md
+        - Remote Sensing Precipitation: o-rsp.md
+        - Data: o-data.md
+    - Methodology: 
+        - Developing event-identification threhold: m-eit.md
+        - Find areas aat risk of flooding: m-rof.md
+        - Evaluating alert quality: m-eaq.md
+        - Novelty, limitation and constraint: m-nlc.md
+    - How-to?: 
+        - Pre-downloaded and processed data: 
+        - GPM IMERG Data:
+          - Download and subset for Indonesia via OPENDAP:
+          - Prepare input data for model:
+        - NOAA GEFS Data:
+          - Download and subset for Indonesia via GRIB filter:
+          - Prepare input data for model:
+        - Extreme rainfall calculation:
+        - Will it trigger a flood:
+        - Update frequency:
