@@ -8,7 +8,7 @@ Inspired from ITHACA ERDS (Extreme Rainfall Detection System - [http://erds.itha
 
 a return period, also known as a recurrence interval (sometimes repeat interval) is an estimate of the likelihood of an event, such as an earthquake, flood, landslide, or a river discharge flow to occur.
 
-For example, a 10-year flood has a $$\frac{1}{10}$$ = $$0.1$$ or 10% chance of being exceeded in any one year and a 50-year flood has a 0.02 or 2% chance of being exceeded in any one year. This does not mean that a 100-year flood will happen regularly every 100 years, or only once in 100 years. Despite the connotations of the name "return period". In any given 100-year period, a 100-year event may occur once, twice, more, or not at all, and each outcome has a probability that can be computed as below.
+For example, a 10-year flood has a $$\frac{1}{10}$$ = 0.1 or 10% chance of being exceeded in any one year and a 50-year flood has a 0.02 or 2% chance of being exceeded in any one year. This does not mean that a 100-year flood will happen regularly every 100 years, or only once in 100 years. Despite the connotations of the name "return period". In any given 100-year period, a 100-year event may occur once, twice, more, or not at all, and each outcome has a probability that can be computed as below.
 
 Given that the return period of an event is 100 years,
 
