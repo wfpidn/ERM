@@ -13,32 +13,18 @@ theme:
   icon:
     repo: fontawesome/brands/github
     logo: material/library
-    favicon: assets/images/favicon.png
   font:
     text: Roboto
     code: Roboto Mono
   feature:
     - navigation.tabs
-    - navigation.expand
-    - navigation.top
-    - toc.integrate
+    - navigation.tabs.sticky
 
-extra_javascript:
-  - javascripts/config.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
-  - pymdownx.critic
-  - footnotes
-  - admonition
-  - pymdownx.tabbed
-  - pymdownx.keys
-  - pymdownx.superfences
-  - pymdownx.snippets
-  - pymdownx.details
+
 
 nav:
     - About: index.md
@@ -52,5 +38,13 @@ nav:
         - Evaluating alert quality: m-eaq.md
         - Novelty, limitation and constraint: m-nlc.md
     - How-to?: 
-        - Pre-downloaded and processed data: ht-pre.md
-        - IMERG data acquisition: ht-imerg.md
+        - Pre-downloaded and processed data: 
+        - GPM IMERG Data:
+          - Download and subset for Indonesia via OPENDAP:
+          - Prepare input data for model:
+        - NOAA GEFS Data:
+          - Download and subset for Indonesia via GRIB filter:
+          - Prepare input data for model:
+        - Extreme rainfall calculation:
+        - Will it trigger a flood:
+        - Update frequency:
