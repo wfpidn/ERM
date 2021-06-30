@@ -1,7 +1,6 @@
 # Remote Sensing Precipitation
 
-Precipitation can be estimated remotely, either from ground-based weather radars or from satellite. 
-
+Precipitation can be estimated remotely, either from ground-based weather radars or from satellite.<br> 
 - Inferred indirectly from reflected solar radiation and emitted Infrared radiation by clouds (Passive Remote Sensing).
 - Estimated from microwave radiation emitted or scattered by surface and precipitation particles (Passive Remote Sensing).
 - Estimated from back-scattered microwave radiation transmitted by radars (Active Remote Sensing).
@@ -15,8 +14,7 @@ In Indonesia, accurate rainfall estimation with an adequate spatial distribution
 
 **Satellite rainfall products can potentially play a role in increasing the spatial coverage of rainfall estimates;** however, their performance needs to be understood across space–time scales and factors relating to their errors.
 
-Rain gauge in Indonesia (Source: BMKG)
-
+Rain gauge in Indonesia (Source: BMKG)<br>
 ![Rain Gauge](./img/raingauge.png)
 
 
@@ -26,14 +24,12 @@ WFP has been using satellite-derived precipitation estimates for quite sometimes
 
 Climate shocks are a major driver of food insecurity in the world and cause the majority of WFP beneficiaries. 
 
-These data sets provide valuable information for:
-
+These data sets provide valuable information for:<br>
 - Early Warning of food security shocks. 
 - Contextual analysis required for planning of WFP interventions. 
 - Climate Change adaptation programmes. 
 
-As part of VAMPIRE development, WFP Indonesia try to use satellite-derived precipitation estimates to enhanced the rainfall monitoring module, so it’s capable to monitor:
-
+As part of VAMPIRE development, WFP Indonesia try to use satellite-derived precipitation estimates to enhanced the rainfall monitoring module, so it’s capable to monitor:<br>
 - Extreme rainfall.
 - Rainfall overland-flow/runoff inundation.
 - Landslide caused by rainfall.

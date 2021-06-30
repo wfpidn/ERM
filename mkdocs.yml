@@ -29,10 +29,16 @@ extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
+
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.critic
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
   - footnotes
   - admonition
   - pymdownx.tabbed
@@ -40,10 +46,12 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.snippets
   - pymdownx.details
+  - footnotes
 
 
 nav:
     - About: index.md
+    - Revision History: history.md
     - Overview: 
         - Hydrometeorological Disasters: o-hd.md
         - Remote Sensing Precipitation: o-rsp.md
@@ -55,4 +63,6 @@ nav:
         - Novelty, limitation and constraint: m-nlc.md
     - How-to?: 
         - Pre-downloaded and processed data: ht-pre.md
-        - IMERG data acquisition: ht-imerg.md
+        - Acquire IMERG data: ht-imerg.md
+        - Acquire GEFS data: ht-gefs.md
+        - Extreme rainfall calculation: ht-erc.md

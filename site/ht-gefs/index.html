@@ -11,14 +11,14 @@
       
       
       
-        <link rel="canonical" href="https://wfpidn.github.io/ERM/m-eaq/">
+        <link rel="canonical" href="https://wfpidn.github.io/ERM/ht-gefs/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
     
     
       
-        <title>Evaluating alert quality - ERM</title>
+        <title>Acquire GEFS data - ERM</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#evaluating-alert-quality" class="md-skip">
+        <a href="#acquire-gefs-data" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Evaluating alert quality
+              Acquire GEFS data
             
           </span>
         </div>
@@ -299,14 +299,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
       <label class="md-nav__link" for="__nav_4">
         Methodology
@@ -346,51 +344,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Evaluating alert quality
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../m-eaq/" class="md-nav__link">
         Evaluating alert quality
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#a-measure-of-forecast-accuracy" class="md-nav__link">
-    A measure of forecast accuracy
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -419,12 +377,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
       
       <label class="md-nav__link" for="__nav_5">
         How-to?
@@ -464,11 +424,126 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../ht-gefs/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Acquire GEFS data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Acquire GEFS data
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#about-the-data" class="md-nav__link">
+    About the data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-and-subset-for-indonesia-via-grib-filter" class="md-nav__link">
+    Download and subset for Indonesia via GRIB filter
+  </a>
+  
+    <nav class="md-nav" aria-label="Download and subset for Indonesia via GRIB filter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-parameters" class="md-nav__link">
+    Example parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-process" class="md-nav__link">
+    Download process
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#naming-convention-for-gefs-product" class="md-nav__link">
+    Naming convention for GEFS product
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepare-input-data-rainfall-forecast-for-model" class="md-nav__link">
+    Prepare input data (rainfall forecast) for model
+  </a>
+  
+    <nav class="md-nav" aria-label="Prepare input data (rainfall forecast) for model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conversion-from-grib2-to-geotiff" class="md-nav__link">
+    Conversion from GRIB2 to GeoTIFF
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resample" class="md-nav__link">
+    Resample
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clip-the-raster-with-indonesia-boundary" class="md-nav__link">
+    Clip the raster with Indonesia boundary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calculate-accumulation-1-to-5-days-rainfall-forecast" class="md-nav__link">
+    Calculate accumulation 1 to 5 days rainfall forecast.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -517,9 +592,84 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#a-measure-of-forecast-accuracy" class="md-nav__link">
-    A measure of forecast accuracy
+  <a href="#about-the-data" class="md-nav__link">
+    About the data
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-and-subset-for-indonesia-via-grib-filter" class="md-nav__link">
+    Download and subset for Indonesia via GRIB filter
+  </a>
+  
+    <nav class="md-nav" aria-label="Download and subset for Indonesia via GRIB filter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-parameters" class="md-nav__link">
+    Example parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-process" class="md-nav__link">
+    Download process
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#naming-convention-for-gefs-product" class="md-nav__link">
+    Naming convention for GEFS product
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepare-input-data-rainfall-forecast-for-model" class="md-nav__link">
+    Prepare input data (rainfall forecast) for model
+  </a>
+  
+    <nav class="md-nav" aria-label="Prepare input data (rainfall forecast) for model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conversion-from-grib2-to-geotiff" class="md-nav__link">
+    Conversion from GRIB2 to GeoTIFF
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resample" class="md-nav__link">
+    Resample
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clip-the-raster-with-indonesia-boundary" class="md-nav__link">
+    Clip the raster with Indonesia boundary
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calculate-accumulation-1-to-5-days-rainfall-forecast" class="md-nav__link">
+    Calculate accumulation 1 to 5 days rainfall forecast.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -535,26 +685,117 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/wfpidn/ERM/edit/master/docs/m-eaq.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/wfpidn/ERM/edit/master/docs/ht-gefs.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="evaluating-alert-quality">Evaluating alert quality</h1>
-<p>To evaluate alert release by VAMPIRE, we need additional data and information from various source. So far few source has been identified: (1) AHA Centre ADInet - http://adinet.ahacentre.org/main; (2) BNPB Disaster Monitoring - http://gis.bnpb.go.id; (3) PUPR Geoportal - https://sigi.pu.go.id/disaster </p>
-<h2 id="a-measure-of-forecast-accuracy">A measure of forecast accuracy</h2>
-<p>How many of the events were forecast?</p>
-<pre><code>Hit rate = (number of hits/number of events) * 100%
-</code></pre>
-<p>Correct rejections are correct forecasts.</p>
-<pre><code>False-alarm rate =  number of false alarms/number of non-events
-</code></pre>
-<p>How many times was the forecast correct?</p>
-<pre><code>Hit score = (number of correct forecasts/number of forecasts) * 100%
-
-Hit score = (number of hits and correct rejections/number of forecasts) * 100%
-</code></pre>
-<p><img alt="Stats" src="../img/stats.png" /></p>
+                <h1 id="acquire-gefs-data">Acquire GEFS data</h1>
+<h2 id="about-the-data">About the data</h2>
+<p>WGS84 - <a href="http://spatialreference.org/ref/epsg/4326/">EPSG:4326</a></p>
+<ul>
+<li>
+<p>Bounding box
+    <code>94,-12,142,7</code></p>
+</li>
+<li>
+<p>GeoJSON
+    <div class="highlight"><pre><span></span><code>{&quot;type&quot;:&quot;FeatureCollection&quot;,&quot;features&quot;:[{&quot;type&quot;:&quot;Feature&quot;,&quot;properties&quot;:{},&quot;geometry&quot;:{&quot;type&quot;:&quot;Polygon&quot;,&quot;crs&quot;:&quot;EPSG:4326&quot;,&quot;coordinates&quot;:[[[94,-12],[94,7],[142,7],[142,-12],[94,-12]]]}}]}
+</code></pre></div></p>
+</li>
+</ul>
+<p><img alt="BBox" src="../img/bbox.png" /></p>
+<p><strong>GEFS Forecast</strong></p>
+<p>GEFS forecast data only available for the latest 3-days and updated every 6-hours period. Accessible via this GRIB filter: <a href="https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?">https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?</a>  </p>
+<p>If today is 4 Nov 2020, then GEFS only available from 1 - 4 Nov 2020.</p>
+<h2 id="download-and-subset-for-indonesia-via-grib-filter">Download and subset for Indonesia via GRIB filter</h2>
+<h3 id="example-parameters">Example parameters</h3>
+<p>Forecast available every 6-hours, we will focus from f006 (start of data) until f120 (day-5)</p>
+<ul>
+<li>Release hour (<code><mark class="critic">00</mark></code>, <code>06</code>, <code>12</code>, <code>18</code>): <code>geavg.t<mark class="critic">00</mark>z</code></li>
+<li>Forecast hour (<code><mark class="critic">f006</mark></code>, <code>f012</code>, <code>f018</code>, <code>f024</code>, <code>f030</code>, <code>f036</code>, <code>f042</code>, <code>f048</code>, <code>f054</code>, <code>f060</code>, <code>f066</code>, <code>f072</code>, <code>f078</code>, <code>f084</code>, <code>f090</code>, <code>f096</code>, <code>f102</code>, <code>f108</code>, <code>f114</code>, <code>f120</code>): <code><mark class="critic">f006</mark></code></li>
+<li>Level: <code>surface</code></li>
+<li>Variable: <code>APCP</code></li>
+<li>Subset: Indonesia (<code>94</code>,<code>142</code>,<code>7</code>,<code>-12</code>)</li>
+<li>Date (YYYYMMDD): <code>20201103</code></li>
+<li>Release hour (<code><mark class="critic">00</mark></code>, <code>06</code>, <code>12</code>, <code>18</code>): <code><mark class="critic">00</mark></code></li>
+</ul>
+<p>Script: 
+<div class="highlight"><pre><span></span><code>https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t00z.pgrb2s.0p25.f006&amp;lev_surface=on&amp;var_APCP=on&amp;subregion=&amp;leftlon=94&amp;rightlon=142&amp;toplat=7&amp;bottomlat=-12&amp;dir=%2Fgefs.20201103%2F00%2Fatmos%2Fpgrb2sp25
+</code></pre></div></p>
+<h3 id="download-process">Download process</h3>
+<p>Each time we run the download process procedure (Example: Date <mark class="critic">3 Nov 2020</mark>, release hour <code><mark class="critic">00</mark></code>), it means we need to download all the forecast hour from <code>f006</code> to <code>f120</code></p>
+<div class="highlight"><pre><span></span><code>https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t<mark class="critic">00</mark>z.pgrb2s.0p25.<mark class="critic">f006</mark>&amp;lev_surface=on&amp;var_APCP=on&amp;subregion=&amp;leftlon=94&amp;rightlon=142&amp;toplat=7&amp;bottomlat=-12&amp;dir=%2Fgefs.20201103%2F<mark class="critic">00</mark>%2Fatmos%2Fpgrb2sp25
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t<mark class="critic">00</mark>z.pgrb2s.0p25.<mark class="critic">f012</mark>&amp;lev_surface=on&amp;var_APCP=on&amp;subregion=&amp;leftlon=94&amp;rightlon=142&amp;toplat=7&amp;bottomlat=-12&amp;dir=%2Fgefs.20201103%2F<mark class="critic">00</mark>%2Fatmos%2Fpgrb2sp25
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t<mark class="critic">00</mark>z.pgrb2s.0p25.<mark class="critic">f018</mark>&amp;lev_surface=on&amp;var_APCP=on&amp;subregion=&amp;leftlon=94&amp;rightlon=142&amp;toplat=7&amp;bottomlat=-12&amp;dir=%2Fgefs.20201103%2F<mark class="critic">00</mark>%2Fatmos%2Fpgrb2sp25
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>...
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>...
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t<mark class="critic">00</mark>z.pgrb2s.0p25.f<mark class="critic">114</mark>&amp;lev_surface=on&amp;var_APCP=on&amp;subregion=&amp;leftlon=94&amp;rightlon=142&amp;toplat=7&amp;bottomlat=-12&amp;dir=%2Fgefs.20201103%2F<mark class="critic">00</mark>%2Fatmos%2Fpgrb2sp25
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t<mark class="critic">00</mark>z.pgrb2s.0p25.f<mark class="critic">120</mark>&amp;lev_surface=on&amp;var_APCP=on&amp;subregion=&amp;leftlon=94&amp;rightlon=142&amp;toplat=7&amp;bottomlat=-12&amp;dir=%2Fgefs.20201103%2F<mark class="critic">00</mark>%2Fatmos%2Fpgrb2sp25
+</code></pre></div>
+<p>When new forecast released (for example release hour: <code>06</code>, <code>12</code> and <code>18</code>), we need to repeat all download procedure above and adjust the script with current release hour.</p>
+<h3 id="naming-convention-for-gefs-product">Naming convention for GEFS product</h3>
+<p>All downloaded GEFS files must be renamed using following standard.</p>
+<p><code>apcp.gefs.0p25.YYYYMMDDID.fxxx.grib2</code></p>
+<p>where</p>
+<ul>
+<li>apcp: GEFS apcp.gefs.0p25 precipitation code</li>
+<li>gefs: name of product</li>
+<li>0p25: code for 0.25deg product</li>
+<li>YYYY: year</li>
+<li>MM: month</li>
+<li>DD: date</li>
+<li>ID: release hour</li>
+<li>f: forecast data</li>
+<li>xxx: forecast hour</li>
+</ul>
+<p>Example</p>
+<p><code>apcp.gefs.0p25.2020102100.f024.grib2</code></p>
+<h2 id="prepare-input-data-rainfall-forecast-for-model">Prepare input data (rainfall forecast) for model</h2>
+<h3 id="conversion-from-grib2-to-geotiff">Conversion from GRIB2 to GeoTIFF</h3>
+<p>All downloaded subset GEFS are in GRIB2 format. We need to convert it to GeoTIFF, the easiest way is using GDAL: 
+<div class="highlight"><pre><span></span><code>gdal_translate -of GTiff input.grib2 output.tif
+</code></pre></div></p>
+<h3 id="resample">Resample</h3>
+<p>GEFS data available at 0.25deg ~ 27.75km/pixel spatial resolution</p>
+<p>While GPM IMERG available at 0.1deg ~ 11.1km/pixel. So we need to resample (250%) GEFS to match with IMERG using GDAL.
+<div class="highlight"><pre><span></span><code>gdal_translate -r bilinear -outsize 250% 250% input.tif output_resample.tif
+</code></pre></div></p>
+<h3 id="clip-the-raster-with-indonesia-boundary">Clip the raster with Indonesia boundary</h3>
+<p>Then we need to crop the GeoTIFF using Indonesia boundary. GDAL can handle this task:
+<div class="highlight"><pre><span></span><code>gdalwarp --config GDALWARP_IGNORE_BAD_CUTLINE YES -srcnodata -999 -dstnodata NoData -cutline idn_bnd_subset_clip_imerg_grid_a.shp -crop_to_cutline input.tif clip_output.tif
+</code></pre></div></p>
+<h3 id="calculate-accumulation-1-to-5-days-rainfall-forecast">Calculate accumulation 1 to 5 days rainfall forecast.</h3>
+<p>Example: pre-downloaded and renamed GEFS data: <a href="https://on.istan.to/32v1tVY">https://on.istan.to/32v1tVY</a> </p>
+<p>Date: <strong>3 Nov 2020</strong>, release hour <strong><mark class="critic">00</mark></strong></p>
+<ul>
+<li>
+<p>1-day</p>
+<p><code>apcp.gefs.0p25.20201103<mark class="critic">00</mark>.f006</code> + <code>f012</code> + <code>f018</code> + <code>f024</code></p>
+</li>
+<li>
+<p>2-days</p>
+<p><code>apcp.gefs.0p25.20201103<mark class="critic">00</mark>.f006</code> + <code>f012</code> + <code>f018</code> + <code>f024</code> + <code>f030</code> + <code>f036</code> + <code>f042</code> + <code>f048</code></p>
+</li>
+<li>
+<p>3-days</p>
+<p><code>apcp.gefs.0p25.20201103<mark class="critic">00</mark>.f006</code>  + <code>f012</code> + <code>f018</code> + <code>f024</code> + <code>f030</code> + <code>f036</code> + <code>f042</code> + <code>f048</code> + <code>f054</code> + <code>f060</code> + <code>f066</code> + <code>f072</code></p>
+</li>
+<li>
+<p>4-days</p>
+<p><code>apcp.gefs.0p25.20201103<mark class="critic">00</mark>.f006</code>  + <code>f012</code> + <code>f018</code> + <code>f024</code> + <code>f030</code> + <code>f036</code> + <code>f042</code> + <code>f048</code> + <code>f054</code> + <code>f060</code> + <code>f066</code> + <code>f072</code> + <code>f078</code> + <code>f084</code> + <code>f090</code> + <code>f096</code></p>
+</li>
+<li>
+<p>5-days</p>
+<p><code>apcp.gefs.0p25.20201103<mark class="critic">00</mark>.f006</code>  + <code>f012</code> + <code>f018</code> + <code>f024</code> + <code>f030</code> + <code>f036</code> + <code>f042</code> + <code>f048</code> + <code>f054</code> + <code>f060</code> + <code>f066</code> + <code>f072</code> + <code>f078</code> + <code>f084</code> + <code>f090</code> + <code>f096</code> + <code>f102</code> + <code>f108</code> + <code>f114</code> + <code>f120</code></p>
+</li>
+</ul>
                 
               
               
@@ -574,7 +815,7 @@ Hit score = (number of hits and correct rejections/number of forecasts) * 100%
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../m-rof/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Find areas at risk of flooding" rel="prev">
+        <a href="../ht-imerg/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Acquire IMERG data" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -583,20 +824,20 @@ Hit score = (number of hits and correct rejections/number of forecasts) * 100%
               <span class="md-footer__direction">
                 Previous
               </span>
-              Find areas at risk of flooding
+              Acquire IMERG data
             </div>
           </div>
         </a>
       
       
         
-        <a href="../m-nlc/" class="md-footer__link md-footer__link--next" aria-label="Next: Novelty, limitation and constraint" rel="next">
+        <a href="../ht-erc/" class="md-footer__link md-footer__link--next" aria-label="Next: Extreme rainfall calculation" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Novelty, limitation and constraint
+              Extreme rainfall calculation
             </div>
           </div>
           <div class="md-footer__button md-icon">

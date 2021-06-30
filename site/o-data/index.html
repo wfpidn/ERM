@@ -218,6 +218,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../history/" class="md-nav__link">
+        Revision History
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -225,14 +240,14 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
       
-      <label class="md-nav__link" for="__nav_2">
+      <label class="md-nav__link" for="__nav_3">
         Overview
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Overview" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Overview
         </label>
@@ -351,14 +366,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
-      <label class="md-nav__link" for="__nav_3">
+      <label class="md-nav__link" for="__nav_4">
         Methodology
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Methodology" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Methodology
         </label>
@@ -429,14 +444,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
-      <label class="md-nav__link" for="__nav_4">
+      <label class="md-nav__link" for="__nav_5">
         How-to?
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="How-to?" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
+        <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           How-to?
         </label>
@@ -460,7 +475,31 @@
   
     <li class="md-nav__item">
       <a href="../ht-imerg/" class="md-nav__link">
-        IMERG data acquisition
+        Acquire IMERG data
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ht-gefs/" class="md-nav__link">
+        Acquire GEFS data
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ht-erc/" class="md-nav__link">
+        Extreme rainfall calculation
       </a>
     </li>
   
@@ -551,7 +590,7 @@
 <li>IMERG is a single integrated code system for near-real and post-real time.</li>
 <li>IMERG is adjusted to Gprecip monthly climatology zonally to achieve a bias profile that is considered reasonable.</li>
 <li>
-<p>Multiple runs for different user requirements for latency and accuracy</p>
+<p>Multiple runs for different user requirements for latency and accuracy<br></p>
 <ul>
 <li>“Early” – 4 hour (example application: flash flooding)</li>
 <li>“Late” – 14 hour. (crop forecasting)</li>
@@ -565,24 +604,22 @@
 <li>SPATIAL COVERAGE: 60° N – 60° S</li>
 <li>SPATIAL RESOLUTION: 0,1° x 0,1°</li>
 <li>VARIABLE: precipitationCal</li>
-<li>FORMAT: netCDF (), Reference: <a href="https://www.unidata.ucar.edu/software/netcdf/">https://www.unidata.ucar.edu/software/netcdf/</a> </li>
+<li>FORMAT: netCDF (nc4), Reference: <a href="https://www.unidata.ucar.edu/software/netcdf/">https://www.unidata.ucar.edu/software/netcdf/</a> </li>
 <li>
-<p>NAMING CONVENTION:</p>
+<p>NAMING CONVENTION:<br></p>
 <ul>
 <li>Half-hourly - GPM_3IMERGHH 06</li>
 <li>Daily - GPM_3IMERGD 06</li>
 <li>Monthly - GPM_3IMERGM 06</li>
 </ul>
-<p>Latency: </p>
-<ul>
-<li>E - Early run</li>
-<li>L - Late run</li>
-<li>F - Final run (only for daily data) </li>
-</ul>
+<p>Latency:<br>
+- E - Early run
+- L - Late run
+- F - Final run (only for daily data) </p>
 <p>Example: Half-hourly Early Run ~ GPM_3IMERGHHE 06</p>
 </li>
 <li>
-<p>DOWNLOAD: </p>
+<p>DOWNLOAD:<br> </p>
 <ul>
 <li>30-min Final Released <a href="https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGHH.06/">https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGHH.06/</a> </li>
 <li>30-min Early Released <a href="https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGHHE.06/">https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGHHE.06/</a></li>
@@ -601,7 +638,7 @@
 </ul>
 <h3 id="rainfall-forecasting">Rainfall forecasting</h3>
 <p><strong>NOAA - NCEP GEFS</strong> (Global Ensemble Forecast System - <a href="https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-ensemble-forecast-system-gefs">https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-ensemble-forecast-system-gefs</a>) deterministic weather prediction model.</p>
-<p><strong>GFS Ensemble 0.25 deg</strong></p>
+<p><strong>GEFS Ensemble 0.25 deg</strong></p>
 <ul>
 <li>The Global Ensemble Forecast System (GEFS) is a weather forecast model produced by the National Centers for Environmental Prediction (NCEP). </li>
 <li>The GEFS dataset consists of selected model outputs as gridded forecast variables. The 384-hour forecasts, with 3-hour forecast interval, are made at 6-hour temporal resolution (i.e. updated four times daily).</li>
@@ -611,7 +648,7 @@
 <li>SPATIAL RESOLUTION: 0,25° x 0,25°</li>
 <li>VARIABLE: Total Precipitation (APCP), Reference: <a href="https://www.nco.ncep.noaa.gov/pmb/products/gens/gespr.t00z.pgrb2s.0p25.f003.shtml">https://www.nco.ncep.noaa.gov/pmb/products/gens/gespr.t00z.pgrb2s.0p25.f003.shtml</a></li>
 <li>FORMAT: GRIB2 (grib2), Reference: <a href="https://wmoomm.sharepoint.com/:b:/s/wmocpdb/EUmnLNAM9WdMr1S7GRMl_G8BFqp-B1Qie-k-vMwmrG22GQ?e=cEd2Vk">https://wmoomm.sharepoint.com/:b:/s/wmocpdb/EUmnLNAM9WdMr1S7GRMl_G8BFqp-B1Qie-k-vMwmrG22GQ?e=cEd2Vk</a> </li>
-<li>DATA ACCESS<ul>
+<li>DATA ACCESS<br><ul>
 <li>AWS: <code>aws s3 ls s3://noaa-gefs-pds/ --no-sign-request</code></li>
 <li>Reference: <a href="https://registry.opendata.aws/noaa-gefs/">https://registry.opendata.aws/noaa-gefs/</a> </li>
 <li>GRIB Filter: <a href="https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?">https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?</a></li>

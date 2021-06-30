@@ -1,4 +1,4 @@
-# IMERG data acquisition
+# Acquire IMERG data
 
 ## About the data
 
@@ -90,4 +90,120 @@ Then we need to crop the GeoTIFF using Indonesia boundary. GDAL can handle this 
 ```
 gdalwarp --config GDALWARP_IGNORE_BAD_CUTLINE YES -srcnodata -999 -dstnodata NoData -cutline idn_bnd_subset_clip_imerg_grid_a.shp -crop_to_cutline input.tif clip_output.tif
 ```
+
+
+## Prepare input data (rainfall accumulation) for model
+
+### Historical
+
+Calculate accumulation of 1 to 5 days rainfall, daily rolling windows for both Final and Late run. 
+
+Example: start from 1 Jun 2000<br>
+
+- 1-day: 1 Jun, 2 Jun, 3, Jun, ...
+
+- 2-days: 1+2 Jun, 2+3 Jun, 3+4 Jun, ...
+
+- 3-days: 1+2+3 Jun, 2+3+4 Jun, 3+4+5 Jun, ...
+
+- 4-days: 1+2+3+4 Jun, 2+3+4+5 Jun, 3+4+5+6 Jun, ...
+
+- 5-days: 1+2+3+4+5 Jun, 2+3+4+5+6 Jun, 3+4+5+6+7 Jun, ...
+
+To make it easier, every 1 - 5 days accumulation data will save as a file with the latest file name: Example, data 2+3+4 Jun 2020, will save as: **precip.imergd.20000604.3days.tif**
+
+### Near-real time
+
+Create rainfall accumulation for every 6-hours from 30-min data
+
+Example: 6-hours rainfall accumulation for every date, for both Final and Early run
+
+| Date YYYYMMDD | Time 0000 |
+| ----------- | ----------- |
+| 20000601 | 0000 to 0360 |
+| 20000601 | 0390 to 0720 |
+| 20000601 | 0750 to 1080 |
+| 20000601 | 1110 to 1440 |
+| 20000602 | 0000 to 0360 |
+| 20000602 | 0390 to 0720 |
+| 20000602 | 0750 to 1080 |
+| 20000602 | 1110 to 1440 |
+
+To make it easier, every 6-hours accumulation data will save as a file with the latest file name: Example, data **20000601** for period **0000** to **0360**, will save as: **precip.imerghh.20000601.0360.6h.tif**
+
+Calculate 1 to 5 days rainfall, 6-hours rolling windows for both Final and Late run.
+
+- 1-day
+
+	`precip.20000601.0360.6h`  to  `precip.20000601.1440.6h`<br>
+	`recip.20000601.0720.6h`  to  `precip.20000602.0360.6h`<br>
+	`recip.20000601.1080.6h`  to  `precip.20000602.0720.6h`<br>
+	`precip.20000601.1440.6h`  to  `precip.20000602.1080.6h`<br>
+	`precip.20000602.0360.6h`  to  `precip.20000602.1440.6h`<br>
+	…<br>
+
+- 2-days
+
+	`precip.20000601.0360.6h`  to  `precip.20000602.1440.6h`<br>
+	`precip.20000601.0720.6h`  to  `precip.20000603.0360.6h`<br>
+	`precip.20000601.1080.6h`  to  `precip.20000603.0720.6h`<br>
+	`precip.20000601.1440.6h`  to  `precip.20000603.1080.6h`<br>
+	`precip.20000602.0360.6h`  to  `precip.20000603.1440.6h`<br>
+	…<br>
+
+- 3-days
+
+	`precip.20000601.0360.6h`  to  `precip.20000603.1440.6h`<br>
+	`precip.20000601.0720.6h`  to  `precip.20000604.0360.6h`<br>
+	`precip.20000601.1080.6h`  to  `precip.20000604.0720.6h`<br>
+	`precip.20000601.1440.6h`  to  `precip.20000604.1080.6h`<br>
+	`precip.20000602.0360.6h`  to  `precip.20000604.1440.6h`<br>
+	…<br>
+
+- 4-days
+
+	`precip.20000601.0360.6h`  to  `precip.20000604.1440.6h`<br>
+	`precip.20000601.0720.6h`  to  `precip.20000605.0360.6h`<br>
+	`precip.20000601.1080.6h`  to  `precip.20000605.0720.6h`<br>
+	`precip.20000601.1440.6h`  to  `precip.20000605.1080.6h`<br>
+	`precip.20000602.0360.6h`  to  `precip.20000605.1440.6h`<br>
+	…<br>
+
+- 5-days
+
+	`precip.20000601.0360.6h`  to  `precip.20000605.1440.6h`<br>
+	`precip.20000601.0720.6h`  to  `precip.20000606.0360.6h`<br>
+	`precip.20000601.1080.6h`  to  `precip.20000606.0720.6h`<br>
+	`precip.20000601.1440.6h`  to  `precip.20000606.1080.6h`<br>
+	`precip.20000602.0360.6h`  to  `precip.20000606.1440.6h`<br>
+	…<br>
+
+Following the standard for 6-hour naming convention, we will adjust name according the time information:
+
+- `0360` will assign with ID: `00`
+- `0720` will assign with ID: `06`
+- `1080` will assign with ID: `12`
+- `1440` will assign with ID: `18`
+
+Then rainfall accumulation data (1 to 5 days) will save as a file with latest filename but substitute with ID: **precip.imerghh.YYYYMMDDID.H024.tif**
+
+Where
+
+- `precip`: precipitation
+- `YYYY`: year
+- `MM`: month
+- `DD`: date
+- `ID`: time information, see above
+- `H`: Historical data
+- `024`: 1-day rainfall
+	- 2-days will be `048`
+	- 3-days will be `072`
+	- 4-days will be `096`
+	- 5-days will be `120`
+
+Example:<br>
+1-day rainfall from `precip.20000601.0360.6h`  to  `precip.20000601.1440.6h` will save as **precip.imerghh.2000060118.H024.tif**
+
+5-days rainfall from `precip.20000601.1080.6h`  to  `precip.20000606.0720.6h` will save as **precip.imerghh.2000060606.H120.tif**
+
 

@@ -6,6 +6,21 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://wfpidn.github.io/ERM/history/</loc>
+         <lastmod>2021-06-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://wfpidn.github.io/ERM/ht-erc/</loc>
+         <lastmod>2021-06-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://wfpidn.github.io/ERM/ht-gefs/</loc>
+         <lastmod>2021-06-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://wfpidn.github.io/ERM/ht-imerg/</loc>
          <lastmod>2021-06-30</lastmod>
          <changefreq>daily</changefreq>

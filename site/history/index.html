@@ -11,14 +11,14 @@
       
       
       
-        <link rel="canonical" href="https://wfpidn.github.io/ERM/m-eaq/">
+        <link rel="canonical" href="https://wfpidn.github.io/ERM/history/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
     
     
       
-        <title>Evaluating alert quality - ERM</title>
+        <title>Revision History - ERM</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#evaluating-alert-quality" class="md-skip">
+        <a href="#revision-history" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Evaluating alert quality
+              Revision History
             
           </span>
         </div>
@@ -218,11 +218,21 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../history/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Revision History
       </a>
+      
     </li>
   
 
@@ -299,14 +309,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
       <label class="md-nav__link" for="__nav_4">
         Methodology
@@ -346,51 +354,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Evaluating alert quality
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../m-eaq/" class="md-nav__link">
         Evaluating alert quality
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#a-measure-of-forecast-accuracy" class="md-nav__link">
-    A measure of forecast accuracy
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -510,21 +478,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#a-measure-of-forecast-accuracy" class="md-nav__link">
-    A measure of forecast accuracy
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -535,26 +488,188 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/wfpidn/ERM/edit/master/docs/m-eaq.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/wfpidn/ERM/edit/master/docs/history.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="evaluating-alert-quality">Evaluating alert quality</h1>
-<p>To evaluate alert release by VAMPIRE, we need additional data and information from various source. So far few source has been identified: (1) AHA Centre ADInet - http://adinet.ahacentre.org/main; (2) BNPB Disaster Monitoring - http://gis.bnpb.go.id; (3) PUPR Geoportal - https://sigi.pu.go.id/disaster </p>
-<h2 id="a-measure-of-forecast-accuracy">A measure of forecast accuracy</h2>
-<p>How many of the events were forecast?</p>
-<pre><code>Hit rate = (number of hits/number of events) * 100%
-</code></pre>
-<p>Correct rejections are correct forecasts.</p>
-<pre><code>False-alarm rate =  number of false alarms/number of non-events
-</code></pre>
-<p>How many times was the forecast correct?</p>
-<pre><code>Hit score = (number of correct forecasts/number of forecasts) * 100%
-
-Hit score = (number of hits and correct rejections/number of forecasts) * 100%
-</code></pre>
-<p><img alt="Stats" src="../img/stats.png" /></p>
+                <h1 id="revision-history">Revision History</h1>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>Date</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>22 November 2016</td>
+<td>Brainstorming with Prof. Rizaldi<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></td>
+</tr>
+<tr>
+<td>2</td>
+<td>21 December 2016</td>
+<td>Conceptual method, rainfall threshold value</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3 March 2017</td>
+<td>3-days rainfall accumulation rolling daily using CHIRPS completed, ready for testing</td>
+</tr>
+<tr>
+<td>4</td>
+<td>6 June 2017</td>
+<td>Rainfall threshold generated with help from Rogerio<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> awk script</td>
+</tr>
+<tr>
+<td>5</td>
+<td>8 October 2017</td>
+<td>GFS test, manual download using various method, THREDDS, OPENDAP and https</td>
+</tr>
+<tr>
+<td>6</td>
+<td>23 December 2017</td>
+<td>Implemented in VAMPIRE as ArcGIS REST Services using GFS data as input</td>
+</tr>
+<tr>
+<td>7</td>
+<td>8 January 2018</td>
+<td>Remove river flow and conditions, add limitation and constraints of the model</td>
+</tr>
+<tr>
+<td>8</td>
+<td>2 February 2018</td>
+<td>Belitung case, Land susceptibility extraction</td>
+</tr>
+<tr>
+<td>9</td>
+<td>25 February 2018</td>
+<td>Landslide flowchart</td>
+</tr>
+<tr>
+<td>10</td>
+<td>19 March 2018</td>
+<td>Test for Ciwidey and Banjarnegara, but the rainfall in both areas below threshold, so it’s better to remove the example</td>
+</tr>
+<tr>
+<td>11</td>
+<td>3 April 2018</td>
+<td>First draft, ready for share</td>
+</tr>
+<tr>
+<td>12</td>
+<td>6 June 2018</td>
+<td>Found historical flood extraction (HFO) using JRC GSW data via GEE, start processing for Indonesia by Year</td>
+</tr>
+<tr>
+<td>13</td>
+<td>8 August 2018</td>
+<td>Mosaic HFO tiles from GEE and zonal statistics using CHIRPS and IMERG grid</td>
+</tr>
+<tr>
+<td>14</td>
+<td>14 November 2018</td>
+<td>1 district 1 equation for model maybe not suitable enough for Indonesia. Proposing to use watershed to Prof. Rizaldi</td>
+</tr>
+<tr>
+<td>15</td>
+<td>21 February 2019</td>
+<td>BMKG criticized on CHIRPS performance as main input for flood module. Random check to above mentioned periods with other sat-based data</td>
+</tr>
+<tr>
+<td>16</td>
+<td>13 March 2019</td>
+<td>Replicate the method using STATA done by Vira<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>, R approach will follow.</td>
+</tr>
+<tr>
+<td>17</td>
+<td>30 April 2019</td>
+<td>Finalized flow chart for the flood module, for sharing to PDC, C2S and DLR</td>
+</tr>
+<tr>
+<td>18</td>
+<td>3 September 2019</td>
+<td>Sharing the model update to VAM-HQ</td>
+</tr>
+<tr>
+<td>19</td>
+<td>30 March 2020</td>
+<td>Update HFO Water History using latest data, re-processing by Month as more relevant</td>
+</tr>
+<tr>
+<td>20</td>
+<td>1 May 2020</td>
+<td>Watershed for all Indonesia generated using ASTER GDEM 30, tested for max rainfall logit formula. Unfortunately not suitable</td>
+</tr>
+<tr>
+<td>21</td>
+<td>18 June 2020</td>
+<td>Got feedback from Rogerio, try to test rolling sum 1 to 5 days</td>
+</tr>
+<tr>
+<td>22</td>
+<td>25 June 2020</td>
+<td>Michael<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> sent event data from AHA Centre ADInet, will test it for measuring alert quality</td>
+</tr>
+<tr>
+<td>23</td>
+<td>30 June 2020</td>
+<td>Raster max and percentile using CHIRPS completed for 1 to 5 days period</td>
+</tr>
+<tr>
+<td>24</td>
+<td>11 September 2020</td>
+<td>Focal linear regression between max rainfall and HFO, extract historical event from 1981</td>
+</tr>
+<tr>
+<td>25</td>
+<td>19 September 2020</td>
+<td>Found most of big flood event in 2020 not well captured using CHIRPS, lower rainfall value compared with BMKG station</td>
+</tr>
+<tr>
+<td>26</td>
+<td>22 September 2020</td>
+<td>Start from all over again using IMERG Final and Late run to get rolling sum 1 to 5 days, max and threshold, focal linear regression and extracting historical event and calculate the likelihood to get final alert</td>
+</tr>
+<tr>
+<td>27</td>
+<td>15 October 2020</td>
+<td>Documenting the process of extreme rainfall monitoring</td>
+</tr>
+<tr>
+<td>28</td>
+<td>20 October 2020</td>
+<td>Jeffry<sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup> completed flood event extraction from AHA Centre ADInet, will combine with data from BNPB and PUPR to validate the alert. Few approach has been tested, but the result still not perfect</td>
+</tr>
+<tr>
+<td>29</td>
+<td>10 November 2020</td>
+<td>GEFS forecast data acquisition protocol</td>
+</tr>
+</tbody>
+</table>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Prof. Rizaldi Boer. Scientific Advisor. Center for Climate Risk and Opportunity Management. Bogor Agricultural University.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Rogerio Bonifacio. Head of Climate and Earth Observation. VAM HQ. UN World Food Programme&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Pramashavira. VAM Associate. Vulnerability Analysis and Mapping Unit. UN World Food Programme - Indonesia&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Michael Manalili. GIS Consultant. Geospatial Support Unit. EMEG HQ. UN World Food Programme&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p>Jeffry Pupella. VAM Associate. Vulnerability Analysis and Mapping Unit. UN World Food Programme - Indonesia&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                 
               
               
@@ -574,7 +689,7 @@ Hit score = (number of hits and correct rejections/number of forecasts) * 100%
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../m-rof/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Find areas at risk of flooding" rel="prev">
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: About" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -583,20 +698,20 @@ Hit score = (number of hits and correct rejections/number of forecasts) * 100%
               <span class="md-footer__direction">
                 Previous
               </span>
-              Find areas at risk of flooding
+              About
             </div>
           </div>
         </a>
       
       
         
-        <a href="../m-nlc/" class="md-footer__link md-footer__link--next" aria-label="Next: Novelty, limitation and constraint" rel="next">
+        <a href="../o-hd/" class="md-footer__link md-footer__link--next" aria-label="Next: Hydrometeorological Disasters" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Novelty, limitation and constraint
+              Hydrometeorological Disasters
             </div>
           </div>
           <div class="md-footer__button md-icon">

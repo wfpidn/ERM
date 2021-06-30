@@ -219,18 +219,33 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../history/" class="md-nav__link">
+        Revision History
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
-      <label class="md-nav__link" for="__nav_2">
+      <label class="md-nav__link" for="__nav_3">
         Overview
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Overview" data-md-level="1">
-        <label class="md-nav__title" for="__nav_2">
+        <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Overview
         </label>
@@ -291,14 +306,14 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
-      <label class="md-nav__link" for="__nav_3">
+      <label class="md-nav__link" for="__nav_4">
         Methodology
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Methodology" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
+        <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Methodology
         </label>
@@ -423,14 +438,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
       
-      <label class="md-nav__link" for="__nav_4">
+      <label class="md-nav__link" for="__nav_5">
         How-to?
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="How-to?" data-md-level="1">
-        <label class="md-nav__title" for="__nav_4">
+        <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           How-to?
         </label>
@@ -454,7 +469,31 @@
   
     <li class="md-nav__item">
       <a href="../ht-imerg/" class="md-nav__link">
-        IMERG data acquisition
+        Acquire IMERG data
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ht-gefs/" class="md-nav__link">
+        Acquire GEFS data
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ht-erc/" class="md-nav__link">
+        Extreme rainfall calculation
       </a>
     </li>
   
@@ -534,15 +573,14 @@
 <p><strong>THRESHOLD is AMOUNT OF RAINFALL NEEDED TO TRIGGER A EVENT (flood/flash-flood/landslide) INDUCED BY EXTREME RAINFALL</strong></p>
 <h2 id="frequency-analysis">Frequency analysis</h2>
 <p>a return period, also known as a recurrence interval (sometimes repeat interval) is an estimate of the likelihood of an event, such as an earthquake, flood, landslide, or a river discharge flow to occur.</p>
-<p>For example, a 10-year flood has a <span class="arithmatex">\(<span class="arithmatex">\(\frac{1}{10}\)</span>\)</span> = 0.1 or 10% chance of being exceeded in any one year and a 50-year flood has a 0.02 or 2% chance of being exceeded in any one year. This does not mean that a 100-year flood will happen regularly every 100 years, or only once in 100 years. Despite the connotations of the name "return period". In any given 100-year period, a 100-year event may occur once, twice, more, or not at all, and each outcome has a probability that can be computed as below.</p>
+<p>For example, a 10-year flood has a <span class="arithmatex">\({1 \over 10}\)</span> = 0.1 or 10% chance of being exceeded in any one year and a 50-year flood has a 0.02 or 2% chance of being exceeded in any one year. This does not mean that a 100-year flood will happen regularly every 100 years, or only once in 100 years. Despite the connotations of the name "return period". In any given 100-year period, a 100-year event may occur once, twice, more, or not at all, and each outcome has a probability that can be computed as below.</p>
 <p>Given that the return period of an event is 100 years,</p>
-<pre><code>P = $$\frac{1}{100}$$
-  = 0.01
-</code></pre>
+<div class="arithmatex">\[P = {1 \over 100}\]</div>
+<div class="arithmatex">\[P = 0.01\]</div>
 <p>So the probability that such an event occurs exactly once in 10 successive years is:</p>
-<p>P(X=1)  = (10/1) * 0.01^1 * 0.99^9
-        = 10 * 0.01 * 0.914
-        = 0.0914</p>
+<div class="arithmatex">\[P(x=1) = ({10 \over 1}) * 0.01^1 * 0.99^9\]</div>
+<div class="arithmatex">\[P = 10 * 0.01 * 0.914\]</div>
+<div class="arithmatex">\[P = 0.0914\]</div>
 <h2 id="the-threshold">The Threshold</h2>
 <p>Daily extreme rainfall alert is based on 1-5 days of consecutive rainfall exceeding a threshold, which will develop at pixel level. The long-term historical daily rainfall (2000-2019) is used to define the threshold. </p>
 <p>It is based on the maximum of 1-5 days consecutive rainfall in 1 year for the period 2000 - 2019 in (x,y) area, and calculate the percentile using k value:</p>

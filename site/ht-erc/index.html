@@ -11,14 +11,14 @@
       
       
       
-        <link rel="canonical" href="https://wfpidn.github.io/ERM/m-eaq/">
+        <link rel="canonical" href="https://wfpidn.github.io/ERM/ht-erc/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
     
     
       
-        <title>Evaluating alert quality - ERM</title>
+        <title>Extreme rainfall calculation - ERM</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#evaluating-alert-quality" class="md-skip">
+        <a href="#extreme-rainfall-calculation" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Evaluating alert quality
+              Extreme rainfall calculation
             
           </span>
         </div>
@@ -299,14 +299,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
       <label class="md-nav__link" for="__nav_4">
         Methodology
@@ -346,51 +344,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Evaluating alert quality
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../m-eaq/" class="md-nav__link">
         Evaluating alert quality
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#a-measure-of-forecast-accuracy" class="md-nav__link">
-    A measure of forecast accuracy
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -419,12 +377,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
       
       <label class="md-nav__link" for="__nav_5">
         How-to?
@@ -476,11 +436,21 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../ht-erc/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Extreme rainfall calculation
       </a>
+      
     </li>
   
 
@@ -510,21 +480,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#a-measure-of-forecast-accuracy" class="md-nav__link">
-    A measure of forecast accuracy
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -535,26 +490,41 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/wfpidn/ERM/edit/master/docs/m-eaq.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/wfpidn/ERM/edit/master/docs/ht-erc.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="evaluating-alert-quality">Evaluating alert quality</h1>
-<p>To evaluate alert release by VAMPIRE, we need additional data and information from various source. So far few source has been identified: (1) AHA Centre ADInet - http://adinet.ahacentre.org/main; (2) BNPB Disaster Monitoring - http://gis.bnpb.go.id; (3) PUPR Geoportal - https://sigi.pu.go.id/disaster </p>
-<h2 id="a-measure-of-forecast-accuracy">A measure of forecast accuracy</h2>
-<p>How many of the events were forecast?</p>
-<pre><code>Hit rate = (number of hits/number of events) * 100%
-</code></pre>
-<p>Correct rejections are correct forecasts.</p>
-<pre><code>False-alarm rate =  number of false alarms/number of non-events
-</code></pre>
-<p>How many times was the forecast correct?</p>
-<pre><code>Hit score = (number of correct forecasts/number of forecasts) * 100%
-
-Hit score = (number of hits and correct rejections/number of forecasts) * 100%
-</code></pre>
-<p><img alt="Stats" src="../img/stats.png" /></p>
+                <h1 id="extreme-rainfall-calculation">Extreme rainfall calculation</h1>
+<p>Extract rainfall exceeding the threshold for 1 to 5-days</p>
+<ul>
+<li>
+<p>1-day</p>
+<ul>
+<li>
+<p>IF RAIN-A<sub>1day</sub> &gt; Threshold_P50, THEN extract to new file RAIN-B<sub>p50</sub> and classified as Moderate <code>#ffffcc</code> <img alt="#ffffcc" src="https://via.placeholder.com/15/ffffcc/000000?text=+" /></p>
+</li>
+<li>
+<p>IF RAIN-A<sub>1day</sub> &gt; Threshold_P80, THEN extract to new file RAIN-B<sub>p80</sub> and classified as Heavy <code>#a1dab4</code> <img alt="#a1dab4" src="https://via.placeholder.com/15/a1dab4/000000?text=+" /></p>
+</li>
+<li>
+<p>IF RAIN-A<sub>1day</sub> &gt; Threshold_P90, THEN extract to new file RAIN-B<sub>p90</sub> and classified as Intense <code>#41b6c4</code> <img alt="#41b6c4" src="https://via.placeholder.com/15/41b6c4/000000?text=+" /></p>
+</li>
+<li>
+<p>IF RAIN-A<sub>1day</sub> &gt; Threshold_P96, THEN extract to new file RAIN-B<sub>p96</sub> and classified as Extreme <code>#225ea8</code> <img alt="#225ea8" src="https://via.placeholder.com/15/225ea8/000000?text=+" /></p>
+</li>
+<li>
+<p>Combine all result RAIN-Bp50 - RAIN-B<sub>p80</sub> - RAIN-B<sub>p90</sub> - RAIN-B<sub>p96</sub> into single file RAIN_B with information on rainfall value and class, with condition: </p>
+<p>if in certain location (x,y) experience more extreme categories (P50&lt;P80&lt;P90&lt;P96), the area is excluded in other less extreme categories. </p>
+</li>
+</ul>
+</li>
+<li>
+<p>Repeat the process for 2-days to 5-days period.</p>
+</li>
+</ul>
+<p>Picture below illustrate above step.</p>
+<p><img alt="Extreme Rainfall Calculation" src="../img/erc.png" /></p>
                 
               
               
@@ -574,7 +544,7 @@ Hit score = (number of hits and correct rejections/number of forecasts) * 100%
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../m-rof/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Find areas at risk of flooding" rel="prev">
+        <a href="../ht-gefs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Acquire GEFS data" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -583,26 +553,11 @@ Hit score = (number of hits and correct rejections/number of forecasts) * 100%
               <span class="md-footer__direction">
                 Previous
               </span>
-              Find areas at risk of flooding
+              Acquire GEFS data
             </div>
           </div>
         </a>
       
-      
-        
-        <a href="../m-nlc/" class="md-footer__link md-footer__link--next" aria-label="Next: Novelty, limitation and constraint" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Novelty, limitation and constraint
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
       
     </nav>
   
