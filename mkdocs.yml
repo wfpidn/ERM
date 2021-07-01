@@ -46,7 +46,6 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.snippets
   - pymdownx.details
-  - footnotes
 
 
 nav:
@@ -66,3 +65,6 @@ nav:
         - Acquire IMERG data: ht-imerg.md
         - Acquire GEFS data: ht-gefs.md
         - Extreme rainfall calculation: ht-erc.md
+    - Implementation:
+        - Google Earth Engine: i-gee.md
+        - Demo: i-demo.md
