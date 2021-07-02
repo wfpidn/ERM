@@ -1,4 +1,4 @@
-site_name: ERM
+site_name: Extreme Rainfall Monitoring
 site_description: Extreme rainfall monitoring, will it trigger a flood?
 site_url: "https://wfpidn.github.io/ERM"
 repo_url: https://github.com/wfpidn/ERM
@@ -8,8 +8,16 @@ repo_name: wfpidn/ERM
 theme:
   name: material
   palette:
-    scheme: default
-    primary: blue
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
   icon:
     repo: fontawesome/brands/github
     logo: material/library
@@ -17,12 +25,16 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
-  feature:
+  features:
     - navigation.tabs
+    - navigation.sections
     - navigation.expand
     - navigation.top
     - toc.integrate
 
+plugins:
+  - search:
+      separator: '[\s\-\.]+'
 
 extra_javascript:
   - javascripts/config.js
@@ -46,6 +58,9 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.snippets
   - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 
 nav:

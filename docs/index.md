@@ -8,7 +8,7 @@ Some of the input is prepared via different platform: ArcGIS Pro, R Statistics, 
 
 This is the single-source of documentation for ERM. It is intended to be a thorough, living document detailing the background, objective, data, method and output of ERM. If you find a mistake, please open an issue.
 
-ERM model developed by Benny Istanto and [Prof. Rizaldi Boer](https://scholar.google.com/citations?hl=en&user=jTPXEp8AAAAJ) as Scientific Advisor.
+ERM model developed by Benny Istanto and [Prof. Rizaldi Boer](https://scholar.google.com/citations?hl=en&user=jTPXEp8AAAAJ) of Climatology Laboratory - [Bogor Agricultural University](https://ipb.ac.id) as Scientific Advisor.
 
 ![Extreme Rainfall Monitoring](./img/erm.png)
 
