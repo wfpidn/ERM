@@ -876,6 +876,66 @@
 <span class="kd">var</span> <span class="nx">Intercept_Day5_11</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="s2">&quot;users/bennyistanto/datasets/raster/extremerainfall/intercept/idn_cli_day5_11_nov_intercept_imerg&quot;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">Intercept_Day5_12</span> <span class="o">=</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="s2">&quot;users/bennyistanto/datasets/raster/extremerainfall/intercept/idn_cli_day5_12_dec_intercept_imerg&quot;</span><span class="p">);</span>
 </code></pre></div>
+<p>As alternative, we could simplify above script to read the assets by write the function for each category. </p>
+<div class="highlight"><pre><span></span><code><span class="c1">// FUNCTION</span>
+<span class="c1">//---</span>
+<span class="c1">// Get Threshold Image</span>
+<span class="kd">function</span> <span class="nx">getThresholdImage</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">numday</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">q</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;P50&#39;</span><span class="o">:</span> <span class="s1">&#39;q0500_2yr&#39;</span><span class="p">,</span> <span class="c1">// Percentile 50, 2-year return period</span>
+    <span class="s1">&#39;P80&#39;</span><span class="o">:</span> <span class="s1">&#39;q0800_5yr&#39;</span><span class="p">,</span> <span class="c1">// Percentile 80, 5-year return period</span>
+    <span class="s1">&#39;P90&#39;</span><span class="o">:</span> <span class="s1">&#39;q0900_10yr&#39;</span><span class="p">,</span> <span class="c1">// Percentile 90, 10-year return period</span>
+    <span class="s1">&#39;P96&#39;</span><span class="o">:</span> <span class="s1">&#39;q0960_25yr&#39;</span> <span class="c1">// Percentile 96, 25-year return period</span>
+  <span class="p">}[</span><span class="nx">p</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;1 day&#39;</span> <span class="o">:</span> <span class="s1">&#39;1day&#39;</span><span class="p">,</span> <span class="c1">// Threshold for 1-day</span>
+    <span class="s1">&#39;2 days&#39;</span><span class="o">:</span> <span class="s1">&#39;2day&#39;</span><span class="p">,</span> <span class="c1">// Threshold for 2 consecutive day</span>
+    <span class="s1">&#39;3 days&#39;</span><span class="o">:</span> <span class="s1">&#39;3day&#39;</span><span class="p">,</span> <span class="c1">// Threshold for 3 consecutive day</span>
+    <span class="s1">&#39;4 days&#39;</span><span class="o">:</span> <span class="s1">&#39;4day&#39;</span><span class="p">,</span> <span class="c1">// Threshold for 4 consecutive day</span>
+    <span class="s1">&#39;5 days&#39;</span><span class="o">:</span> <span class="s1">&#39;5day&#39;</span><span class="p">,</span> <span class="c1">// Threshold for 5 consecutive day</span>
+  <span class="p">}[</span><span class="nx">numday</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="s1">&#39;users/bennyistanto/datasets/raster/extremerainfall/threshold/idn_cli_&#39;</span> 
+    <span class="o">+</span> <span class="nx">d</span> <span class="o">+</span> <span class="s1">&#39;_precipthreshold_&#39;</span> 
+    <span class="o">+</span> <span class="nx">q</span> <span class="o">+</span> <span class="s1">&#39;_imerg_wfp&#39;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="nx">path</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Get Slope Image</span>
+<span class="kd">function</span> <span class="nx">getSlopeImage</span><span class="p">(</span><span class="nx">month</span><span class="p">,</span> <span class="nx">numday</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;01_jan&#39;</span><span class="p">,</span><span class="s1">&#39;02_feb&#39;</span><span class="p">,</span><span class="s1">&#39;03_mar&#39;</span><span class="p">,</span><span class="s1">&#39;04_apr&#39;</span><span class="p">,</span><span class="s1">&#39;05_may&#39;</span><span class="p">,</span><span class="s1">&#39;06_jun&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;07_jul&#39;</span><span class="p">,</span><span class="s1">&#39;08_aug&#39;</span><span class="p">,</span><span class="s1">&#39;09_sep&#39;</span><span class="p">,</span><span class="s1">&#39;10_oct&#39;</span><span class="p">,</span><span class="s1">&#39;11_nov&#39;</span><span class="p">,</span><span class="s1">&#39;12_dec&#39;</span>
+  <span class="p">][</span><span class="nx">month</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;1 day&#39;</span> <span class="o">:</span> <span class="s1">&#39;day1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;2 days&#39;</span><span class="o">:</span> <span class="s1">&#39;day2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;3 days&#39;</span><span class="o">:</span> <span class="s1">&#39;day3&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;4 days&#39;</span><span class="o">:</span> <span class="s1">&#39;day4&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;5 days&#39;</span><span class="o">:</span> <span class="s1">&#39;day5&#39;</span><span class="p">,</span>
+  <span class="p">}[</span><span class="nx">numday</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="s1">&#39;users/bennyistanto/datasets/raster/extremerainfall/slope/idn_cli_&#39;</span> 
+    <span class="o">+</span> <span class="nx">d</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="nx">m</span> <span class="o">+</span> <span class="s1">&#39;_slope_imerg&#39;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="nx">path</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Get Intercept Image</span>
+<span class="kd">function</span> <span class="nx">getInterceptImage</span><span class="p">(</span><span class="nx">month</span><span class="p">,</span> <span class="nx">numday</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;01_jan&#39;</span><span class="p">,</span><span class="s1">&#39;02_feb&#39;</span><span class="p">,</span><span class="s1">&#39;03_mar&#39;</span><span class="p">,</span><span class="s1">&#39;04_apr&#39;</span><span class="p">,</span><span class="s1">&#39;05_may&#39;</span><span class="p">,</span><span class="s1">&#39;06_jun&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;07_jul&#39;</span><span class="p">,</span><span class="s1">&#39;08_aug&#39;</span><span class="p">,</span><span class="s1">&#39;09_sep&#39;</span><span class="p">,</span><span class="s1">&#39;10_oct&#39;</span><span class="p">,</span><span class="s1">&#39;11_nov&#39;</span><span class="p">,</span><span class="s1">&#39;12_dec&#39;</span>
+  <span class="p">][</span><span class="nx">month</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;1 day&#39;</span> <span class="o">:</span> <span class="s1">&#39;day1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;2 days&#39;</span><span class="o">:</span> <span class="s1">&#39;day2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;3 days&#39;</span><span class="o">:</span> <span class="s1">&#39;day3&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;4 days&#39;</span><span class="o">:</span> <span class="s1">&#39;day4&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;5 days&#39;</span><span class="o">:</span> <span class="s1">&#39;day5&#39;</span><span class="p">,</span>
+  <span class="p">}[</span><span class="nx">numday</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="s1">&#39;users/bennyistanto/datasets/raster/extremerainfall/intercept/idn_cli_&#39;</span> 
+    <span class="o">+</span> <span class="nx">d</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="nx">m</span> <span class="o">+</span> <span class="s1">&#39;_intercept_imerg&#39;</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Image</span><span class="p">(</span><span class="nx">path</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>All of the data required by ERM is available for global coverage, and the focus for ERM is only for Indonesia. Then we need to have a layer as a Masked for Indonesia. The file is available via assets: <code>users/bennyistanto/datasets/raster/extremerainfall/mask/idn_bnd_imerg_subset</code></p>
 <p>We will use Masked layer to clip all of the input data:</p>
 <ul>
@@ -916,6 +976,62 @@
   <span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="s1">&#39;system:index&#39;</span><span class="p">,</span><span class="kc">false</span><span class="p">)</span>
   <span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;LC_Type1&quot;</span><span class="p">)</span>
   <span class="p">.</span><span class="nx">first</span><span class="p">();</span>
+</code></pre></div>
+<p>Next is creating function to get near rela-time data using IMERG and forecast data using GFS. We will have scenario from last 5-days and up to 5-days ahead based on selected date. So we need to prepare rainfall accumulation for both scenario.</p>
+<p>Below is a  function to get near real-time</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Get near real-time data (IMERG Image)</span>
+<span class="kd">function</span> <span class="nx">getImergImage</span><span class="p">(</span><span class="nx">dt</span><span class="p">,</span> <span class="nx">numday</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">nday</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;1 day&#39;</span> <span class="o">:</span> <span class="mf">1</span><span class="p">,</span> <span class="c1">// Scenario for 1 day cumulative rainfall forecast</span>
+    <span class="s1">&#39;2 days&#39;</span><span class="o">:</span> <span class="mf">2</span><span class="p">,</span> <span class="c1">// Scenario for 2 consecutive day cumulative rainfall forecast</span>
+    <span class="s1">&#39;3 days&#39;</span><span class="o">:</span> <span class="mf">3</span><span class="p">,</span> <span class="c1">// Scenario for 3 consecutive day cumulative rainfall forecast</span>
+    <span class="s1">&#39;4 days&#39;</span><span class="o">:</span> <span class="mf">4</span><span class="p">,</span> <span class="c1">// Scenario for 4 consecutive day cumulative rainfall forecast</span>
+    <span class="s1">&#39;5 days&#39;</span><span class="o">:</span> <span class="mf">5</span><span class="p">,</span> <span class="c1">// Scenario for 5 consecutive day cumulative rainfall forecast</span>
+  <span class="p">}[</span><span class="nx">numday</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="nx">hours</span> <span class="o">=</span> <span class="o">-</span><span class="mf">24</span> <span class="o">*</span> <span class="nx">nday</span><span class="p">;</span>
+  <span class="nx">print</span><span class="p">(</span><span class="nx">hours</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="nx">imerg</span> <span class="c1">// ee.ImageCollection(&#39;NASA/GPM_L3/IMERG_V06&#39;)</span>
+    <span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;precipitationCal&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="nx">dt</span><span class="p">.</span><span class="nx">advance</span><span class="p">(</span><span class="nx">hours</span><span class="p">,</span><span class="s1">&#39;hour&#39;</span><span class="p">),</span> <span class="nx">dt</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">maskImage</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">sum</span><span class="p">().</span><span class="kr">float</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>And this is a function to get a forecast data</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Get forecast data (GFS Image)</span>
+<span class="kd">function</span> <span class="nx">getGfsImage</span><span class="p">(</span><span class="nx">dt</span><span class="p">,</span> <span class="nx">numday</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">nday</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;1 day&#39;</span> <span class="o">:</span> <span class="mf">1</span><span class="p">,</span> <span class="c1">// Scenario for 1 day cumulative rainfall forecast</span>
+    <span class="s1">&#39;2 days&#39;</span><span class="o">:</span> <span class="mf">2</span><span class="p">,</span> <span class="c1">// Scenario for 2 consecutive day cumulative rainfall forecast</span>
+    <span class="s1">&#39;3 days&#39;</span><span class="o">:</span> <span class="mf">3</span><span class="p">,</span> <span class="c1">// Scenario for 3 consecutive day cumulative rainfall forecast</span>
+    <span class="s1">&#39;4 days&#39;</span><span class="o">:</span> <span class="mf">4</span><span class="p">,</span> <span class="c1">// Scenario for 4 consecutive day cumulative rainfall forecast</span>
+    <span class="s1">&#39;5 days&#39;</span><span class="o">:</span> <span class="mf">5</span><span class="p">,</span> <span class="c1">// Scenario for 5 consecutive day cumulative rainfall forecast</span>
+  <span class="p">}[</span><span class="nx">numday</span><span class="p">];</span>
+  <span class="kd">var</span> <span class="nx">hours</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">nday</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="mf">4</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="p">(</span><span class="nx">i</span><span class="o">*</span><span class="mf">24</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="nx">j</span><span class="o">+</span><span class="mf">1</span><span class="p">)</span><span class="o">*</span><span class="mf">6</span><span class="p">);</span>
+      <span class="nx">hours</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">h</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="nx">print</span><span class="p">(</span><span class="nx">hours</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="nx">gfs</span> <span class="c1">// ee.ImageCollection(&#39;NOAA/GFS0P25&#39;)</span>
+    <span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;total_precipitation_surface&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">filterDate</span><span class="p">(</span><span class="nx">dt</span><span class="p">,</span> <span class="nx">dt</span><span class="p">.</span><span class="nx">advance</span><span class="p">(</span><span class="mf">6</span><span class="p">,</span><span class="s1">&#39;hour&#39;</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">ee</span><span class="p">.</span><span class="nx">Filter</span><span class="p">.</span><span class="nx">inList</span><span class="p">(</span><span class="s1">&#39;forecast_hours&#39;</span><span class="p">,</span> <span class="nx">hours</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">maskImage</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">sum</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">setDefaultProjection</span><span class="p">(</span><span class="nx">IMERGprojection</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">reduceResolution</span><span class="p">({</span>
+      <span class="nx">reducer</span><span class="o">:</span> <span class="nx">ee</span><span class="p">.</span><span class="nx">Reducer</span><span class="p">.</span><span class="nx">sum</span><span class="p">().</span><span class="nx">unweighted</span><span class="p">(),</span>
+      <span class="nx">maxPixels</span><span class="o">:</span> <span class="mf">1024</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">reproject</span><span class="p">({</span>
+      <span class="nx">crs</span><span class="o">:</span> <span class="nx">IMERGprojection</span><span class="p">.</span><span class="nx">atScale</span><span class="p">(</span><span class="mf">11131.949079327358</span><span class="p">)</span>
+    <span class="p">});</span>
+<span class="p">}</span>
 </code></pre></div>
                 
               

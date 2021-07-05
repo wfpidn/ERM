@@ -228,6 +228,70 @@ var Intercept_Day5_12 = ee.Image("users/bennyistanto/datasets/raster/extremerain
 
 ```
 
+As alternative, we could simplify above script to read the assets by write the function for each category. 
+
+```js
+// FUNCTION
+//---
+// Get Threshold Image
+function getThresholdImage(p, numday) {
+  var q = {
+    'P50': 'q0500_2yr', // Percentile 50, 2-year return period
+    'P80': 'q0800_5yr', // Percentile 80, 5-year return period
+    'P90': 'q0900_10yr', // Percentile 90, 10-year return period
+    'P96': 'q0960_25yr' // Percentile 96, 25-year return period
+  }[p];
+  var d = {
+    '1 day' : '1day', // Threshold for 1-day
+    '2 days': '2day', // Threshold for 2 consecutive day
+    '3 days': '3day', // Threshold for 3 consecutive day
+    '4 days': '4day', // Threshold for 4 consecutive day
+    '5 days': '5day', // Threshold for 5 consecutive day
+  }[numday];
+  var path = 'users/bennyistanto/datasets/raster/extremerainfall/threshold/idn_cli_' 
+    + d + '_precipthreshold_' 
+    + q + '_imerg_wfp';
+  return ee.Image(path);
+}
+
+// Get Slope Image
+function getSlopeImage(month, numday) {
+  var m = ['',
+    '01_jan','02_feb','03_mar','04_apr','05_may','06_jun',
+    '07_jul','08_aug','09_sep','10_oct','11_nov','12_dec'
+  ][month];
+  var d = {
+    '1 day' : 'day1',
+    '2 days': 'day2',
+    '3 days': 'day3',
+    '4 days': 'day4',
+    '5 days': 'day5',
+  }[numday];
+  var path = 'users/bennyistanto/datasets/raster/extremerainfall/slope/idn_cli_' 
+    + d + '_' + m + '_slope_imerg';
+  return ee.Image(path);
+}
+
+// Get Intercept Image
+function getInterceptImage(month, numday) {
+  var m = ['',
+    '01_jan','02_feb','03_mar','04_apr','05_may','06_jun',
+    '07_jul','08_aug','09_sep','10_oct','11_nov','12_dec'
+  ][month];
+  var d = {
+    '1 day' : 'day1',
+    '2 days': 'day2',
+    '3 days': 'day3',
+    '4 days': 'day4',
+    '5 days': 'day5',
+  }[numday];
+  var path = 'users/bennyistanto/datasets/raster/extremerainfall/intercept/idn_cli_' 
+    + d + '_' + m + '_intercept_imerg';
+  return ee.Image(path);
+}
+
+```
+
 All of the data required by ERM is available for global coverage, and the focus for ERM is only for Indonesia. Then we need to have a layer as a Masked for Indonesia. The file is available via assets: `users/bennyistanto/datasets/raster/extremerainfall/mask/idn_bnd_imerg_subset`
 
 We will use Masked layer to clip all of the input data:
@@ -273,3 +337,67 @@ var mcd12q1 = ee.ImageCollection('MODIS/006/MCD12Q1')
   .first();
 
 ```
+
+Next is creating function to get near rela-time data using IMERG and forecast data using GFS. We will have scenario from last 5-days and up to 5-days ahead based on selected date. So we need to prepare rainfall accumulation for both scenario.
+
+Below is a  function to get near real-time
+
+```js
+// Get near real-time data (IMERG Image)
+function getImergImage(dt, numday) {
+  var nday = {
+    '1 day' : 1, // Scenario for 1 day cumulative rainfall forecast
+    '2 days': 2, // Scenario for 2 consecutive day cumulative rainfall forecast
+    '3 days': 3, // Scenario for 3 consecutive day cumulative rainfall forecast
+    '4 days': 4, // Scenario for 4 consecutive day cumulative rainfall forecast
+    '5 days': 5, // Scenario for 5 consecutive day cumulative rainfall forecast
+  }[numday];
+  var hours = -24 * nday;
+  print(hours);
+  
+  return imerg // ee.ImageCollection('NASA/GPM_L3/IMERG_V06')
+    .select('precipitationCal')
+    .filterDate(dt.advance(hours,'hour'), dt)
+    .map(maskImage)
+    .sum().float();
+}
+```
+
+And this is a function to get a forecast data
+
+```js
+// Get forecast data (GFS Image)
+function getGfsImage(dt, numday) {
+  var nday = {
+    '1 day' : 1, // Scenario for 1 day cumulative rainfall forecast
+    '2 days': 2, // Scenario for 2 consecutive day cumulative rainfall forecast
+    '3 days': 3, // Scenario for 3 consecutive day cumulative rainfall forecast
+    '4 days': 4, // Scenario for 4 consecutive day cumulative rainfall forecast
+    '5 days': 5, // Scenario for 5 consecutive day cumulative rainfall forecast
+  }[numday];
+  var hours = [];
+  for (var i = 0; i < nday; i++) {
+    for (var j = 0; j < 4; j++) {
+      var h = (i*24) + ((j+1)*6);
+      hours.push(h);
+    }
+  }
+  print(hours);
+  
+  return gfs // ee.ImageCollection('NOAA/GFS0P25')
+    .select('total_precipitation_surface')
+    .filterDate(dt, dt.advance(6,'hour'))
+    .filter(ee.Filter.inList('forecast_hours', hours))
+    .map(maskImage)
+    .sum()
+    .setDefaultProjection(IMERGprojection)
+    .reduceResolution({
+      reducer: ee.Reducer.sum().unweighted(),
+      maxPixels: 1024
+    })
+    .reproject({
+      crs: IMERGprojection.atScale(11131.949079327358)
+    });
+}
+```
+
