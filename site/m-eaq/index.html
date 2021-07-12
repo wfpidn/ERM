@@ -56,7 +56,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
@@ -110,7 +110,7 @@
         
           
           
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
@@ -119,7 +119,7 @@
         
           
           
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
           
             <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
@@ -691,16 +691,16 @@
 <p>To evaluate alert release by VAMPIRE, we need additional data and information from various source. So far few source has been identified: (1) AHA Centre ADInet - http://adinet.ahacentre.org/main; (2) BNPB Disaster Monitoring - http://gis.bnpb.go.id; (3) PUPR Geoportal - https://sigi.pu.go.id/disaster </p>
 <h2 id="a-measure-of-forecast-accuracy">A measure of forecast accuracy</h2>
 <p>How many of the events were forecast?</p>
-<pre><code>Hit rate = (number of hits/number of events) * 100%
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>Hit rate = (number of hits/number of events) * 100%
+</code></pre></div>
 <p>Correct rejections are correct forecasts.</p>
-<pre><code>False-alarm rate =  number of false alarms/number of non-events
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>False-alarm rate =  number of false alarms/number of non-events
+</code></pre></div>
 <p>How many times was the forecast correct?</p>
-<pre><code>Hit score = (number of correct forecasts/number of forecasts) * 100%
-
-Hit score = (number of hits and correct rejections/number of forecasts) * 100%
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>Hit score = (number of correct forecasts/number of forecasts) * 100%
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span>Hit score = (number of hits and correct rejections/number of forecasts) * 100%
+</code></pre></div>
 <p><img alt="Stats" src="../img/stats.png" /></p>
                 
               

@@ -10,11 +10,15 @@ theme:
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
+      primary: indigo
+      accent: indigo
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
+      primary: deep orange
+      accent: deep orange
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
@@ -55,12 +59,22 @@ markdown_extensions:
   - admonition
   - pymdownx.tabbed
   - pymdownx.keys
+  - pymdownx.highlight:
+      use_pygments: true
+      linenums: true
+      linenums_style: pymdownx-inline
+  - pymdownx.inlinehilite
+  - pymdownx.keys
   - pymdownx.superfences
   - pymdownx.snippets
   - pymdownx.details
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.tasklist:
+      clickable_checkbox: false
+      custom_checkbox: true
+  - def_list
 
 
 nav:

@@ -56,7 +56,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
@@ -110,7 +110,7 @@
         
           
           
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
@@ -119,7 +119,7 @@
         
           
           
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
           
             <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
@@ -717,19 +717,19 @@
 <p><img alt="Focal Linear Regression" src="../img/flr.png" /></p>
 <h2 id="will-it-trigger-a-flood">Will it trigger a flood?</h2>
 <p>As an example, it is found that for pixel at (6,2) equation that can estimate the probability of flood event is:</p>
-<pre><code>gi = 0.01888 * Xi - 4.0219
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>gi = 0.01888 * Xi - 4.0219
+</code></pre></div>
 <p>Using the above formula, with the availability of rainfall forecast for the X-days, the gi can be estimated and translated into probability of flood.</p>
 <p>For example, if the forecast at X-days reaches 300 mm (categorized as Extreme rainfall, exceeding Percentile 96) then:</p>
-<pre><code>gt = 0.01888 * 300 - 4.0219
-
-gt = 1.6421
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>gt = 0.01888 * 300 - 4.0219
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span>gt = 1.6421
+</code></pre></div>
 <p>The corresponding probability </p>
-<pre><code>pt = 1/(1+exp(-1.6421)
-
-pt = 0.837820
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>pt = 1/(1+exp(-1.6421)
+<span class="linenos" data-linenos="2 "></span>
+<span class="linenos" data-linenos="3 "></span>pt = 0.837820
+</code></pre></div>
 <p>categorized as High likelihood</p>
 <p>Then  ALERT category 9  will release for this event.</p>
 <p>Combination from Extreme Rainfall and High Likelihood</p>

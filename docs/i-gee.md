@@ -403,4 +403,4 @@ function getGfsImage(dt, numday) {
 
 **Notes**
 
-Most of GEE script written by Ridwan Mulyadi, and tested by Benny Istanto. Both are working as System Developer and Climate Analyst at VAM unit, UNWFP Indonesia.
+The GEE script is written by Benny Istanto and Ridwan Mulyadi. Both are working as Climate Analyst and System Developer at VAM unit, UN WFP Indonesia.

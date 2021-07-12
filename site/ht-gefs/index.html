@@ -56,7 +56,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
@@ -110,7 +110,7 @@
         
           
           
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
@@ -119,7 +119,7 @@
         
           
           
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
           
             <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
@@ -772,7 +772,7 @@
 </li>
 <li>
 <p>GeoJSON
-    <div class="highlight"><pre><span></span><code>{&quot;type&quot;:&quot;FeatureCollection&quot;,&quot;features&quot;:[{&quot;type&quot;:&quot;Feature&quot;,&quot;properties&quot;:{},&quot;geometry&quot;:{&quot;type&quot;:&quot;Polygon&quot;,&quot;crs&quot;:&quot;EPSG:4326&quot;,&quot;coordinates&quot;:[[[94,-12],[94,7],[142,7],[142,-12],[94,-12]]]}}]}
+    <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>{&quot;type&quot;:&quot;FeatureCollection&quot;,&quot;features&quot;:[{&quot;type&quot;:&quot;Feature&quot;,&quot;properties&quot;:{},&quot;geometry&quot;:{&quot;type&quot;:&quot;Polygon&quot;,&quot;crs&quot;:&quot;EPSG:4326&quot;,&quot;coordinates&quot;:[[[94,-12],[94,7],[142,7],[142,-12],[94,-12]]]}}]}
 </code></pre></div></p>
 </li>
 </ul>
@@ -793,23 +793,23 @@
 <li>Release hour (<code><mark class="critic">00</mark></code>, <code>06</code>, <code>12</code>, <code>18</code>): <code><mark class="critic">00</mark></code></li>
 </ul>
 <p>Script: 
-<div class="highlight"><pre><span></span><code>https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t00z.pgrb2s.0p25.f006&amp;lev_surface=on&amp;var_APCP=on&amp;subregion=&amp;leftlon=94&amp;rightlon=142&amp;toplat=7&amp;bottomlat=-12&amp;dir=%2Fgefs.20201103%2F00%2Fatmos%2Fpgrb2sp25
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t00z.pgrb2s.0p25.f006&amp;lev_surface=on&amp;var_APCP=on&amp;subregion=&amp;leftlon=94&amp;rightlon=142&amp;toplat=7&amp;bottomlat=-12&amp;dir=%2Fgefs.20201103%2F00%2Fatmos%2Fpgrb2sp25
 </code></pre></div></p>
 <h3 id="download-process">Download process</h3>
 <p>Each time we run the download process procedure (Example: Date <mark class="critic">3 Nov 2020</mark>, release hour <code><mark class="critic">00</mark></code>), it means we need to download all the forecast hour from <code>f006</code> to <code>f120</code></p>
-<div class="highlight"><pre><span></span><code>https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t<mark class="critic">00</mark>z.pgrb2s.0p25.<mark class="critic">f006</mark>&amp;lev_surface=on&amp;var_APCP=on&amp;subregion=&amp;leftlon=94&amp;rightlon=142&amp;toplat=7&amp;bottomlat=-12&amp;dir=%2Fgefs.20201103%2F<mark class="critic">00</mark>%2Fatmos%2Fpgrb2sp25
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t<mark class="critic">00</mark>z.pgrb2s.0p25.<mark class="critic">f006</mark>&amp;lev_surface=on&amp;var_APCP=on&amp;subregion=&amp;leftlon=94&amp;rightlon=142&amp;toplat=7&amp;bottomlat=-12&amp;dir=%2Fgefs.20201103%2F<mark class="critic">00</mark>%2Fatmos%2Fpgrb2sp25
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t<mark class="critic">00</mark>z.pgrb2s.0p25.<mark class="critic">f012</mark>&amp;lev_surface=on&amp;var_APCP=on&amp;subregion=&amp;leftlon=94&amp;rightlon=142&amp;toplat=7&amp;bottomlat=-12&amp;dir=%2Fgefs.20201103%2F<mark class="critic">00</mark>%2Fatmos%2Fpgrb2sp25
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t<mark class="critic">00</mark>z.pgrb2s.0p25.<mark class="critic">f012</mark>&amp;lev_surface=on&amp;var_APCP=on&amp;subregion=&amp;leftlon=94&amp;rightlon=142&amp;toplat=7&amp;bottomlat=-12&amp;dir=%2Fgefs.20201103%2F<mark class="critic">00</mark>%2Fatmos%2Fpgrb2sp25
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t<mark class="critic">00</mark>z.pgrb2s.0p25.<mark class="critic">f018</mark>&amp;lev_surface=on&amp;var_APCP=on&amp;subregion=&amp;leftlon=94&amp;rightlon=142&amp;toplat=7&amp;bottomlat=-12&amp;dir=%2Fgefs.20201103%2F<mark class="critic">00</mark>%2Fatmos%2Fpgrb2sp25
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t<mark class="critic">00</mark>z.pgrb2s.0p25.<mark class="critic">f018</mark>&amp;lev_surface=on&amp;var_APCP=on&amp;subregion=&amp;leftlon=94&amp;rightlon=142&amp;toplat=7&amp;bottomlat=-12&amp;dir=%2Fgefs.20201103%2F<mark class="critic">00</mark>%2Fatmos%2Fpgrb2sp25
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>...
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>...
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>...
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>...
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t<mark class="critic">00</mark>z.pgrb2s.0p25.f<mark class="critic">114</mark>&amp;lev_surface=on&amp;var_APCP=on&amp;subregion=&amp;leftlon=94&amp;rightlon=142&amp;toplat=7&amp;bottomlat=-12&amp;dir=%2Fgefs.20201103%2F<mark class="critic">00</mark>%2Fatmos%2Fpgrb2sp25
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t<mark class="critic">00</mark>z.pgrb2s.0p25.f<mark class="critic">114</mark>&amp;lev_surface=on&amp;var_APCP=on&amp;subregion=&amp;leftlon=94&amp;rightlon=142&amp;toplat=7&amp;bottomlat=-12&amp;dir=%2Fgefs.20201103%2F<mark class="critic">00</mark>%2Fatmos%2Fpgrb2sp25
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t<mark class="critic">00</mark>z.pgrb2s.0p25.f<mark class="critic">120</mark>&amp;lev_surface=on&amp;var_APCP=on&amp;subregion=&amp;leftlon=94&amp;rightlon=142&amp;toplat=7&amp;bottomlat=-12&amp;dir=%2Fgefs.20201103%2F<mark class="critic">00</mark>%2Fatmos%2Fpgrb2sp25
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?file=geavg.t<mark class="critic">00</mark>z.pgrb2s.0p25.f<mark class="critic">120</mark>&amp;lev_surface=on&amp;var_APCP=on&amp;subregion=&amp;leftlon=94&amp;rightlon=142&amp;toplat=7&amp;bottomlat=-12&amp;dir=%2Fgefs.20201103%2F<mark class="critic">00</mark>%2Fatmos%2Fpgrb2sp25
 </code></pre></div>
 <p>When new forecast released (for example release hour: <code>06</code>, <code>12</code> and <code>18</code>), we need to repeat all download procedure above and adjust the script with current release hour.</p>
 <h3 id="naming-convention-for-gefs-product">Naming convention for GEFS product</h3>
@@ -832,16 +832,16 @@
 <h2 id="prepare-input-data-rainfall-forecast-for-model">Prepare input data (rainfall forecast) for model</h2>
 <h3 id="conversion-from-grib2-to-geotiff">Conversion from GRIB2 to GeoTIFF</h3>
 <p>All downloaded subset GEFS are in GRIB2 format. We need to convert it to GeoTIFF, the easiest way is using GDAL: 
-<div class="highlight"><pre><span></span><code>gdal_translate -of GTiff input.grib2 output.tif
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>gdal_translate -of GTiff input.grib2 output.tif
 </code></pre></div></p>
 <h3 id="resample">Resample</h3>
 <p>GEFS data available at 0.25deg ~ 27.75km/pixel spatial resolution</p>
 <p>While GPM IMERG available at 0.1deg ~ 11.1km/pixel. So we need to resample (250%) GEFS to match with IMERG using GDAL.
-<div class="highlight"><pre><span></span><code>gdal_translate -r bilinear -outsize 250% 250% input.tif output_resample.tif
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>gdal_translate -r bilinear -outsize 250% 250% input.tif output_resample.tif
 </code></pre></div></p>
 <h3 id="clip-the-raster-with-indonesia-boundary">Clip the raster with Indonesia boundary</h3>
 <p>Then we need to crop the GeoTIFF using Indonesia boundary. GDAL can handle this task:
-<div class="highlight"><pre><span></span><code>gdalwarp --config GDALWARP_IGNORE_BAD_CUTLINE YES -srcnodata -999 -dstnodata NoData -cutline idn_bnd_subset_clip_imerg_grid_a.shp -crop_to_cutline input.tif clip_output.tif
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>gdalwarp --config GDALWARP_IGNORE_BAD_CUTLINE YES -srcnodata -999 -dstnodata NoData -cutline idn_bnd_subset_clip_imerg_grid_a.shp -crop_to_cutline input.tif clip_output.tif
 </code></pre></div></p>
 <h3 id="calculate-accumulation-1-to-5-days-rainfall-forecast">Calculate accumulation 1 to 5 days rainfall forecast.</h3>
 <p>Example: pre-downloaded and renamed GEFS data: <a href="https://on.istan.to/32v1tVY">https://on.istan.to/32v1tVY</a> </p>

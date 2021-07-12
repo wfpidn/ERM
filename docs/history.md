@@ -31,6 +31,15 @@
 | 27 | 15 October 2020 | Documenting the process of extreme rainfall monitoring |
 | 28 | 20 October 2020 | Jeffry[^5] completed flood event extraction from AHA Centre ADInet, will combine with data from BNPB and PUPR to validate the alert. Few approach has been tested, but the result still not perfect |
 | 29 | 10 November 2020 | GEFS forecast data acquisition protocol |
+| 30 | 6 December 2020 | Test GFS data process in EarthEngine |
+| 31 | 23 Dec 2020 | Test IMERG data process in EarthEngine |
+| 32 | 10 February 2021 | Combine GFS and IMERG into single process in GEE |
+| 33 | 2 April 2021 | Check forecast for East Nusa Tenggara on tropical depression |
+| 33 | 6 April 2021 | Result looks promising for both near-real time and forecast |
+| 34 | 10 May 2021 | Refine GEE code, simplify some inefficient process |
+| 35 | 25 June 2021 | GEE code review on population, crop and ruban area affected |
+| 36 | 29 June 2021 | Technical documentation available at Github |
+
 
 
 [^1]: Prof. Rizaldi Boer. Scientific Advisor. Center for Climate Risk and Opportunity Management. Bogor Agricultural University.

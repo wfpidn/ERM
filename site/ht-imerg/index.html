@@ -56,7 +56,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
@@ -110,7 +110,7 @@
         
           
           
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
@@ -119,7 +119,7 @@
         
           
           
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
           
             <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
@@ -738,7 +738,7 @@
 </li>
 <li>
 <p>GeoJSON
-    <div class="highlight"><pre><span></span><code>{&quot;type&quot;:&quot;FeatureCollection&quot;,&quot;features&quot;:[{&quot;type&quot;:&quot;Feature&quot;,&quot;properties&quot;:{},&quot;geometry&quot;:{&quot;type&quot;:&quot;Polygon&quot;,&quot;crs&quot;:&quot;EPSG:4326&quot;,&quot;coordinates&quot;:[[[94,-12],[94,7],[142,7],[142,-12],[94,-12]]]}}]}
+    <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>{&quot;type&quot;:&quot;FeatureCollection&quot;,&quot;features&quot;:[{&quot;type&quot;:&quot;Feature&quot;,&quot;properties&quot;:{},&quot;geometry&quot;:{&quot;type&quot;:&quot;Polygon&quot;,&quot;crs&quot;:&quot;EPSG:4326&quot;,&quot;coordinates&quot;:[[[94,-12],[94,7],[142,7],[142,-12],[94,-12]]]}}]}
 </code></pre></div></p>
 </li>
 </ul>
@@ -801,7 +801,7 @@
 </table>
 <h2 id="download-and-subset-for-indonesia-via-opendap">Download and subset for Indonesia via OpenDAP</h2>
 <p>Using <code>wget</code>, see <a href="https://disc.gsfc.nasa.gov/data-access#mac_linux_wget">https://disc.gsfc.nasa.gov/data-access#mac_linux_wget</a>  </p>
-<div class="highlight"><pre><span></span><code>wget --http-user=[USERNAME] --http-password=[PASSWORD] --load-cookies ~/.urs_cookies --save-cookies ~/.urs_cookies --keep-session-cookies --no-check-certificate --auth-no-challenge=on -r --reject &quot;index.html*&quot; -np -e robots=off &lt;insert complete HTTPS OPENDAP URL&gt;
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>wget --http-user=[USERNAME] --http-password=[PASSWORD] --load-cookies ~/.urs_cookies --save-cookies ~/.urs_cookies --keep-session-cookies --no-check-certificate --auth-no-challenge=on -r --reject &quot;index.html*&quot; -np -e robots=off &lt;insert complete HTTPS OPENDAP URL&gt;
 </code></pre></div>
 <p>username: <code>gis.wfp.indonesia</code></p>
 <p>password: Send email to <a href="mailto:benny.istanto@wfp.org">benny.istanto@wfp.org</a> to get the password</p>
@@ -844,11 +844,11 @@
 <p><strong>[0:0][2740:3219][779:969],time,lon[2740:3219],lat[779:969]</strong> - time and bounding-box from original to subset for Indonesia.</p>
 <h2 id="conversion-nc-to-geotiff-and-clip-using-polygon">Conversion NC to GeoTIFF, and clip using polygon</h2>
 <p>All downloaded subset IMERG are in netCDF format. We need to convert it to GeoTIFF, the easiest way is using GDAL: 
-<div class="highlight"><pre><span></span><code>gdal_translate -of GTiff -a_srs EPSG:4326 NETCDF:&quot;filename.nc4&quot;:precipitationCal fileoutput.tif
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>gdal_translate -of GTiff -a_srs EPSG:4326 NETCDF:&quot;filename.nc4&quot;:precipitationCal fileoutput.tif
 </code></pre></div></p>
 <p>But sometimes GDAL couldn’t handle rotated poled grid from subset netCDF, we could try rioxarray based on solution from <a href="https://gis.stackexchange.com/a/367651">https://gis.stackexchange.com/a/367651</a> </p>
 <p>Then we need to crop the GeoTIFF using Indonesia boundary. GDAL can handle this task: 
-<div class="highlight"><pre><span></span><code>gdalwarp --config GDALWARP_IGNORE_BAD_CUTLINE YES -srcnodata -999 -dstnodata NoData -cutline idn_bnd_subset_clip_imerg_grid_a.shp -crop_to_cutline input.tif clip_output.tif
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>gdalwarp --config GDALWARP_IGNORE_BAD_CUTLINE YES -srcnodata -999 -dstnodata NoData -cutline idn_bnd_subset_clip_imerg_grid_a.shp -crop_to_cutline input.tif clip_output.tif
 </code></pre></div></p>
 <h2 id="prepare-input-data-rainfall-accumulation-for-model">Prepare input data (rainfall accumulation) for model</h2>
 <h3 id="historical">Historical</h3>

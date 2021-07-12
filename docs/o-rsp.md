@@ -24,12 +24,14 @@ WFP has been using satellite-derived precipitation estimates for quite sometimes
 
 Climate shocks are a major driver of food insecurity in the world and cause the majority of WFP beneficiaries. 
 
-These data sets provide valuable information for:<br>
-- Early Warning of food security shocks. 
-- Contextual analysis required for planning of WFP interventions. 
-- Climate Change adaptation programmes. 
+These data sets provide valuable information for:
 
-As part of VAMPIRE development, WFP Indonesia try to use satellite-derived precipitation estimates to enhanced the rainfall monitoring module, so it’s capable to monitor:<br>
+- Early Warning of food security shocks.
+- Contextual analysis required for planning of WFP interventions.
+- Climate Change adaptation programmes.
+
+As part of VAMPIRE development, WFP Indonesia try to use satellite-derived precipitation estimates to enhanced the rainfall monitoring module, so it’s capable to monitor:
+
 - Extreme rainfall.
 - Rainfall overland-flow/runoff inundation.
 - Landslide caused by rainfall.

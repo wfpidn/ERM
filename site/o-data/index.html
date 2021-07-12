@@ -56,7 +56,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
@@ -110,7 +110,7 @@
         
           
           
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
           
             <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m10-3a5 5 0 0 1 5 5 5 5 0 0 1-5 5H7a5 5 0 0 1-5-5 5 5 0 0 1 5-5h10M7 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3h10a3 3 0 0 0 3-3 3 3 0 0 0-3-3H7z"/></svg>
@@ -119,7 +119,7 @@
         
           
           
-          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
           
             <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
@@ -713,16 +713,16 @@
 <h3 id="rainfall-monitoring-near-real-time">Rainfall monitoring (near real-time)</h3>
 <p><strong>NASA GPM</strong> (Global Precipitation Measurement - <a href="http://pmm.nasa.gov/GPM/">http://pmm.nasa.gov/GPM/</a>) IMERG (Integrated Multi-satellite Retrievals for GPM) products.</p>
 <p><strong>IMERG Version 06 Data</strong></p>
-<ul>
+<ol>
 <li>IMERG is a single integrated code system for near-real and post-real time.</li>
 <li>IMERG is adjusted to Gprecip monthly climatology zonally to achieve a bias profile that is considered reasonable.</li>
 <li>
-<p>Multiple runs for different user requirements for latency and accuracy<br></p>
-<ul>
+<p>Multiple runs for different user requirements for latency and accuracy</p>
+<ol>
 <li>“Early” – 4 hour (example application: flash flooding)</li>
 <li>“Late” – 14 hour. (crop forecasting)</li>
 <li>“Final” – 3 months (research)</li>
-</ul>
+</ol>
 </li>
 <li>
 <p>TEMPORAL COVERAGE: from 1 Jun 2000 to nowadays</p>
@@ -733,40 +733,42 @@
 <li>VARIABLE: precipitationCal</li>
 <li>FORMAT: netCDF (nc4), Reference: <a href="https://www.unidata.ucar.edu/software/netcdf/">https://www.unidata.ucar.edu/software/netcdf/</a> </li>
 <li>
-<p>NAMING CONVENTION:<br></p>
-<ul>
+<p>NAMING CONVENTION:</p>
+<ol>
 <li>Half-hourly - GPM_3IMERGHH 06</li>
 <li>Daily - GPM_3IMERGD 06</li>
 <li>Monthly - GPM_3IMERGM 06</li>
-</ul>
-<p>Latency:<br>
-- E - Early run
-- L - Late run
-- F - Final run (only for daily data) </p>
+</ol>
+<p>Latency:</p>
+<ol>
+<li>E - Early run</li>
+<li>L - Late run</li>
+<li>F - Final run (only for daily data) </li>
+</ol>
 <p>Example: Half-hourly Early Run ~ GPM_3IMERGHHE 06</p>
 </li>
 <li>
-<p>DOWNLOAD:<br> </p>
-<ul>
+<p>DOWNLOAD:</p>
+<ol>
 <li>30-min Final Released <a href="https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGHH.06/">https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGHH.06/</a> </li>
 <li>30-min Early Released <a href="https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGHHE.06/">https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGHHE.06/</a></li>
 <li>30-min Late Released <a href="https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGHHL.06/">https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGHHL.06/</a> </li>
 <li>Daily Final Released <a href="https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGDF.06/">https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGDF.06/</a> </li>
 <li>Daily Early Released <a href="https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGDE.06/">https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGDE.06/</a> </li>
 <li>Daily Late Released <a href="https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGDL.06/">https://gpm1.gesdisc.eosdis.nasa.gov/data/GPM_L3/GPM_3IMERGDL.06/</a> </li>
-</ul>
+</ol>
 </li>
 <li>
 <p>HOW-TO-DOWNLOAD AND AUTHORIZATION</p>
-<ul>
+<ol>
 <li>Link <a href="https://disc.gsfc.nasa.gov/data-access">https://disc.gsfc.nasa.gov/data-access</a> </li>
-</ul>
+</ol>
 </li>
-</ul>
+</ol>
 <h3 id="rainfall-forecasting">Rainfall forecasting</h3>
 <p><strong>NOAA - NCEP GEFS</strong> (Global Ensemble Forecast System - <a href="https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-ensemble-forecast-system-gefs">https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-ensemble-forecast-system-gefs</a>) deterministic weather prediction model.</p>
 <p><strong>GEFS Ensemble 0.25 deg</strong></p>
-<ul>
+<ol>
 <li>The Global Ensemble Forecast System (GEFS) is a weather forecast model produced by the National Centers for Environmental Prediction (NCEP). </li>
 <li>The GEFS dataset consists of selected model outputs as gridded forecast variables. The 384-hour forecasts, with 3-hour forecast interval, are made at 6-hour temporal resolution (i.e. updated four times daily).</li>
 <li>TEMPORAL COVERAGE: from 15 Jan 2015 to nowadays (new version of GFS)</li>
@@ -775,13 +777,15 @@
 <li>SPATIAL RESOLUTION: 0,25° x 0,25°</li>
 <li>VARIABLE: Total Precipitation (APCP), Reference: <a href="https://www.nco.ncep.noaa.gov/pmb/products/gens/gespr.t00z.pgrb2s.0p25.f003.shtml">https://www.nco.ncep.noaa.gov/pmb/products/gens/gespr.t00z.pgrb2s.0p25.f003.shtml</a></li>
 <li>FORMAT: GRIB2 (grib2), Reference: <a href="https://wmoomm.sharepoint.com/:b:/s/wmocpdb/EUmnLNAM9WdMr1S7GRMl_G8BFqp-B1Qie-k-vMwmrG22GQ?e=cEd2Vk">https://wmoomm.sharepoint.com/<img alt="🅱" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f171.svg" title=":b:" />/s/wmocpdb/EUmnLNAM9WdMr1S7GRMl_G8BFqp-B1Qie-k-vMwmrG22GQ?e=cEd2Vk</a> </li>
-<li>DATA ACCESS<br><ul>
+<li>
+<p>DATA ACCESS</p>
+<ol>
 <li>AWS: <code>aws s3 ls s3://noaa-gefs-pds/ --no-sign-request</code></li>
 <li>Reference: <a href="https://registry.opendata.aws/noaa-gefs/">https://registry.opendata.aws/noaa-gefs/</a> </li>
 <li>GRIB Filter: <a href="https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?">https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?</a></li>
-</ul>
+</ol>
 </li>
-</ul>
+</ol>
                 
               
               
