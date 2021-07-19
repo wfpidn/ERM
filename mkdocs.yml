@@ -1,4 +1,4 @@
-site_name: Extreme Rainfall Monitoring
+site_name: Extreme rainfall monitoring
 site_description: Extreme rainfall monitoring, will it trigger a flood?
 site_url: "https://wfpidn.github.io/ERM"
 repo_url: https://github.com/wfpidn/ERM
@@ -30,7 +30,6 @@ theme:
     text: Roboto
     code: Roboto Mono
   features:
-    - navigation.tabs
     - navigation.sections
     - navigation.expand
     - navigation.top
@@ -81,19 +80,20 @@ nav:
     - About: index.md
     - Revision History: history.md
     - Overview: 
-        - Hydrometeorological Disasters: o-hd.md
-        - Remote Sensing Precipitation: o-rsp.md
-        - Data: o-data.md
+        - Hydrometeorological Disasters: hd.md
+        - Remote Sensing Precipitation: rsp.md
+        - Data: data.md
     - Methodology: 
-        - Developing event-identification threshold: m-eit.md
-        - Find areas at risk of flooding: m-rof.md
-        - Evaluating alert quality: m-eaq.md
-        - Novelty, limitation and constraint: m-nlc.md
+        - Developing event-identification threshold: eit.md
+        - Find areas at risk of flooding: rof.md
+        - Impact analysis: impact.md
+        - Evaluating alert quality: eaq.md
+        - Novelty, limitation and constraint: nlc.md
     - How-to?: 
-        - Pre-downloaded and processed data: ht-pre.md
-        - Acquire IMERG data: ht-imerg.md
-        - Acquire GEFS data: ht-gefs.md
-        - Extreme rainfall calculation: ht-erc.md
+        - Pre-downloaded and processed data: pre.md
+        - Acquire IMERG data: imerg.md
+        - Acquire GEFS data: gefs.md
+        - Extreme rainfall calculation: erc.md
     - Implementation:
-        - Google Earth Engine: i-gee.md
-        - Demo: i-demo.md
+        - Google Earth Engine: gee.md
+        - Demo: demo.md

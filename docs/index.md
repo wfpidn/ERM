@@ -2,11 +2,11 @@
 
 ## Welcome
 
-Extreme Rainfall Monitoring (ERM) is a tool developed by the United Nations World Food Programme in Indonesia using [Google Earth Engine](https://earthengine.google.com) (GEE). ERM are able to inform where is the estimated location of extreme rainfall and its impact to population and crop in the last 5-days and forecast up to 5-days ahead on selected date.
+Extreme Rainfall Monitoring (ERM) is a tool developed by the United Nations [World Food Programme](https://www.wfp.org/countries/indonesia) in Indonesia written in [Google Earth Engine](https://earthengine.google.com) (GEE) platfrom. ERM are able to inform where is the estimated location of extreme rainfall and its impact to population and crop in the last 5-days and forecast up to 5-days ahead based on selected date.
 
-Some of the input was prepared via different platform: ArcGIS Pro, R Statistics, and Excel. ERM module is part of VAMPIRE [https://vampire.idn.wfp.org](https://vampire.idn.wfp.org) hazard features.
+Some of the input was prepared via different platform: ArcGIS Pro, R Statistics, and Excel. ERM module is part of Vulnerability Analysis and Monitoring Platform for Impatc of Regional Events ([VAMPIRE](http://vampire.pulselabjakarta.org)) hazard monitoring module. Some of the analysis has been modified and adjusted to GEE based on data availability and considering the computation resources within GEE. While the methodology written in this document still reflecting what we developed in VAMPIRE.
 
-This is the single-source of documentation for ERM. It is intended to be a thorough, living document detailing the background, objective, data, method and output of ERM. If you find a mistake, please open an issue.
+This is the single-source documentation for ERM. It is intended to be a thorough, living document detailing the background, objective, data, method and output of ERM. If you find a mistake, please open an issue.
 
 ERM model developed by Benny Istanto and [Prof. Rizaldi Boer](https://scholar.google.com/citations?hl=en&user=jTPXEp8AAAAJ) of Climatology Laboratory - [Bogor Agricultural University](https://ipb.ac.id) as Scientific Advisor.
 
@@ -23,6 +23,6 @@ Vulnerability Analysis and Mapping Unit<br>
 UN World Food Programme<br>
 Jakarta, Indonesia<br>
 
-T. +62-21-5709004<br>
-F. +62-21-5709001<br>
 E. [benny.istanto@wfp.org](mailto:benny.istanto@wfp.org)<br>
+
+![VAM](./img/WFP_newVAM_Logo.png)
