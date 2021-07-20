@@ -1,7 +1,7 @@
 # Revision History
 
 | No | Date   | Notes   | 
-| --- | ----------- | ---------------- |
+| :--- | :--- | ---------------- |
 | 1 | 22 Nov 2016 | Brainstorming with Prof. Rizaldi[^1] |
 | 2 | 21 Dec 2016 | Conceptual method, rainfall threshold value |
 | 3 | 3 Mar 2017 | 3-days rainfall accumulation rolling daily using CHIRPS completed, ready for testing |
