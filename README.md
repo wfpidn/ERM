@@ -10,11 +10,17 @@ ERM model developed by Benny Istanto and [Prof. Rizaldi Boer](https://scholar.go
 
 ![ERM](./docs/img/erm.png)
 
+
 ### Documentation
 
 **Work in progress!**
 
 [https://wfpidn.github.io/ERM](https://wfpidn.github.io/ERM)
+
+
+### Demo
+
+We are still working to publish the script into Google AppEngine Application Platform.
 
 
 ### Contact
