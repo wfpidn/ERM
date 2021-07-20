@@ -781,6 +781,355 @@ function render() {
 
 ```
 
+## Population affected
+
+After all the above process completed, below script will show population affected information on the panel by extracting each alert from above process then combine with population data.
+
+
+``` js
+// AFFECTED POPULATION
+//---
+// Show Affected Population on Panel
+function renderPopulationInfo(imgReClass, targetUi) {
+  // Mosaic population layer and flood alert layer
+  var imgCombSrc = ghsl.addBands(imgReClass);
+  var stats = {};
+  var reClasses = [];
+  for (var i = 1; i < 4; i++) {
+    reClasses.push(i);
+  }
+  // Extract each alert then combine with population data
+  var counter = 0;
+  reClasses.map(function (reClass) {
+    var imgComb = imgCombSrc.expression(
+      'p * (v == c? 1:0)', {
+      'p': imgCombSrc.select('population_count'),
+      'v': imgCombSrc.select('remapped'),
+      'c': reClass
+    });
+    var stat = imgComb.reduceRegion({
+      reducer: ee.Reducer.sum(),
+      geometry: imgReClass.geometry(),
+      scale: 250,
+      maxPixels: 1e9
+    });
+    stat.evaluate(function (s) {
+      stats[reClass] = s.population_count;
+      counter += 1;
+      if (counter === reClasses.length) {
+        renderLegend();
+      }
+    });
+  });
+  function renderLegend() {
+    var widgets = [
+      ['FFEDA0', 1],
+      ['FEB24C', 2],
+      ['F03B20', 3]
+    ].map(function (p) {
+      var color = p[0];
+      var level = p[1];
+      var label = 'Alert ' + level + ': ' +
+        parseInt(stats[level]).toLocaleString();
+      return uiComponents.makeLegendBox(color, label);
+    });
+    targetUi.widgets().reset(widgets);
+    uiComponents.loadingCounter -= 1;
+    if (uiComponents.loadingCounter === 0) {
+      uiComponents.renderButton.setDisabled(false);
+    }
+  }
+}
+
+```
+
+## Panel configuration
+
+The last part is to setup all the supporting information on the Panel.
+
+``` js
+function initializeUIComponents() {
+  // Clear all process
+  ui.root.clear();
+  var mobileStyle = false;
+
+  // ui.Select widget
+  var daySelect = ui.Select({
+    items: ['1 day', '2 days', '3 days', '4 days', '5 days']
+  });
+  // ui.Select first load
+  daySelect.setPlaceholder('Select number of days');
+
+  // Setting date
+  var today = ee.Date(new Date());
+  var startDate = ee.Date('2019-07-01'); // First GFS data 1 Jul 2015
+
+  // ui.DateSlider widget
+  var dateSlider = ui.DateSlider({
+    start: startDate,
+    end: today.advance(1, 'day'),
+    period: 1, // the unit is day
+    style: { width: '300px', padding: '10px', position: 'bottom-left' }
+  });
+  // Set date to today during first load
+  dateSlider.setValue(today);
+
+  // Add render button to ui
+  var renderButton = ui.Button({
+    label: 'Render',
+    onClick: render
+  });
+
+  // Arrange the components
+  uiComponents.daySelect = daySelect;
+  uiComponents.dateSlider = dateSlider;
+  uiComponents.renderButton = renderButton;
+
+  // Warning if the parameters is not completed
+  uiComponents.NRTaffectedPops = ui.Panel({
+    style: {
+      fontWeight: 'bold'
+    },
+    widgets: [
+      ui.Label({
+        value: '!!! Select date and number of day then press Render button'
+      })
+    ]
+  });
+
+  // Warning if the parameters is not completed
+  uiComponents.FCTaffectedPops = ui.Panel({
+    style: {
+      fontWeight: 'bold'
+    },
+    widgets: [
+      ui.Label({
+        value: '!!! Select date and number of day then press Render button'
+      })
+    ]
+  });
+
+  // Legend in a Panel
+  uiComponents.makeLegendBox = function (color, label) {
+    var colorBox = ui.Label({
+      style: {
+        backgroundColor: '#' + color,
+        padding: mobileStyle ? '10px' : '8px',
+        margin: '0 0 4px 0',
+        border: 'solid 0.5px',
+      }
+    });
+    var description = ui.Label({
+      value: label,
+      style: { margin: '0 0 4px 6px', fontSize: mobileStyle ? '16px' : '12px' },
+    });
+    return ui.Panel({
+      widgets: [colorBox, description],
+      style: { padding: '0 0 4px 6px' },
+      layout: ui.Panel.Layout.Flow('horizontal')
+    });
+  };
+  
+  // Paragraph intro in top of Panel
+  var intro = ui.Panel({
+    widgets: [
+      // Title
+      ui.Label({
+        value: 'Extreme rainfall monitoring, will it trigger a flood?',
+        style: {
+          fontWeight: 'bold',
+          fontSize: mobileStyle ? '22px' : '20px',
+          margin: '10px 5px',
+        }
+      }),
+      
+      // Intro
+      ui.Label({
+        value: 'ERM is an app that are able to inform where is the estimated location of extreme rainfall ' +
+          'in the last 5-days (Near Real Time) and up to 5-days ahead (Forecast) based on selected date. ' +
+          'To learn more about what inside the application, please visit below link:',
+        style: {
+          fontSize: mobileStyle ? '18px' : '14px',
+        }
+      }),
+      ui.Label({
+        value: 'https://wfpidn.github.io/ERM',
+        style: {
+          fontSize: mobileStyle ? '18px' : '14px',
+        }
+      }).setUrl('https://wfpidn.github.io/ERM'),
+      ui.Label({
+        value: '_________________________________________________',
+        style: {
+          fontSize: mobileStyle ? '18px' : '14px',
+        }
+      }),
+    ]
+  });
+  
+  // Affected population label - near real-time
+  var NRTaffectedPanel = ui.Panel({
+    widgets: [
+      ui.Label({
+        value: 'Affected Populations - Near Real-Time',
+        style: {
+          fontWeight: 'bold',
+          fontSize: mobileStyle ? '18px' : '16px',
+          margin: '10px 5px'
+        }
+      }),
+      uiComponents.NRTaffectedPops
+    ]
+  });
+
+  // Affected population label - near real-time
+  var FCTaffectedPanel = ui.Panel({
+    widgets: [
+      ui.Label({
+        value: 'Affected Populations - Forecast',
+        style: {
+          fontWeight: 'bold',
+          fontSize: mobileStyle ? '18px' : '16px',
+          margin: '10px 5px'
+        }
+      }),
+      uiComponents.FCTaffectedPops
+    ]
+  });
+  
+  var legendintro = ui.Panel({
+    widgets: [
+      // Line divider
+      ui.Label({
+        value: '_________________________________________________',
+        style: {
+          fontWeight: 'bold',
+          fontSize: mobileStyle ? '18px' : '14px',
+          margin: '10px 5px',
+        }
+      }),
+      
+      // Legend label
+      ui.Label({
+        value: 'Legend ',
+        style: {
+          fontWeight: 'bold',
+          fontSize: mobileStyle ? '22px' : '20px',
+          margin: '10px 5px',
+        }
+      })
+    ]
+  });
+
+  function makeLegend(title, boxes) {
+    return ui.Panel({
+      widgets: [
+        ui.Label({
+          value: title,
+          style: {
+            fontSize: mobileStyle ? '18px' : '16px',
+            margin: '10px 5px'
+          }
+        }),
+        ui.Panel({
+          style: {
+            fontSize: '10px',
+            margin: '0 0 10px 12px',
+            padding: '0'
+          },
+          widgets: boxes.map(function (b) {
+            var color = b[0];
+            var label = b[1];
+            return uiComponents.makeLegendBox(color, label);
+          })
+        })
+      ]
+    });
+  }
+
+  // Legend for others
+  var legendRainfall = makeLegend('Rainfall', [
+    ['ffffff', 'No Rain ~ No color'],
+    ['cccccc', '1 - 3 milimeters'],
+    ['f9f3d5', '4 - 10'],
+    ['dce2a8', '11 - 20'],
+    ['a8c58d', '21 - 30'],
+    ['77a87d', '31 - 40'],
+    ['ace8f8', '41 - 60'],
+    ['4cafd9', '61 - 80'],
+    ['1d5ede', '81 - 100'],
+    ['001bc0', '101 - 120'],
+    ['9131f1', '121 - 150'],
+    ['e983f3', '151 - 200'],
+    ['f6c7ec', '> 200']
+  ]);
+
+  var legendCategory = makeLegend('Rainfall Category', [
+    ['ffffcc', 'Moderate'],
+    ['a1dab4', 'Heavy'],
+    ['41b6c4', 'Intense'],
+    ['225ea8', 'Extreme']
+  ]);
+
+  var legendProbability = makeLegend('Likelihood', [
+    ['e5f5e0', 'Low'],
+    ['a1d99b', 'Moderate'],
+    ['31a354', 'High']
+  ]);
+  
+  var legendAlert = makeLegend('Flood Alert', [
+    ['97D700', 'Green'],
+    ['ffeda0', 'Yellow (Category 1 - 3)'],
+    ['FEB24C', 'Orange (Category 4 - 6)'],
+    ['F03B20', 'Red (Category 7 - 9)']
+  ]);
+
+  var mainPanel = ui.Panel({
+    widgets: [
+      intro,
+      NRTaffectedPanel,
+      FCTaffectedPanel,
+      legendintro,
+      ui.Panel({
+        layout: ui.Panel.Layout.flow('horizontal'),
+        widgets: [
+          ui.Panel({
+            widgets: [
+              legendRainfall,
+            ]
+          }),
+          ui.Panel({
+            widgets: [
+              legendCategory,
+              legendProbability,
+              legendAlert
+            ]
+          })
+        ]
+      })
+    ],
+    style: { width: '500px', padding: '8px' }
+  });
+
+  ui.root.widgets().reset([
+    mainPanel, mainMap
+  ]);
+  ui.root.setLayout(ui.Panel.Layout.flow('horizontal'));
+
+  mainMap.setControlVisibility(true);
+  mainMap.setCenter(118.2, -2.5, 5.4);
+  mainMap.add(ui.Panel({
+    widgets: [daySelect, renderButton],
+    style: {position: 'bottom-left'}
+  }));
+  mainMap.add(dateSlider);
+}
+
+initializeUIComponents();
+
+```
+
+End of script. Find the complete code via this link.
 
 **Notes**
 

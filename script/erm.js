@@ -1,5 +1,202 @@
-// GLOBAL VARIABLE (Color, Static Data, Mask and others)
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// ERM - Extreme Rainfall Monitoring: will it trigger a flood? or a landslide? 
+// 
+// ERM in GEE are able to inform where is the estimated location of extreme rainfall in the last   
+// 5-days (Near Real Time - NRT) and upto 5-days ahead (Forecast - FCT) based on selected date. 
+// NRT data available starting from 1 Jun 2000, while FCT data available from 1 Jul 2015.
+//
+// Some of the input is prepared via different platform: ArcGIS Pro, R Statistics, and Excel.
+// ERM module is part of VAMPIRE (https://vampire.idn.wfp.org) hazard features
+// The code was compiled from various source (GEE help, GEE Groups, StackExchange)
+//
+// Author:
+// Benny Istanto | Earth Observation and Climate Analyst | benny.istanto@wfp.org
+// Ridwan Mulyadi | System Developer | ridwan.mulyadi@wfp.org
+// Vulnerability Analysis and Mapping (VAM) unit, UN World Food Programme - Indonesia
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+// GLOBAL VARIABLE (Basemap, Color, Static Data, Mask and others)
 //---
+// ui Map and Panel configuration
+var mainMap = ui.Map();
+var uiComponents = {};
+
+// MAP STYLE
+//--
+// Grey style from Gennadii
+function mapStyle() {
+  return [
+    {
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#f5f5f5"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.icon",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#616161",
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "color": "#f5f5f5",
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.land_parcel",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#bdbdbd"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#eeeeee"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#757575"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#e5e5e5"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#9e9e9e"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#ffffff"
+        }
+      ]
+    },
+    {
+      "featureType": "road.arterial",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#757575"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#dadada"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#616161"
+        }
+      ]
+    },
+    {
+      "featureType": "road.local",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#9e9e9e"
+        }
+      ]
+    },
+    {
+      "featureType": "transit.line",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#e5e5e5"
+        }
+      ]
+    },
+    {
+      "featureType": "transit.station",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#eeeeee"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#c9c9c9"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#9e9e9e"
+        }
+      ]
+    }
+  ];
+}
+
+
+// Grey basemap from gena
+mainMap.style().set('cursor', 'crosshair');
+mainMap.setOptions('Grey', {Grey: mapStyle()});
+
 // SYMBOLOGY
 // Visualization palette, Color-codes based on Color-Brewer https://colorbrewer2.org/
 // Standard symbology for rainfall
@@ -20,19 +217,10 @@ var visFlood = {min: 0, max: 9, opacity: 1, palette: [
   '97D700','FFEDA0','FFEDA0','FFEDA0','FEB24C','FEB24C',
   'FEB24C','F03B20','F03B20','F03B20'
   ]};
-
-// Visualization palette for total precipitation - Color-codes based on Color-Brewer https://colorbrewer2.org/
-// Palette with the colors for legend in UI Panel
-var paletteRain =['ffffff','cccccc','f9f3d5','dce2a8','a8c58d','77a87d','ace8f8','4cafd9','1d5ede','001bc0','9131f1','e983f3','f6c7ec'];
-var paletteAlert =['97D700','FFEDA0','FEB24C','F03B20'];
-var paletteImpact =['ffffcc', 'a1dab4', '41b6c4', '225ea8'];
-var paletteLikelihood =['f7fcb9','addd8e','31a354'];
-
-// Name of the legend for legend in UI Panel
-var namesRain = ['No Rain ~ No color','1 - 3 milimeters','4 - 10','11 - 20','21 - 30','31 - 40','41 - 60','61 - 80','81 - 100','101 - 120','121 - 150','151 - 200','> 200'];
-var namesAlert = ['Green Alert','Category 1 - 3','Category 4 - 6','Category 7 - 9'];
-var namesImpact = ['Moderate','Heavy','Intense','Extreme'];
-var namesLikelihood = ['Low','Moderate','High'];
+// Standard symbology for population exposed
+var visPopulation = {min: 0, max: 50.0, opacity:1, 
+  palette: ['yellow', 'orange', 'red'],
+  };
 
 // Define an SLD style of discrete intervals to apply to the image.
 // Notes: SLD visualisation will make the data rendered as RGB during point inspector into a pixel.
@@ -55,8 +243,6 @@ var visRainfallSLD =
     '</ColorMap>' +
   '</RasterSymbolizer>'; 
   
-  
-  
 
 // MAIN INPUT
 //---
@@ -65,7 +251,7 @@ function maskImage(image) {
   var imergMask = ee.Image('users/bennyistanto/datasets/raster/extremerainfall/mask/idn_bnd_imerg_subset'); 
   return image.updateMask(imergMask);
 }
-
+var idnMask = ee.Image('users/bennyistanto/datasets/raster/extremerainfall/mask/idn_bnd_imerg_subset');
 // Near Real Time data
 // Import NASA GPM IMERG 30 minute data and calculate accumulation for 1day.
 var imerg = ee.ImageCollection("NASA/GPM_L3/IMERG_V06");
@@ -79,17 +265,34 @@ var gfs = ee.ImageCollection('NOAA/GFS0P25');
 // Population grid
 // Import Global Human Settlement Popluation Density layer (GHSL) data. Resolution: 250. Number of people per cell is given.
 // https://developers.google.com/earth-engine/datasets/catalog/JRC_GHSL_P2016_POP_GPW_GLOBE_V1#bands
-var ghsl = ee.Image("JRC/GHSL/P2016/POP_GPW_GLOBE_V1").clip(maskImage);
+var ghsl_raw = maskImage(ee.Image(ee.ImageCollection("JRC/GHSL/P2016/POP_GPW_GLOBE_V1").first()).select('population_count'));
+var ghsl = ghsl_raw.updateMask(ghsl_raw.gt(0));
 // Get GHSL projection information
 var GHSLprojection = ghsl.projection();
 
-// MODIS Global Annual Land Cover 500m, filter image collection by the most up-to-date MODIS Land Cover product 
+// Facebook HRSL
+var HRSL_P = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrslpop").median()));
+var imgHRSL_P = HRSL_P.updateMask(HRSL_P.gt(0));
+var HRSL_M = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrsl_men").median()));
+var imgHRSL_M = HRSL_M.updateMask(HRSL_M.gt(0));
+var HRSL_W = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrsl_women").median()));
+var imgHRSL_W = HRSL_W.updateMask(HRSL_W.gt(0));
+var HRSL_Y1524 = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrsl_youth").median()));
+var imgHRSL_Y1524 = HRSL_Y1524.updateMask(HRSL_Y1524.gt(0));
+var HRSL_CU5 = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrsl_children_under_five").median()));
+var imgHRSL_CU5 = HRSL_CU5.updateMask(HRSL_CU5.gt(0));
+var HRSL_WR1549 = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrsl_women_reproductive_age").median()));
+var imgHRSL_WR1549 = HRSL_WR1549.updateMask(HRSL_WR1549.gt(0));
+var HRSL_E60P = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrsl_elderly_over_sixty").median()));
+var imgHRSL_E60P = HRSL_E60P.updateMask(HRSL_E60P.gt(0));
+
+// MODIS Global Annual Land Cover 500m - year 2019, filter image collection by the most up-to-date MODIS Land Cover product 
 // Import Crop extent data - https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MCD12Q1#bands
-var mcd12q1 = ee.ImageCollection('MODIS/006/MCD12Q1')
-  .filterDate('2014-01-01','2019-01-01')
-  .sort('system:index',false)
-  .select("LC_Type1")
-  .first();
+// LC_Type1 using Annual International Geosphere-Biosphere Programme (IGBP) classification
+var mcd12q1_raw = ee.Image('MODIS/006/MCD12Q1/2019_01_01').select("LC_Type1"); 
+var mcd12q1 = mcd12q1_raw.updateMask(mcd12q1_raw.gt(0));
+// Get MODIS projection information
+var MODISprojection = mcd12q1_raw.projection();
 
 
 // FUNCTION
@@ -102,15 +305,8 @@ function getThresholdImage(p, numday) {
     'P90': 'q0900_10yr', // Percentile 90, 10-year return period
     'P96': 'q0960_25yr' // Percentile 96, 25-year return period
   }[p];
-  var d = {
-    '1 day' : '1day', // Threshold for 1-day
-    '2 days': '2day', // Threshold for 2 consecutive day
-    '3 days': '3day', // Threshold for 3 consecutive day
-    '4 days': '4day', // Threshold for 4 consecutive day
-    '5 days': '5day', // Threshold for 5 consecutive day
-  }[numday];
   var path = 'users/bennyistanto/datasets/raster/extremerainfall/threshold/idn_cli_' 
-    + d + '_precipthreshold_' 
+    + numday + 'day_precipthreshold_' 
     + q + '_imerg_wfp';
   return ee.Image(path);
 }
@@ -121,15 +317,8 @@ function getSlopeImage(month, numday) {
     '01_jan','02_feb','03_mar','04_apr','05_may','06_jun',
     '07_jul','08_aug','09_sep','10_oct','11_nov','12_dec'
   ][month];
-  var d = {
-    '1 day' : 'day1',
-    '2 days': 'day2',
-    '3 days': 'day3',
-    '4 days': 'day4',
-    '5 days': 'day5',
-  }[numday];
-  var path = 'users/bennyistanto/datasets/raster/extremerainfall/slope/idn_cli_' 
-    + d + '_' + m + '_slope_imerg';
+  var path = 'users/bennyistanto/datasets/raster/extremerainfall/slope/idn_cli_day' 
+    + numday + '_' + m + '_slope_imerg';
   return ee.Image(path);
 }
 
@@ -139,29 +328,14 @@ function getInterceptImage(month, numday) {
     '01_jan','02_feb','03_mar','04_apr','05_may','06_jun',
     '07_jul','08_aug','09_sep','10_oct','11_nov','12_dec'
   ][month];
-  var d = {
-    '1 day' : 'day1',
-    '2 days': 'day2',
-    '3 days': 'day3',
-    '4 days': 'day4',
-    '5 days': 'day5',
-  }[numday];
-  var path = 'users/bennyistanto/datasets/raster/extremerainfall/intercept/idn_cli_' 
-    + d + '_' + m + '_intercept_imerg';
+  var path = 'users/bennyistanto/datasets/raster/extremerainfall/intercept/idn_cli_day' 
+    + numday + '_' + m + '_intercept_imerg';
   return ee.Image(path);
 }
 
 // Get near real-time data (IMERG Image)
 function getImergImage(dt, numday) {
-  var nday = {
-    '1 day' : 1, // Scenario for 1 day cumulative rainfall forecast
-    '2 days': 2, // Scenario for 2 consecutive day cumulative rainfall forecast
-    '3 days': 3, // Scenario for 3 consecutive day cumulative rainfall forecast
-    '4 days': 4, // Scenario for 4 consecutive day cumulative rainfall forecast
-    '5 days': 5, // Scenario for 5 consecutive day cumulative rainfall forecast
-  }[numday];
-  var hours = -24 * nday;
-  print(hours);
+  var hours = -24 * numday;
   
   return imerg // ee.ImageCollection('NASA/GPM_L3/IMERG_V06')
     .select('precipitationCal')
@@ -172,21 +346,13 @@ function getImergImage(dt, numday) {
 
 // Get forecast data (GFS Image)
 function getGfsImage(dt, numday) {
-  var nday = {
-    '1 day' : 1, // Scenario for 1 day cumulative rainfall forecast
-    '2 days': 2, // Scenario for 2 consecutive day cumulative rainfall forecast
-    '3 days': 3, // Scenario for 3 consecutive day cumulative rainfall forecast
-    '4 days': 4, // Scenario for 4 consecutive day cumulative rainfall forecast
-    '5 days': 5, // Scenario for 5 consecutive day cumulative rainfall forecast
-  }[numday];
   var hours = [];
-  for (var i = 0; i < nday; i++) {
+  for (var i = 0; i < numday; i++) {
     for (var j = 0; j < 4; j++) {
-      var h = (i*24) + ((j+1)*6);
+      var h = (i * 24) + ((j + 1) * 6);
       hours.push(h);
     }
   }
-  print(hours);
   
   return gfs // ee.ImageCollection('NOAA/GFS0P25')
     .select('total_precipitation_surface')
@@ -194,348 +360,522 @@ function getGfsImage(dt, numday) {
     .filter(ee.Filter.inList('forecast_hours', hours))
     .map(maskImage)
     .sum()
-    .setDefaultProjection(IMERGprojection)
-    .reduceResolution({
-      reducer: ee.Reducer.sum().unweighted(),
-      maxPixels: 1024
-    })
+    // .resample('bicubic') // One of 'bilinear' or 'bicubic'
     .reproject({
       crs: IMERGprojection.atScale(11131.949079327358)
     });
 }
 
 
-
-// NEAR REAL-TIME ANALYSIS
+// EXTREME RAINFALL ANALYSIS
 //----
-// Get forecast images for rainfall accumulation, extreme rainfall, probability and the alert
-function getNRTImage(dt, numday) {
+// Get images for rainfall accumulation, extreme rainfall, probability and the alert
+// Base image can be from IMERG or GFS
+function getRainfallExtremeImage(params) {
+  var dt = params.date;
+  var numday = params.numday;
+  var imgBase = params.imgBase;
+  var rainfallColumn = params.rainfallColumn;
   // Get month information to match data for Threshold, Slope and Intercept
   var month = dt.get('month').getInfo();
-  
+
   // Get data for Threshold, Slope and Intercept based on date
-  var P50 = getThresholdImage('P50', numday);
-  var P80 = getThresholdImage('P80', numday);
-  var P90 = getThresholdImage('P90', numday);
-  var P96 = getThresholdImage('P96', numday);
+  // Threshold
+  var P50 = getThresholdImage('P50', numday); // Percentile 50, 2-year return period
+  var P80 = getThresholdImage('P80', numday); // Percentile 80, 5-year return period
+  var P90 = getThresholdImage('P90', numday); // Percentile 90, 10-year return period
+  var P96 = getThresholdImage('P96', numday); // Percentile 96, 25-year return period
+  // Slope
   var imgSlope = getSlopeImage(month, numday);
+  // Intercept
   var imgIntercept = getInterceptImage(month, numday);
-  
+
   // Mosaic rainfall with threshold images
-  var imgImerg = getImergImage(dt, numday);
-  var imgNRTImpactSrc = imgImerg
+  var imgImpactSrc = imgBase
     .addBands(P50)
     .addBands(P80)
     .addBands(P90)
     .addBands(P96);
-  
+
   // Extract a pixel of rainfall exceeding the threshold, called as impact
-  var imgNRTImpact = imgNRTImpactSrc.expression(
-    'NRTimpact = R>P96?4:(R>P90?3:(R>P80?2:(R>P50?1:R*0)))', {
-      'R': imgNRTImpactSrc.select('precipitationCal'),
-      'P50': imgNRTImpactSrc.select('b1'),
-      'P80': imgNRTImpactSrc.select('b1_1'),
-      'P90': imgNRTImpactSrc.select('b1_2'),
-      'P96': imgNRTImpactSrc.select('b1_3'),
-    });
-  
-  // Mosaic rainfall with slope and intercepts images    
-  var imgNRTProbSrc = imgImerg
+  var imgImpact = imgImpactSrc.expression(
+    'impact = R>P96?4:(R>P90?3:(R>P80?2:(R>P50?1:R*0)))', {
+    'R': imgImpactSrc.select(rainfallColumn),
+    'P50': imgImpactSrc.select('b1'),
+    'P80': imgImpactSrc.select('b1_1'),
+    'P90': imgImpactSrc.select('b1_2'),
+    'P96': imgImpactSrc.select('b1_3'),
+  });
+
+  // Mosaic rainfall with slope and intercepts images
+  var imgProbSrc = imgBase
     .addBands(imgSlope)
     .addBands(imgIntercept);
-  
+
   // Calculate the likelihood a pixel of rainfall will trigger a flood or not
-  var imgNRTProbBase = imgNRTProbSrc.expression(
+  var imgProbBase = imgProbSrc.expression(
     'prob_base = 1/(1+(e **(-((S*R)+I))))', {
-      'e': Math.E,
-      'R': imgNRTProbSrc.select('precipitationCal'),
-      'S': imgNRTProbSrc.select('b1'),
-      'I': imgNRTProbSrc.select('b1_1'),
-    }
-  );
-  
-  // Classify the likelihood
-  var imgNRTProb = imgNRTProbBase.expression(
-    'NRTprob = V<0.6?0:(V<0.8?1:(V<=1?2:0*V))', {
-      'V': imgNRTProbBase.select('prob_base')
-    }
-  );
-  
+    'e': Math.E,
+    'R': imgProbSrc.select(rainfallColumn),
+    'S': imgProbSrc.select('b1'),
+    'I': imgProbSrc.select('b1_1'),
+  });
+
+  // Classify the likelihood: Low 0 - 0.6, Moderate 0.6 - 0.8, High 0.8 - 1
+  var imgProb = imgProbBase.expression(
+    'prob = V<0.6?0:(V<0.8?1:(V<=1?2:0*V))', {
+    'V': imgProbBase.select('prob_base')
+  });
+
   // Mosaic impact and likelihood image
-  var imgNRTERTFSrc = imgNRTImpact
-    .addBands(imgNRTProb);
-  
+  var imgReSrc = imgImpact
+    .addBands(imgProb);
+
   // Calculate extreme rainfall-triggering flood (ERTF)
-  var imgNRTERTFBase = imgNRTERTFSrc.expression(
-    'NRTertf = (x*3) + y + 1', {
-      'x': imgNRTERTFSrc.select('NRTimpact'),
-      'y': imgNRTERTFSrc.select('NRTprob'),
-    });
-  
+  var imgReBase = imgReSrc.expression(
+    'ertf = (x*3) + y + 1', {
+    'x': imgReSrc.select('impact'),
+    'y': imgReSrc.select('prob'),
+  });
+
   // ERTF matrix 3x4, came from impact and likelihood
-  var imgNRTERTF = imgNRTERTFBase.remap([
-     1, 2, 3,
-     4, 5, 6,
-     7, 8, 9,
-    10,11,12,
-    13,14,15],[
-    -1,-1,-1,
-     0, 0, 1,
-     0, 2, 4,
-     3, 5, 7,
-     6, 8, 9
-    ]
+  var imgRe = imgReBase.remap([
+    1, 2, 3,
+    4, 5, 6,
+    7, 8, 9,
+    10, 11, 12,
+    13, 14, 15], [
+    -1, -1, -1,
+    0, 0, 1,
+    0, 2, 4,
+    3, 5, 7,
+    6, 8, 9
+  ]
   );
-  
+
+  // Re class matrix into 3 class
+  var imgReClass = imgReBase.remap([
+    1, 2, 3,
+    4, 5, 6,
+    7, 8, 9,
+    10, 11, 12,
+    13, 14, 15], [
+    -1, -1, -1,
+    0, 0, 1,
+    0, 1, 2,
+    1, 2, 3,
+    2, 3, 3
+  ]);
+
   // Final product from single run
   return {
-    'NRTertf': imgNRTERTF.updateMask(imgNRTERTF.gte(0)),
-    'precipitationCal': imgImerg.updateMask(imgImerg.gt(0)),
-    'NRTimpact': imgNRTImpact.updateMask(imgNRTImpact.gt(0)),
-    'NRTprob': imgNRTProb.updateMask(imgNRTProb.gt(0))
-  };
-}
-
-
-// FORECAST ANALYSIS
-//----
-// Get forecast images for rainfall accumulation, extreme rainfall, probability and the alert
-function getFCTImage(dt, numday) {
-  // Get month information to match data for Threshold, Slope and Intercept
-  var month = dt.get('month').getInfo();
-  
-  // Get data for Threshold, Slope and Intercept based on date
-  var P50 = getThresholdImage('P50', numday);
-  var P80 = getThresholdImage('P80', numday);
-  var P90 = getThresholdImage('P90', numday);
-  var P96 = getThresholdImage('P96', numday);
-  var imgSlope = getSlopeImage(month, numday);
-  var imgIntercept = getInterceptImage(month, numday);
-  
-  // Mosaic rainfall with threshold images
-  var imgGfs = getGfsImage(dt, numday);
-  var imgFCTImpactSrc = imgGfs
-    .addBands(P50)
-    .addBands(P80)
-    .addBands(P90)
-    .addBands(P96);
-  
-  // Extract a pixel of rainfall exceeding the threshold, called as impact
-  var imgFCTImpact = imgFCTImpactSrc.expression(
-    'FCTimpact = R>P96?4:(R>P90?3:(R>P80?2:(R>P50?1:R*0)))', {
-      'R': imgFCTImpactSrc.select('total_precipitation_surface'),
-      'P50': imgFCTImpactSrc.select('b1'),
-      'P80': imgFCTImpactSrc.select('b1_1'),
-      'P90': imgFCTImpactSrc.select('b1_2'),
-      'P96': imgFCTImpactSrc.select('b1_3'),
-    });
-  
-  // Mosaic rainfall with slope and intercepts images    
-  var imgFCTProbSrc = imgGfs
-    .addBands(imgSlope)
-    .addBands(imgIntercept);
-  
-  // Calculate the likelihood a pixel of rainfall will trigger a flood or not
-  var imgFCTProbBase = imgFCTProbSrc.expression(
-    'prob_base = 1/(1+(e **(-((S*R)+I))))', {
-      'e': Math.E,
-      'R': imgFCTProbSrc.select('total_precipitation_surface'),
-      'S': imgFCTProbSrc.select('b1'),
-      'I': imgFCTProbSrc.select('b1_1'),
-    }
-  );
-  
-  // Classify the likelihood
-  var imgFCTProb = imgFCTProbBase.expression(
-    'FCTprob = V<0.6?0:(V<0.8?1:(V<=1?2:0*V))', {
-      'V': imgFCTProbBase.select('prob_base')
-    }
-  );
-  
-  // Mosaic impact and likelihood image
-  var imgFCTERTFSrc = imgFCTImpact
-    .addBands(imgFCTProb);
-  
-  // Calculate extreme rainfall-triggering flood (ERTF)
-  var imgFCTERTFBase = imgFCTERTFSrc.expression(
-    'FCTertf = (x*3) + y + 1', {
-      'x': imgFCTERTFSrc.select('FCTimpact'),
-      'y': imgFCTERTFSrc.select('FCTprob'),
-    });
-  
-  // ERTF matrix 3x4, came from impact and likelihood
-  var imgFCTERTF = imgFCTERTFBase.remap([
-     1, 2, 3,
-     4, 5, 6,
-     7, 8, 9,
-    10,11,12,
-    13,14,15],[
-    -1,-1,-1,
-     0, 0, 1,
-     0, 2, 4,
-     3, 5, 7,
-     6, 8, 9
-    ]
-  );
-  
-  
-  // Final product from single run
-  return {
-    'FCTertf': imgFCTERTF.updateMask(imgFCTERTF.gte(0)),
-    'total_precipitation_surface': imgGfs.updateMask(imgGfs.gt(0)),
-    'FCTimpact': imgFCTImpact.updateMask(imgFCTImpact.gt(0)),
-    'FCTprob': imgFCTProb.updateMask(imgFCTProb.gt(0))
+    're': imgRe.updateMask(imgRe.gte(0)),
+    'reClass': imgReClass.updateMask(imgReClass.gte(0)),
+    'rainfall': imgBase.updateMask(imgBase.gt(0)),
+    'impact': imgImpact.updateMask(imgImpact.gt(0)),
+    'prob': imgProb.updateMask(imgProb.gt(0))
   };
 }
 
 
 // Render map based on DateSlider onChange
 function render() {
-  var dt = ee.Date(dateSlider.getValue()[0]);
-  var numday = daySelect.getValue();
-  if (!numday) {
+  // Date Slider
+  var dt = ee.Date(uiComponents.dateSlider.getValue()[0]);
+  // Day of simulation combobox
+  var _numday = uiComponents.daySelect.getValue();
+  if (!_numday) {
     return;
   }
-  var imageNRT = getNRTImage(dt, numday); // Near Real-Time
-  var imageFCT = getFCTImage(dt, numday); // Forecast
+  // Render button
+  uiComponents.renderButton.setDisabled(true);
+  uiComponents.NRTaffectedPops.widgets().reset([
+    ui.Label({ value: 'Loading...' })
+  ]);
+  uiComponents.FCTaffectedPops.widgets().reset([
+    ui.Label({ value: 'Loading...' })
+  ]);
+  // wait counter for ntr affected pops and ftc affected pops
+  uiComponents.loadingCounter = 2;
+  // Day of simulation
+  var numday = {
+    '1 day': 1,
+    '2 days': 2,
+    '3 days': 3,
+    '4 days': 4,
+    '5 days': 5
+  }[_numday];
+  
+  // Get all layer result
+  // Near Real Time Result
+  var imageNRT = getRainfallExtremeImage({
+    date: dt,
+    numday: numday,
+    imgBase: getImergImage(dt, numday),
+    rainfallColumn: 'precipitationCal'
+  });
+  // Forecast Result
+  var imageFCT = getRainfallExtremeImage({
+    date: dt,
+    numday: numday,
+    imgBase: getGfsImage(dt, numday),
+    rainfallColumn: 'total_precipitation_surface'
+  });
+  
   // Load layer result as map
-  Map.layers().reset();
-  Map.addLayer(imageFCT.FCTertf, visFlood,'Forecast - Flood Alert', false);
-  Map.addLayer(imageNRT.NRTertf, visFlood,'Near Real-Time - Flood Alert', false);
-  Map.addLayer(imageFCT.FCTprob, visLikelihood,'Forecast - Likelihood of Flooding', false);
-  Map.addLayer(imageNRT.NRTprob, visLikelihood,'Near Real-Time - Likelihood of Flooding', false);
-  Map.addLayer(imageFCT.FCTimpact, visExtreme,'Forecast - Rainfall exceeding Threshold', false);
-  Map.addLayer(imageNRT.NRTimpact, visExtreme,'Near Real-Time - Rainfall exceeding Threshold', false);
-  Map.addLayer(imageFCT.total_precipitation_surface, visRainfall,'Forecast - Rainfall', true);
-  Map.addLayer(imageNRT.precipitationCal, visRainfall,'Near Real-Time - Rainfall', true);
+  mainMap.layers().reset();
+  mainMap.addLayer(imageFCT.re, visFlood,'Forecast - Flood Alert', false);
+  mainMap.addLayer(imageNRT.re, visFlood,'Near Real-Time - Flood Alert', false);
+  mainMap.addLayer(imageFCT.prob, visLikelihood,'Forecast - Likelihood of Flooding', false);
+  mainMap.addLayer(imageNRT.prob, visLikelihood,'Near Real-Time - Likelihood of Flooding', false);
+  mainMap.addLayer(imageFCT.impact, visExtreme,'Forecast - Rainfall exceeding Threshold', false);
+  mainMap.addLayer(imageNRT.impact, visExtreme,'Near Real-Time - Rainfall exceeding Threshold', false);
+  mainMap.addLayer(imageFCT.rainfall.sldStyle(visRainfallSLD),{},'Forecast - Rainfall', true);
+  mainMap.addLayer(imageNRT.rainfall.sldStyle(visRainfallSLD),{},'Near Real-Time - Rainfall', true);
+  
+  // Rendering population information
+  renderPopulationInfo(imageNRT.reClass, uiComponents.NRTaffectedPops);
+  renderPopulationInfo(imageFCT.reClass, uiComponents.FCTaffectedPops);
 }
 
 
-// USER INTERFACE WIDGET
+// AFFECTED POPULATION
 //---
-// ui.Select widget
-var daySelect = ui.Select({
-  items: ['1 day', '2 days', '3 days', '4 days', '5 days'],
-  onChange: render
-});
-// ui.Select first load
-daySelect.setPlaceholder('Select number of days');
+// Show Affected Population on Panel
+function renderPopulationInfo(imgReClass, targetUi) {
+  // Mosaic population layer and flood alert layer
+  var imgCombSrc = ghsl.addBands(imgReClass);
+  var stats = {};
+  var reClasses = [];
+  for (var i = 1; i < 4; i++) {
+    reClasses.push(i);
+  }
+  // Extract each alert then combine with population data
+  var counter = 0;
+  reClasses.map(function (reClass) {
+    var imgComb = imgCombSrc.expression(
+      'p * (v == c? 1:0)', {
+      'p': imgCombSrc.select('population_count'),
+      'v': imgCombSrc.select('remapped'),
+      'c': reClass
+    });
+    var stat = imgComb.reduceRegion({
+      reducer: ee.Reducer.sum(),
+      geometry: imgReClass.geometry(),
+      scale: 250,
+      maxPixels: 1e9
+    });
+    stat.evaluate(function (s) {
+      stats[reClass] = s.population_count;
+      counter += 1;
+      if (counter === reClasses.length) {
+        renderLegend();
+      }
+    });
+  });
+  function renderLegend() {
+    var widgets = [
+      ['FFEDA0', 1],
+      ['FEB24C', 2],
+      ['F03B20', 3]
+    ].map(function (p) {
+      var color = p[0];
+      var level = p[1];
+      var label = 'Alert ' + level + ': ' +
+        parseInt(stats[level]).toLocaleString();
+      return uiComponents.makeLegendBox(color, label);
+    });
+    targetUi.widgets().reset(widgets);
+    uiComponents.loadingCounter -= 1;
+    if (uiComponents.loadingCounter === 0) {
+      uiComponents.renderButton.setDisabled(false);
+    }
+  }
+}
 
 
-// Center of the map for first load
-Map.setControlVisibility(true);
-// ERMMap.setCenter(117.7, -2.5, 5.7);
+function initializeUIComponents() {
+  // Clear all process
+  ui.root.clear();
+  var mobileStyle = false;
 
+  // ui.Select widget
+  var daySelect = ui.Select({
+    items: ['1 day', '2 days', '3 days', '4 days', '5 days']
+  });
+  // ui.Select first load
+  daySelect.setPlaceholder('Select number of days');
 
-// Setting date
-var today = ee.Date(new Date());
-var startDate = ee.Date('2019-07-01'); // First GFS data 1 Jul 2015
-// GFS Dataset Availability: https://developers.google.com/earth-engine/datasets/catalog/NOAA_GFS0P25#citations
-var start_GFS_old = ee.Date('2015-07-01'); // First GFS data 1 Jul 2015
-// Until 2019-11-07 06:00:00 precipitation represents the precipitation at surface at the forecasted time
-var start_GFS_new = ee.Date('2019-11-07T06:00:00'); 
+  // Setting date
+  var today = ee.Date(new Date());
+  var startDate = ee.Date('2019-07-01'); // First GFS data 1 Jul 2015
 
-
-// ui.DateSlider widget
-var dateSlider = ui.DateSlider({
+  // ui.DateSlider widget
+  var dateSlider = ui.DateSlider({
     start: startDate,
     end: today.advance(1, 'day'),
     period: 1, // the unit is day
-    style: {width: '300px', padding: '10px'},
-    onChange: render
-});
-dateSlider.setValue(today);
+    style: { width: '300px', padding: '10px', position: 'bottom-left' }
+  });
+  // Set date to today during first load
+  dateSlider.setValue(today);
 
-// Add widget to map UI
-Map.add(dateSlider);
-Map.add(daySelect);
+  // Add render button to ui
+  var renderButton = ui.Button({
+    label: 'Render',
+    onClick: render
+  });
 
+  // Arrange the components
+  uiComponents.daySelect = daySelect;
+  uiComponents.dateSlider = dateSlider;
+  uiComponents.renderButton = renderButton;
 
+  // Warning if the parameters is not completed
+  uiComponents.NRTaffectedPops = ui.Panel({
+    style: {
+      fontWeight: 'bold'
+    },
+    widgets: [
+      ui.Label({
+        value: '!!! Select date and number of day then press Render button'
+      })
+    ]
+  });
 
-// DATA DOWNLOAD
-//---------------------
-//////
-// Add download button to panel
-var download = ui.Button({
-  label: 'Downloads the data',
-  style: {position: 'bottom-right', color: 'black'},
-  onClick: function() {
-      
-      // As the download request probably takes some time, we need to warn the user, 
-      // so they not repeating click the download button
-      alert("If you see this message, the download request is started! Please go to Tasks, wait until the download list appear. Click RUN for each data you want to download");
-      
-      // Downloading data
-      // Export the result to Google Drive
-      var download_date = ee.Date(dateSlider.getValue()[0]);
-      
-      // Near Real-Time Precipitation
-      Export.image.toDrive({
-        image:imageNRT.precipitationCal,
-        description:'NRT_Precipitation_last_' + nday + 'day_as_of_' + download_date.format('yyyy-MM-dd').getInfo(),
-        scale:IMERGprojection.nominalScale(),
-        maxPixels:1e12
-      });
-      
-      // Forecast Precipitation
-      Export.image.toDrive({
-        image:imageFCT.total_precipitation_surface,
-        description:'FCT_Precipitation_' + nday + 'day_ahead_issued_on_' + download_date.format('yyyy-MM-dd').getInfo(),
-        scale:IMERGprojection.nominalScale(),
-        maxPixels:1e12
-      });
-      
-      // Near Real-Time Extreme Precipitation (exceeding the threshold)
-      Export.image.toDrive({
-        image:imageNRT.NRTimpact,
-        description:'NRT_ExtremePrecip_last_' + nday + 'day_as_of_' + download_date.format('yyyy-MM-dd').getInfo(),
-        scale:IMERGprojection.nominalScale(),
-        maxPixels:1e12
-      });
-      
-      // Forecast Extreme Precipitation (exceeding the threshold)
-      Export.image.toDrive({
-        image:imageFCT.FCTimpact,
-        description:'FCT_ExtremePrecip_' + nday + 'day_ahead_issued_on_' + download_date.format('yyyy-MM-dd').getInfo(),
-        scale:IMERGprojection.nominalScale(),
-        maxPixels:1e12
-      });
+  // Warning if the parameters is not completed
+  uiComponents.FCTaffectedPops = ui.Panel({
+    style: {
+      fontWeight: 'bold'
+    },
+    widgets: [
+      ui.Label({
+        value: '!!! Select date and number of day then press Render button'
+      })
+    ]
+  });
 
-      // Near Real-Time Likelihood of Pixel will be Inundated
-      Export.image.toDrive({
-        image:imageNRT.NRTprob,
-        description:'NRT_Likelihood_last_' + nday + 'day_as_of_' + download_date.format('yyyy-MM-dd').getInfo(),
-        scale:IMERGprojection.nominalScale(),
-        maxPixels:1e12
-      });
+  // Legend in a Panel
+  uiComponents.makeLegendBox = function (color, label) {
+    var colorBox = ui.Label({
+      style: {
+        backgroundColor: '#' + color,
+        padding: mobileStyle ? '10px' : '8px',
+        margin: '0 0 4px 0',
+        border: 'solid 0.5px',
+      }
+    });
+    var description = ui.Label({
+      value: label,
+      style: { margin: '0 0 4px 6px', fontSize: mobileStyle ? '16px' : '12px' },
+    });
+    return ui.Panel({
+      widgets: [colorBox, description],
+      style: { padding: '0 0 4px 6px' },
+      layout: ui.Panel.Layout.Flow('horizontal')
+    });
+  };
+  
+  // Paragraph intro in top of Panel
+  var intro = ui.Panel({
+    widgets: [
+      // Title
+      ui.Label({
+        value: 'Extreme rainfall monitoring, will it trigger a flood?',
+        style: {
+          fontWeight: 'bold',
+          fontSize: mobileStyle ? '22px' : '20px',
+          margin: '10px 5px',
+        }
+      }),
       
-      // Forecast Likelihood of Pixel will be Inundated
-      Export.image.toDrive({
-        image:imageFCT.FCTprob,
-        description:'FCT_Likelihood_' + nday + 'day_ahead_issued_on_' + download_date.format('yyyy-MM-dd').getInfo(),
-        scale:IMERGprojection.nominalScale(),
-        maxPixels:1e12
-      });
+      // Intro
+      ui.Label({
+        value: 'ERM is an app that are able to inform where is the estimated location of extreme rainfall ' +
+          'in the last 5-days (Near Real Time) and up to 5-days ahead (Forecast) based on selected date. ' +
+          'To learn more about what inside the application, please visit below link:',
+        style: {
+          fontSize: mobileStyle ? '18px' : '14px',
+        }
+      }),
+      ui.Label({
+        value: 'https://wfpidn.github.io/ERM',
+        style: {
+          fontSize: mobileStyle ? '18px' : '14px',
+        }
+      }).setUrl('https://wfpidn.github.io/ERM'),
+      ui.Label({
+        value: 'Every computation required at least a minute to complete all the process. PLEASE BE PATIENT!',
+        style: {
+          color: 'red',
+          fontSize: mobileStyle ? '18px' : '14px',
+        }
+      }),
+      ui.Label({
+        value: '_________________________________________________',
+        style: {
+          fontSize: mobileStyle ? '18px' : '14px',
+        }
+      })
+    ]
+  });
+  
+  // Affected population label - near real-time
+  var NRTaffectedPanel = ui.Panel({
+    widgets: [
+      ui.Label({
+        value: 'Affected Populations - Near Real-Time',
+        style: {
+          fontWeight: 'bold',
+          fontSize: mobileStyle ? '18px' : '16px',
+          margin: '10px 5px'
+        }
+      }),
+      uiComponents.NRTaffectedPops
+    ]
+  });
 
-      // Near Real-Time Extreme Rainfall-triggering Flood
-      Export.image.toDrive({
-        image:imageNRT.NRTertf,
-        description:'NRT_FloodAlert_last_' + nday + 'day_as_of_' + download_date.format('yyyy-MM-dd').getInfo(),
-        scale:IMERGprojection.nominalScale(),
-        maxPixels:1e12
-      });
+  // Affected population label - near real-time
+  var FCTaffectedPanel = ui.Panel({
+    widgets: [
+      ui.Label({
+        value: 'Affected Populations - Forecast',
+        style: {
+          fontWeight: 'bold',
+          fontSize: mobileStyle ? '18px' : '16px',
+          margin: '10px 5px'
+        }
+      }),
+      uiComponents.FCTaffectedPops
+    ]
+  });
+  
+  var legendintro = ui.Panel({
+    widgets: [
+      // Line divider
+      ui.Label({
+        value: '_________________________________________________',
+        style: {
+          fontWeight: 'bold',
+          fontSize: mobileStyle ? '18px' : '14px',
+          margin: '10px 5px',
+        }
+      }),
       
-      // Forecast Extreme Rainfall-triggering Flood
-      Export.image.toDrive({
-        image:imageFCT.FCTertf,
-        description:'FCT_FloodAlert_' + nday + 'day_ahead_issued_on_' + download_date.format('yyyy-MM-dd').getInfo(),
-        scale:IMERGprojection.nominalScale(),
-        maxPixels:1e12
-      });
-      
-      print('Data Downloaded!', download_date);
+      // Legend label
+      ui.Label({
+        value: 'Legend ',
+        style: {
+          fontWeight: 'bold',
+          fontSize: mobileStyle ? '22px' : '20px',
+          margin: '10px 5px',
+        }
+      })
+    ]
+  });
+
+  function makeLegend(title, boxes) {
+    return ui.Panel({
+      widgets: [
+        ui.Label({
+          value: title,
+          style: {
+            fontSize: mobileStyle ? '18px' : '16px',
+            margin: '10px 5px'
+          }
+        }),
+        ui.Panel({
+          style: {
+            fontSize: '10px',
+            margin: '0 0 10px 12px',
+            padding: '0'
+          },
+          widgets: boxes.map(function (b) {
+            var color = b[0];
+            var label = b[1];
+            return uiComponents.makeLegendBox(color, label);
+          })
+        })
+      ]
+    });
   }
-});
 
-// Add the button to the map and the panel to root.
-Map.add(download);
+  // Legend for others
+  var legendRainfall = makeLegend('Rainfall', [
+    ['ffffff', 'No Rain ~ No color'],
+    ['cccccc', '1 - 3 milimeters'],
+    ['f9f3d5', '4 - 10'],
+    ['dce2a8', '11 - 20'],
+    ['a8c58d', '21 - 30'],
+    ['77a87d', '31 - 40'],
+    ['ace8f8', '41 - 60'],
+    ['4cafd9', '61 - 80'],
+    ['1d5ede', '81 - 100'],
+    ['001bc0', '101 - 120'],
+    ['9131f1', '121 - 150'],
+    ['e983f3', '151 - 200'],
+    ['f6c7ec', '> 200']
+  ]);
+
+  var legendCategory = makeLegend('Rainfall Category', [
+    ['ffffcc', 'Moderate'],
+    ['a1dab4', 'Heavy'],
+    ['41b6c4', 'Intense'],
+    ['225ea8', 'Extreme']
+  ]);
+
+  var legendProbability = makeLegend('Likelihood', [
+    ['f7fcb9', 'Low'],
+    ['addd8e', 'Moderate'],
+    ['31a354', 'High']
+  ]);
+  
+  var legendAlert = makeLegend('Flood Alert', [
+    ['97D700', 'Green'],
+    ['ffeda0', 'Yellow (Category 1 - 3)'],
+    ['FEB24C', 'Orange (Category 4 - 6)'],
+    ['F03B20', 'Red (Category 7 - 9)']
+  ]);
+
+  var mainPanel = ui.Panel({
+    widgets: [
+      intro,
+      NRTaffectedPanel,
+      FCTaffectedPanel,
+      legendintro,
+      ui.Panel({
+        layout: ui.Panel.Layout.flow('horizontal'),
+        widgets: [
+          ui.Panel({
+            widgets: [
+              legendRainfall,
+            ]
+          }),
+          ui.Panel({
+            widgets: [
+              legendCategory,
+              legendProbability,
+              legendAlert
+            ]
+          })
+        ]
+      })
+    ],
+    style: { width: '500px', padding: '8px' }
+  });
+
+  ui.root.widgets().reset([
+    mainPanel, mainMap
+  ]);
+  ui.root.setLayout(ui.Panel.Layout.flow('horizontal'));
+
+  mainMap.setControlVisibility(true);
+  mainMap.setCenter(118.2, -2.5, 5.4);
+  mainMap.add(ui.Panel({
+    widgets: [daySelect, renderButton],
+    style: {position: 'bottom-left'}
+  }));
+  mainMap.add(dateSlider);
+}
+
+initializeUIComponents();

@@ -96,4 +96,5 @@ nav:
         - Extreme rainfall calculation: erc.md
     - Implementation:
         - Google Earth Engine: gee.md
+        - Example: example.md
         - Demo: demo.md

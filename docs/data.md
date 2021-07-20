@@ -2,7 +2,7 @@
 
 ## Best options data for extreme rainfall monitoring
 
-Currently there are 2 data that are suitable for monitoring and forecasting.
+Currently there are 2 data that are suitable for rainfall monitoring and forecasting.
 
 ### Rainfall monitoring (near real-time)
 
@@ -71,3 +71,27 @@ Currently there are 2 data that are suitable for monitoring and forecasting.
 	1. AWS: `aws s3 ls s3://noaa-gefs-pds/ --no-sign-request`
 	2. Reference: [https://registry.opendata.aws/noaa-gefs/](https://registry.opendata.aws/noaa-gefs/) 
 	3. GRIB Filter: [https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?](https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?)
+
+## Population, a proxy for impact analysis
+
+Global mapping of population is rapidly growing in recent years. They are available at detailed spatial scales. The analysis is based on satellite or other geospatial data layers. Population data are necessary for the analysis of impacts of population growth, monitor population changes, and intervention planning.
+
+### Global Human Settlement Layer - JRC
+
+The Global Human Settlement (GHS) - [http://ghsl.jrc.ec.europa.eu](http://ghsl.jrc.ec.europa.eu) - framework produces global spatial information about the human presence on the planet over time. This in the form of built up maps, population density maps and settlement maps. This information is generated with evidence-based analytics and knowledge using new spatial data mining technologies. The framework uses heterogeneous data including global archives of fine-scale satellite imagery, census data, and volunteered geographic information. The data is processed fully automatically and generates analytics and knowledge reporting objectively and systematically about the presence of population and built-up infrastructures.
+
+The main datasets are offered for download as open and free data. The GHS P2016 suite consists of multitemporal products, that offers an insight into the human presence in the past: 1975, 1990, 2000, and 2014. There are three main type of products: built-up (GHS-BUILT), population (GHS-POP), city model (GHS-SMOD). The grid data are distributed as raster files in TIF format. The ZIP files contain raster files together with pyramids (i.e., TIF and OVR files). 
+
+**About the data**
+
+| Characteristic  | Description  |
+|---|---|
+| Function  | a proxy for impact analysis  |
+| Variable  | Total population  |
+| Geographic coverage  | Global  |
+| Spatial resolution  | 250 meter/pixel  |
+| Temporal resolution  | 1975, 1990, 2000, 2014, 2016  |
+| Format  | GeoTIFF  |
+| Unit  | Population counts at 250m resolution  |
+| Source  | [https://ghsl.jrc.ec.europa.eu/download.php](https://ghsl.jrc.ec.europa.eu/download.php)  |
+| Reference  | [https://ghsl.jrc.ec.europa.eu](https://ghsl.jrc.ec.europa.eu)  |
