@@ -10,7 +10,7 @@
 // The code was compiled from various source (GEE help, GEE Groups, StackExchange)
 //
 // Author:
-// Benny Istanto | Earth Observation and Climate Analyst | benny.istanto@wfp.org
+// Benny Istanto | Earth Observation and Climate Analyst | benny.istanto@wfp.org 
 // Ridwan Mulyadi | System Developer | ridwan.mulyadi@wfp.org
 // Vulnerability Analysis and Mapping (VAM) unit, UN World Food Programme - Indonesia
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -269,30 +269,6 @@ var ghsl_raw = maskImage(ee.Image(ee.ImageCollection("JRC/GHSL/P2016/POP_GPW_GLO
 var ghsl = ghsl_raw.updateMask(ghsl_raw.gt(0));
 // Get GHSL projection information
 var GHSLprojection = ghsl.projection();
-
-// Facebook HRSL
-var HRSL_P = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrslpop").median()));
-var imgHRSL_P = HRSL_P.updateMask(HRSL_P.gt(0));
-var HRSL_M = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrsl_men").median()));
-var imgHRSL_M = HRSL_M.updateMask(HRSL_M.gt(0));
-var HRSL_W = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrsl_women").median()));
-var imgHRSL_W = HRSL_W.updateMask(HRSL_W.gt(0));
-var HRSL_Y1524 = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrsl_youth").median()));
-var imgHRSL_Y1524 = HRSL_Y1524.updateMask(HRSL_Y1524.gt(0));
-var HRSL_CU5 = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrsl_children_under_five").median()));
-var imgHRSL_CU5 = HRSL_CU5.updateMask(HRSL_CU5.gt(0));
-var HRSL_WR1549 = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrsl_women_reproductive_age").median()));
-var imgHRSL_WR1549 = HRSL_WR1549.updateMask(HRSL_WR1549.gt(0));
-var HRSL_E60P = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrsl_elderly_over_sixty").median()));
-var imgHRSL_E60P = HRSL_E60P.updateMask(HRSL_E60P.gt(0));
-
-// MODIS Global Annual Land Cover 500m - year 2019, filter image collection by the most up-to-date MODIS Land Cover product 
-// Import Crop extent data - https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MCD12Q1#bands
-// LC_Type1 using Annual International Geosphere-Biosphere Programme (IGBP) classification
-var mcd12q1_raw = ee.Image('MODIS/006/MCD12Q1/2019_01_01').select("LC_Type1"); 
-var mcd12q1 = mcd12q1_raw.updateMask(mcd12q1_raw.gt(0));
-// Get MODIS projection information
-var MODISprojection = mcd12q1_raw.projection();
 
 
 // FUNCTION
@@ -712,6 +688,14 @@ function initializeUIComponents() {
         }
       }),
       ui.Label({
+        value: 'The computation is over when you see number of affected population below for both near real-time ' +
+          'and forecasat, and the Render button enable. ',
+        style: {
+          color: 'red',
+          fontSize: mobileStyle ? '18px' : '14px',
+        }
+      }),
+      ui.Label({
         value: '_________________________________________________',
         style: {
           fontSize: mobileStyle ? '18px' : '14px',
@@ -724,7 +708,7 @@ function initializeUIComponents() {
   var NRTaffectedPanel = ui.Panel({
     widgets: [
       ui.Label({
-        value: 'Affected Populations - Near Real-Time',
+        value: 'Affected populations - Near Real-Time, based on number of days simulation as of selected date',
         style: {
           fontWeight: 'bold',
           fontSize: mobileStyle ? '18px' : '16px',
@@ -739,7 +723,7 @@ function initializeUIComponents() {
   var FCTaffectedPanel = ui.Panel({
     widgets: [
       ui.Label({
-        value: 'Affected Populations - Forecast',
+        value: 'Affected populations - Forecast, issued on selected date and valid up to number of days simulation',
         style: {
           fontWeight: 'bold',
           fontSize: mobileStyle ? '18px' : '16px',
