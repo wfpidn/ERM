@@ -8,7 +8,7 @@ Locations with a low surface water occurrence have only been inundated for a sho
 
 ![Historical Flood Occurrence](./img/hfo.png)
 
-HFO was done based on script from Dr. Ate Poortinga, its written in his blog post https://mygeoblog.com/2017/10/20/historical-flood-occurrence/ 
+HFO was done based on script from Dr. Ate Poortinga, its written in his blog post [https://mygeoblog.com/2017/10/20/historical-flood-occurrence/](https://mygeoblog.com/2017/10/20/historical-flood-occurrence/) 
 
 ![GEE Historical Flood Occurrence](./img/hfogee.png)
 
@@ -19,7 +19,7 @@ GEE script to calculate HFO: [https://code.earthengine.google.com/08f671f8be1190
 
 To get areas at risk, we need to relate the maximum rainfall and historical flood occurrence.
 
-Then construct pair data of flood occurrence `MEAN` by month and maximum of rainfall by month for the period 2000-2019 for all IMERG grids, by performing linear regression between every `5×5` pixels of the two rasters, we would like to create a new raster of `SLOPE` `(a)` and `INTERCEPT``(b)`.
+Then construct pair data of flood occurrence `MEAN` by month and maximum of rainfall by month for the period 2000-2019 for all IMERG grids, by performing linear regression between every `5×5` pixels of the two rasters, we would like to create a new raster of `SLOPE` `(a)` and `INTERCEPT` `(b)`.
 
 Each pixel of the `SLOPE` and `INTERCEPT` will hold the regression slope and intercept value obtained from linear regression of the corresponding `5×5` pixels that surround that pixel.
 

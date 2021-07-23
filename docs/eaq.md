@@ -1,6 +1,11 @@
 # Evaluating alert quality
 
-To evaluate alert release by VAMPIRE, we need additional data and information from various source. So far few source has been identified: (1) AHA Centre ADInet - http://adinet.ahacentre.org/main; (2) BNPB Disaster Monitoring - http://gis.bnpb.go.id; (3) PUPR Geoportal - https://sigi.pu.go.id/disaster 
+To evaluate alert release by VAMPIRE, we need additional data and information from various source. So far few source has been identified:
+
+- AHA Centre ADInet - http://adinet.ahacentre.org/main;
+- BNPB Disaster Monitoring - http://gis.bnpb.go.id;
+- PUPR Geoportal - https://sigi.pu.go.id/disaster 
+
 
 ## A measure of forecast accuracy
 
