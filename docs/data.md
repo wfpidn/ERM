@@ -72,6 +72,21 @@ Currently there are 2 data that are suitable for rainfall monitoring and forecas
 	2. Reference: [https://registry.opendata.aws/noaa-gefs/](https://registry.opendata.aws/noaa-gefs/) 
 	3. GRIB Filter: [https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?](https://nomads.ncep.noaa.gov/cgi-bin/filter_gefs_atmos_0p25s.pl?)
 
+
+## Water History
+
+### Global Surface Water - JRC
+
+This dataset contains maps of the location and temporal distribution of surface water from 1984 to 2020 and provides statistics on the extent and change of those water surfaces. For more information see the associated journal article: High-resolution mapping of global surface water and its long-term changes (Nature, 2016) and the online Data Users Guide.
+
+These data were generated using 4,453,989 scenes from Landsat 5, 7, and 8 acquired between 16 March 1984 and 31 December 2020. Each pixel was individually classified into water / non-water using an expert system and the results were collated into a monthly history for the entire time period and two epochs (1984-1999, 2000-2020) for change detection.
+
+This Monthly History collection holds the entire history of water detection on a month-by-month basis. The collection contains 442 images, one for each month between March 1984 and December 2020.
+
+This data used to define [historical flood occurrence](../rof/#historical-flood-occurrence)
+
+Reference: [https://developers.google.com/earth-engine/datasets/catalog/JRC_GSW1_3_MonthlyHistory](https://developers.google.com/earth-engine/datasets/catalog/JRC_GSW1_3_MonthlyHistory)
+
 ## Population, a proxy for impact analysis
 
 Global mapping of population is rapidly growing in recent years. They are available at detailed spatial scales. The analysis is based on satellite or other geospatial data layers. Population data are necessary for the analysis of impacts of population growth, monitor population changes, and intervention planning.
