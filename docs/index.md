@@ -2,7 +2,7 @@
 
 ## Welcome
 
-Extreme Rainfall Monitoring (ERM) is a tool developed by the United Nations [World Food Programme](https://www.wfp.org/countries/indonesia) in Indonesia written in [Google Earth Engine](https://earthengine.google.com) (GEE) platfrom. ERM are able to inform where is the estimated location of extreme rainfall and its impact to population and crop in the last 5-days and forecast up to 5-days ahead based on selected date.
+Extreme Rainfall Monitoring (ERM) is an experimental tool developed by the United Nations [World Food Programme](https://www.wfp.org/countries/indonesia) in Indonesia written in [Google Earth Engine](https://earthengine.google.com) (GEE) platform. ERM are able to inform where is the estimated location of extreme rainfall and its impact to population and crop in the last 5-days and forecast up to 5-days ahead based on selected date.
 
 Some of the input was prepared via different platform: ArcGIS Pro, R Statistics, and Excel. ERM module is part of Vulnerability Analysis and Monitoring Platform for Impatc of Regional Events ([VAMPIRE](http://vampire.pulselabjakarta.org)) hazard monitoring module. Some of the analysis has been modified and adjusted to GEE based on data availability and considering the computation resources within GEE. While the methodology written in this document still reflecting what we developed in VAMPIRE.
 
