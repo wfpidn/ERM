@@ -1,6 +1,6 @@
 # Example
 
-**Below is the example result for each output** during [Seroja Tropical Cyclone](https://en.wikipedia.org/wiki/Cyclone_Seroja) on 2 April 2021.
+**Below is the example result for each output** during [Seroja Tropical Cyclone](https://en.wikipedia.org/wiki/Cyclone_Seroja) on 3 April 2021.
 
 Rainfall accumulation, near real-time
 
