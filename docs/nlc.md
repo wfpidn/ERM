@@ -10,3 +10,4 @@
 ## Limitation and constraints
 
 - Complex issues of hydrology, river flow and conditions (e.g catchment) are still excluded
+- ERM only able monitor or predict flood caused by extreme rainfall in a location where extreme rainfall occurred. And unable to calculate flood caused by runoff accumulation from other areas.
