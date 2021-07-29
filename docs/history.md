@@ -40,6 +40,7 @@
 | 36 | 25 Jun 2021 | GEE code review on population, crop and urban area affected |
 | 37 | 29 Jun 2021 | Technical documentation available at Github |
 | 38 | 19 Jul 2021 | Affected population module, ui Panel and some feature completed by RM. Revising crop module and dynamic text is ongoing |
+| 39 | 29 Jul 2021 | Affected cropland module and dynamic text for date simulation completed |
 
 
 
