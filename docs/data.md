@@ -110,3 +110,36 @@ The main datasets are offered for download as open and free data. The GHS P2016 
 | Unit  | Population counts at 250m resolution  |
 | Source  | [https://ghsl.jrc.ec.europa.eu/download.php](https://ghsl.jrc.ec.europa.eu/download.php)  |
 | Reference  | [https://ghsl.jrc.ec.europa.eu](https://ghsl.jrc.ec.europa.eu)  |
+
+## Cropland, a proxy for impact analysis
+
+Land cover maps represent spatial information on different types (classes) of physical coverage of the Earth's surface, e.g. forests, grasslands, croplands, lakes, wetlands. Dynamic land cover maps include transitions of land cover classes over time and hence captures land cover changes. Land use maps contain spatial information on the arrangements, activities and inputs people undertake in a certain land cover type to produce, change or maintain it.
+
+### MODIS Cropland
+
+The MCD12Q1 V6 product provides global land cover types at yearly intervals (2001-2016) derived from six different classification schemes. It is derived using supervised classifications of MODIS Terra and Aqua reflectance data. The supervised classifications then undergo additional post-processing that incorporate prior knowledge and ancillary information to further refine specific classes.
+
+The MODIS Land Cover Type product is a global land cover classification data layer produced annually from 2001 through 2019 (as of this writing). For each year there are five land cover schemes, developed by different research groups.  Data are distributed by the USGS at 500m resolution in standard MODIS grid tiles. These tiles use the sinusoidal projection and  cover approximately 1200 x 1200 km (10° x 10° at the equator). The following USGS site has detailed meta data and download access: [https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1](https://lpdaac.usgs.gov/dataset_discovery/modis/modis_products_table/mcd12q1)
+
+It is derived using supervised classifications of MODIS Terra and Aqua reflectance data. The supervised classifications then undergo additional post-processing that incorporate prior knowledge and ancillary information to further refine specific classes.
+
+The MODIS Terra + Aqua Land Cover Type Yearly L3 Global 500 m SIN Grid product incorporates the following five different land cover classification schemes, each derived through a supervised decision-tree classification method:
+    Land Cover Type 1: IGBP global vegetation classification scheme
+    Land Cover Type 2: University of Maryland (UMD) scheme
+    Land Cover Type 3: MODIS-derived LAI/fPAR scheme
+    Land Cover Type 4: MODIS-derived Net Primary Production (NPP) scheme
+    Land Cover Type 5: Plant Functional Type (PFT) scheme
+
+**About the data**
+
+| Characteristic  | Description  |
+|---|---|
+| Function  | a proxy for impact analysis  |
+| Variable  | Land cover  |
+| Geographic coverage  | Global  |
+| Spatial resolution  | 500 meter/pixel  |
+| Temporal resolution  | Annual, 2001 - 2019  |
+| Format  | GeoTIFF  |
+| Unit  | Land cover at 500m resolution  |
+| Source  | [https://e4ftl01.cr.usgs.gov/MOTA/MCD12Q1.006/](https://e4ftl01.cr.usgs.gov/MOTA/MCD12Q1.006/)  |
+| Reference  | [https://lpdaac.usgs.gov/products/mcd12q1v006/](https://lpdaac.usgs.gov/products/mcd12q1v006/)  |

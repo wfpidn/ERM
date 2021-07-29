@@ -191,56 +191,64 @@ function mapStyle() {
   ];
 }
 
-
 // Grey basemap from gena
 mainMap.style().set('cursor', 'crosshair');
-mainMap.setOptions('Grey', {Grey: mapStyle()});
+mainMap.setOptions('Grey', { Grey: mapStyle() });
 
 // SYMBOLOGY
 // Visualization palette, Color-codes based on Color-Brewer https://colorbrewer2.org/
 // Standard symbology for rainfall
-var visRainfall = {min: 1, max: 100, opacity: 1, palette: [
-    'cccccc','f9f3d5','dce2a8','a8c58d','77a87d','ace8f8',
-    '4cafd9','1d5ede','001bc0','9131f1','e983f3','f6c7ec'
-  ]};
+var visRainfall = {
+  min: 1, max: 100, opacity: 0.7, palette: [
+    'cccccc', 'f9f3d5', 'dce2a8', 'a8c58d', '77a87d', 'ace8f8',
+    '4cafd9', '1d5ede', '001bc0', '9131f1', 'e983f3', 'f6c7ec'
+  ]
+};
 // Standard symbology for extreme rainfall class
-var visExtreme = {min: 1, max: 4, opacity: 1, palette: [
-  'ffffcc', 'a1dab4', '41b6c4', '225ea8'
-  ]};
+var visExtreme = {
+  min: 1, max: 4, opacity: 0.7, palette: [
+    'ffffcc', 'a1dab4', '41b6c4', '225ea8'
+  ]
+};
 // Standard symbology for likelihood of flooding
-var visLikelihood = {min: 1, max: 3, opacity: 1, palette: [
-  'f7fcb9','addd8e','31a354'
-  ]};
+var visLikelihood = {
+  min: 1, max: 3, opacity: 0.7, palette: [
+    'f7fcb9', 'addd8e', '31a354'
+  ]
+};
 // Standard symbology for extreme rainfall triggering flood alert class
-var visFlood = {min: 0, max: 9, opacity: 1, palette: [
-  '97D700','FFEDA0','FFEDA0','FFEDA0','FEB24C','FEB24C',
-  'FEB24C','F03B20','F03B20','F03B20'
-  ]};
+var visFlood = {
+  min: 0, max: 9, opacity: 0.7, palette: [
+    '97D700', 'FFEDA0', 'FFEDA0', 'FFEDA0', 'FEB24C', 'FEB24C',
+    'FEB24C', 'F03B20', 'F03B20', 'F03B20'
+  ]
+};
 // Standard symbology for population exposed
-var visPopulation = {min: 0, max: 50.0, opacity:1, 
+var visPopulation = {
+  min: 0, max: 50.0, opacity: 0.7,
   palette: ['yellow', 'orange', 'red'],
-  };
+};
 
 // Define an SLD style of discrete intervals to apply to the image.
 // Notes: SLD visualisation will make the data rendered as RGB during point inspector into a pixel.
 var visRainfallSLD =
   '<RasterSymbolizer>' +
-    '<ColorMap  type="ramp" extended="false" >' +
-      '<ColorMapEntry color="#ffffff" opacity="0.0" quantity="1" label="No Rain" />' +
-      '<ColorMapEntry color="#cccccc" opacity="1.0" quantity="3" label="1-3" />' +
-      '<ColorMapEntry color="#f9f3d5" opacity="1.0" quantity="10" label="4-10" />' +
-      '<ColorMapEntry color="#dce2a8" opacity="1.0" quantity="20" label="11-20" />' +
-      '<ColorMapEntry color="#a8c58d" opacity="1.0" quantity="30" label="21-30" />' +
-      '<ColorMapEntry color="#77a87d" opacity="1.0" quantity="40" label="31-40" />' +
-      '<ColorMapEntry color="#ace8f8" opacity="1.0" quantity="60" label="41-60" />' +
-      '<ColorMapEntry color="#4cafd9" opacity="1.0" quantity="80" label="61-80" />' +
-      '<ColorMapEntry color="#1d5ede" opacity="1.0" quantity="100" label="81-100" />' +
-      '<ColorMapEntry color="#001bc0" opacity="1.0" quantity="120" label="101-120" />' +
-      '<ColorMapEntry color="#9131f1" opacity="1.0" quantity="150" label="121-150" />' +
-      '<ColorMapEntry color="#e983f3" opacity="1.0" quantity="200" label="151-200" />' +
-      '<ColorMapEntry color="#f6c7ec" opacity="1.0" quantity="1000" label="&gt; 200" />' +
-    '</ColorMap>' +
-  '</RasterSymbolizer>'; 
+  '<ColorMap  type="ramp" extended="false" >' +
+  '<ColorMapEntry color="#ffffff" opacity="0.0" quantity="1" label="No Rain" />' +
+  '<ColorMapEntry color="#cccccc" opacity="0.7" quantity="3" label="1-3" />' +
+  '<ColorMapEntry color="#f9f3d5" opacity="0.7" quantity="10" label="4-10" />' +
+  '<ColorMapEntry color="#dce2a8" opacity="0.7" quantity="20" label="11-20" />' +
+  '<ColorMapEntry color="#a8c58d" opacity="0.7" quantity="30" label="21-30" />' +
+  '<ColorMapEntry color="#77a87d" opacity="0.7" quantity="40" label="31-40" />' +
+  '<ColorMapEntry color="#ace8f8" opacity="0.7" quantity="60" label="41-60" />' +
+  '<ColorMapEntry color="#4cafd9" opacity="0.7" quantity="80" label="61-80" />' +
+  '<ColorMapEntry color="#1d5ede" opacity="0.7" quantity="100" label="81-100" />' +
+  '<ColorMapEntry color="#001bc0" opacity="0.7" quantity="120" label="101-120" />' +
+  '<ColorMapEntry color="#9131f1" opacity="0.7" quantity="150" label="121-150" />' +
+  '<ColorMapEntry color="#e983f3" opacity="0.7" quantity="200" label="151-200" />' +
+  '<ColorMapEntry color="#f6c7ec" opacity="0.7" quantity="1000" label="&gt; 200" />' +
+  '</ColorMap>' +
+  '</RasterSymbolizer>';
   
  
 ```
@@ -263,10 +271,11 @@ Currently ERM use GHSL population data to calculate the affected population due 
 //---
 // Masking image
 function maskImage(image) {
-  var imergMask = ee.Image('users/bennyistanto/datasets/raster/extremerainfall/mask/idn_bnd_imerg_subset'); 
+  var imergMask = ee.Image('users/bennyistanto/datasets/raster/extremerainfall/mask/idn_bnd_imerg_subset');
   return image.updateMask(imergMask);
 }
 var idnMask = ee.Image('users/bennyistanto/datasets/raster/extremerainfall/mask/idn_bnd_imerg_subset');
+
 // Near Real Time data
 // Import NASA GPM IMERG 30 minute data and calculate accumulation for 1day.
 var imerg = ee.ImageCollection("NASA/GPM_L3/IMERG_V06");
@@ -285,26 +294,10 @@ var ghsl = ghsl_raw.updateMask(ghsl_raw.gt(0));
 // Get GHSL projection information
 var GHSLprojection = ghsl.projection();
 
-// Facebook HRSL
-var HRSL_P = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrslpop").median()));
-var imgHRSL_P = HRSL_P.updateMask(HRSL_P.gt(0));
-var HRSL_M = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrsl_men").median()));
-var imgHRSL_M = HRSL_M.updateMask(HRSL_M.gt(0));
-var HRSL_W = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrsl_women").median()));
-var imgHRSL_W = HRSL_W.updateMask(HRSL_W.gt(0));
-var HRSL_Y1524 = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrsl_youth").median()));
-var imgHRSL_Y1524 = HRSL_Y1524.updateMask(HRSL_Y1524.gt(0));
-var HRSL_CU5 = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrsl_children_under_five").median()));
-var imgHRSL_CU5 = HRSL_CU5.updateMask(HRSL_CU5.gt(0));
-var HRSL_WR1549 = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrsl_women_reproductive_age").median()));
-var imgHRSL_WR1549 = HRSL_WR1549.updateMask(HRSL_WR1549.gt(0));
-var HRSL_E60P = maskImage(ee.Image(ee.ImageCollection("projects/sat-io/open-datasets/hrsl/hrsl_elderly_over_sixty").median()));
-var imgHRSL_E60P = HRSL_E60P.updateMask(HRSL_E60P.gt(0));
-
-// MODIS Global Annual Land Cover 500m - year 2019, filter image collection by the most up-to-date MODIS Land Cover product 
+// MODIS Global Annual Land Cover 500m - year 2019, filter image collection by the most up-to-date MODIS Land Cover product
 // Import Crop extent data - https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MCD12Q1#bands
 // LC_Type1 using Annual International Geosphere-Biosphere Programme (IGBP) classification
-var mcd12q1_raw = ee.Image('MODIS/006/MCD12Q1/2019_01_01').select("LC_Type1"); 
+var mcd12q1_raw = ee.Image('MODIS/006/MCD12Q1/2019_01_01').select("LC_Type1");
 var mcd12q1 = mcd12q1_raw.updateMask(mcd12q1_raw.gt(0));
 // Get MODIS projection information
 var MODISprojection = mcd12q1_raw.projection();
@@ -511,30 +504,32 @@ function getThresholdImage(p, numday) {
     'P90': 'q0900_10yr', // Percentile 90, 10-year return period
     'P96': 'q0960_25yr' // Percentile 96, 25-year return period
   }[p];
-  var path = 'users/bennyistanto/datasets/raster/extremerainfall/threshold/idn_cli_' 
-    + numday + 'day_precipthreshold_' 
+  var path = 'users/bennyistanto/datasets/raster/extremerainfall/threshold/idn_cli_'
+    + numday + 'day_precipthreshold_'
     + q + '_imerg_wfp';
   return ee.Image(path);
 }
 
 // Get Slope Image
+// File and location for Day1 and January: "users/bennyistanto/datasets/raster/extremerainfall/slope/idn_cli_day1_01_jan_slope_imerg"
 function getSlopeImage(month, numday) {
   var m = ['',
-    '01_jan','02_feb','03_mar','04_apr','05_may','06_jun',
-    '07_jul','08_aug','09_sep','10_oct','11_nov','12_dec'
+    '01_jan', '02_feb', '03_mar', '04_apr', '05_may', '06_jun',
+    '07_jul', '08_aug', '09_sep', '10_oct', '11_nov', '12_dec'
   ][month];
-  var path = 'users/bennyistanto/datasets/raster/extremerainfall/slope/idn_cli_day' 
+  var path = 'users/bennyistanto/datasets/raster/extremerainfall/slope/idn_cli_day'
     + numday + '_' + m + '_slope_imerg';
   return ee.Image(path);
 }
 
 // Get Intercept Image
+// File and location for Day1 and January: "users/bennyistanto/datasets/raster/extremerainfall/intercept/idn_cli_day1_01_jan_intercept_imerg"
 function getInterceptImage(month, numday) {
   var m = ['',
-    '01_jan','02_feb','03_mar','04_apr','05_may','06_jun',
-    '07_jul','08_aug','09_sep','10_oct','11_nov','12_dec'
+    '01_jan', '02_feb', '03_mar', '04_apr', '05_may', '06_jun',
+    '07_jul', '08_aug', '09_sep', '10_oct', '11_nov', '12_dec'
   ][month];
-  var path = 'users/bennyistanto/datasets/raster/extremerainfall/intercept/idn_cli_day' 
+  var path = 'users/bennyistanto/datasets/raster/extremerainfall/intercept/idn_cli_day'
     + numday + '_' + m + '_intercept_imerg';
   return ee.Image(path);
 }
@@ -550,14 +545,16 @@ Below is a  function to get near real-time
 ``` js
 // Get near real-time data (IMERG Image)
 function getImergImage(dt, numday) {
+  // 24 ~ 1day. To get previous data I used negative value
   var hours = -24 * numday;
-  
+
   return imerg // ee.ImageCollection('NASA/GPM_L3/IMERG_V06')
     .select('precipitationCal')
-    .filterDate(dt.advance(hours,'hour'), dt)
+    .filterDate(dt.advance(hours, 'hour'), dt)
     .map(maskImage)
     .sum().float();
 }
+
 ```
 
 And this is a function to get a forecast data
@@ -565,6 +562,8 @@ And this is a function to get a forecast data
 ``` js
 // Get forecast data (GFS Image)
 function getGfsImage(dt, numday) {
+  // Grab forecast data for hours 6,12,18,24 (Day1) 30,36,42,48 (Day2) 54,60,66,72 (Day3) 
+  // 78,84,90,96 (Day4) 102,108,114 and 120 (Day5) 
   var hours = [];
   for (var i = 0; i < numday; i++) {
     for (var j = 0; j < 4; j++) {
@@ -572,10 +571,10 @@ function getGfsImage(dt, numday) {
       hours.push(h);
     }
   }
-  
+
   return gfs // ee.ImageCollection('NOAA/GFS0P25')
     .select('total_precipitation_surface')
-    .filterDate(dt, dt.advance(6,'hour'))
+    .filterDate(dt, dt.advance(6, 'hour'))
     .filter(ee.Filter.inList('forecast_hours', hours))
     .map(maskImage)
     .sum()
@@ -719,6 +718,8 @@ As a trigger for ERM to do the analysis, user must select the date and number of
 
 
 ``` js
+// RENDERING
+//---
 // Render map based on DateSlider onChange
 function render() {
   // Date Slider
@@ -728,16 +729,10 @@ function render() {
   if (!_numday) {
     return;
   }
-  // Render button
-  uiComponents.renderButton.setDisabled(true);
-  uiComponents.NRTaffectedPops.widgets().reset([
-    ui.Label({ value: 'Loading...' })
-  ]);
-  uiComponents.FCTaffectedPops.widgets().reset([
-    ui.Label({ value: 'Loading...' })
-  ]);
-  // wait counter for ntr affected pops and ftc affected pops
-  uiComponents.loadingCounter = 2;
+
+  // wait counter for affected pops and crops
+  uiComponents.loadingCounter = 0;
+
   // Day of simulation
   var numday = {
     '1 day': 1,
@@ -746,7 +741,36 @@ function render() {
     '4 days': 4,
     '5 days': 5
   }[_numday];
-  
+
+  // Disable Render button
+  uiComponents.renderButton.setDisabled(true);
+  uiComponents.NRTaffectedDate.widgets().reset([
+    ui.Label({ // Label for date validity in near real time simulation
+      value: 'Potential impact for the last ' + numday + ' day(s), as of ' + dt.format('yyyy-MM-dd').getInfo(),
+      style: {color: 'blue'}
+    })
+  ]);
+  // Loading information after executing render button
+  uiComponents.NRTaffectedPops.widgets().reset([
+    ui.Label({ value: 'Loading...' })
+  ]);
+  uiComponents.NRTaffectedCrops.widgets().reset([
+    ui.Label({ value: 'Loading...' })
+  ]);
+  uiComponents.FCTaffectedDate.widgets().reset([
+    ui.Label({ // Label for date validity in forecasst simulation
+      value: 'Potential impact for ' + numday + ' day(s) ahead, issued on ' + dt.format('yyyy-MM-dd').getInfo(),
+      style: {color: 'blue'}
+    })
+  ]);
+  // Loading information after executing render button
+  uiComponents.FCTaffectedPops.widgets().reset([
+    ui.Label({ value: 'Loading...' })
+  ]);
+  uiComponents.FCTaffectedCrops.widgets().reset([
+    ui.Label({ value: 'Loading...' })
+  ]);
+
   // Get all layer result
   // Near Real Time Result
   var imageNRT = getRainfallExtremeImage({
@@ -762,33 +786,38 @@ function render() {
     imgBase: getGfsImage(dt, numday),
     rainfallColumn: 'total_precipitation_surface'
   });
-  
+
   // Load layer result as map
   mainMap.layers().reset();
-  mainMap.addLayer(imageFCT.re, visFlood,'Forecast - Flood Alert', false);
-  mainMap.addLayer(imageNRT.re, visFlood,'Near Real-Time - Flood Alert', false);
-  mainMap.addLayer(imageFCT.prob, visLikelihood,'Forecast - Likelihood of Flooding', false);
-  mainMap.addLayer(imageNRT.prob, visLikelihood,'Near Real-Time - Likelihood of Flooding', false);
-  mainMap.addLayer(imageFCT.impact, visExtreme,'Forecast - Rainfall exceeding Threshold', false);
-  mainMap.addLayer(imageNRT.impact, visExtreme,'Near Real-Time - Rainfall exceeding Threshold', false);
-  mainMap.addLayer(imageFCT.rainfall.sldStyle(visRainfallSLD),{},'Forecast - Rainfall', true);
-  mainMap.addLayer(imageNRT.rainfall.sldStyle(visRainfallSLD),{},'Near Real-Time - Rainfall', true);
-  
+  mainMap.addLayer(imageFCT.re, visFlood, 'Forecast - Flood Alert', true);
+  mainMap.addLayer(imageNRT.re, visFlood, 'Near Real-Time - Flood Alert', true);
+  mainMap.addLayer(imageFCT.prob, visLikelihood, 'Forecast - Likelihood of Flooding', false);
+  mainMap.addLayer(imageNRT.prob, visLikelihood, 'Near Real-Time - Likelihood of Flooding', false);
+  mainMap.addLayer(imageFCT.impact, visExtreme, 'Forecast - Rainfall exceeding Threshold', false);
+  mainMap.addLayer(imageNRT.impact, visExtreme, 'Near Real-Time - Rainfall exceeding Threshold', false);
+  mainMap.addLayer(imageFCT.rainfall.sldStyle(visRainfallSLD), {}, 'Forecast - Rainfall', false);
+  mainMap.addLayer(imageNRT.rainfall.sldStyle(visRainfallSLD), {}, 'Near Real-Time - Rainfall', false);
+
   // Rendering population information
   renderPopulationInfo(imageNRT.reClass, uiComponents.NRTaffectedPops);
   renderPopulationInfo(imageFCT.reClass, uiComponents.FCTaffectedPops);
+  
+  // Rendering crop information
+  renderCropInfo(imageNRT.reClass, uiComponents.NRTaffectedCrops);
+  renderCropInfo(imageFCT.reClass, uiComponents.FCTaffectedCrops);
 }
 
 ```
 
-## Population affected
+## Population and cropland affected
 
-After all the above process completed, below script will show population affected information on the panel by extracting each alert from above process then combine with population data.
+After all the above process completed, below script will show population aand cropland affected information on the panel by extracting each alert from above process then combine with population data.
 
 
 ``` js
-// AFFECTED POPULATION
+// IMPACT ANALYSIS
 //---
+// AFFECTED POPULATION
 // Show Affected Population on Panel
 function renderPopulationInfo(imgReClass, targetUi) {
   // Mosaic population layer and flood alert layer
@@ -807,6 +836,7 @@ function renderPopulationInfo(imgReClass, targetUi) {
       'v': imgCombSrc.select('remapped'),
       'c': reClass
     });
+    // Get number of pop affected value for each class
     var stat = imgComb.reduceRegion({
       reducer: ee.Reducer.sum(),
       geometry: imgReClass.geometry(),
@@ -821,14 +851,81 @@ function renderPopulationInfo(imgReClass, targetUi) {
       }
     });
   });
+  uiComponents.loadingCounter += 1;
+  // Rendering legend for impact analysis
   function renderLegend() {
     var widgets = [
-      ['FFEDA0', 1],
-      ['FEB24C', 2],
-      ['F03B20', 3]
+      ['FFEDA0', 1], // Yellow
+      ['FEB24C', 2], // Orange
+      ['F03B20', 3] // Red
     ].map(function (p) {
       var color = p[0];
       var level = p[1];
+      // Dynamic text
+      var label = 'Alert ' + level + ': ' +
+        parseInt(stats[level]).toLocaleString();
+      return uiComponents.makeLegendBox(color, label);
+    });
+    targetUi.widgets().reset(widgets);
+    uiComponents.loadingCounter -= 1;
+    if (uiComponents.loadingCounter === 0) {
+      uiComponents.renderButton.setDisabled(false);
+    }
+  }
+}
+
+// AFFECTED CROPLAND
+// Show Affected Crop on Panel
+function renderCropInfo(imgReClass, targetUi) {
+  // Get cropland class, value 12 and 14. Check https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MCD12Q1#bands
+  var cropmask = mcd12q1.eq(12).or(mcd12q1.eq(14));
+  var cropland = mcd12q1.divide(mcd12q1).updateMask(cropmask);
+
+  // Mosaic cropland layer and flood alert layer
+  var imgCombSrc = cropland.addBands(imgReClass);
+  var stats = {};
+  var reClasses = [];
+  for (var i = 1; i < 4; i++) {
+    reClasses.push(i);
+  }
+  // Extract each alert then combine with cropland data
+  var counter = 0;
+  reClasses.map(function (reClass) {
+    var imgComb = imgCombSrc.expression(
+      'p * (v == c? 1:0)', {
+      'p': imgCombSrc.select('LC_Type1'),
+      'v': imgCombSrc.select('remapped'),
+      'c': reClass
+    });
+    // Get hectares
+    var Cropland_PixelArea = imgComb
+      .multiply(ee.Image.pixelArea()).divide(10000).round();
+    // Get number of pop affected value for each class
+    var stat = Cropland_PixelArea.reduceRegion({
+      reducer: ee.Reducer.sum(),
+      geometry: imgReClass.geometry(),
+      scale: 500,
+      maxPixels: 1e9
+    });
+    stat.evaluate(function (s) {
+      stats[reClass] = s.LC_Type1;
+      counter += 1;
+      if (counter === reClasses.length) {
+        renderLegend();
+      }
+    });
+  });
+  uiComponents.loadingCounter += 1;
+  function renderLegend() {
+    // Rendering legend for impact analysis
+    var widgets = [
+      ['FFEDA0', 1], // Yellow
+      ['FEB24C', 2], // Orange
+      ['F03B20', 3] // Red
+    ].map(function (p) {
+      var color = p[0];
+      var level = p[1];
+      // Dynamic text
       var label = 'Alert ' + level + ': ' +
         parseInt(stats[level]).toLocaleString();
       return uiComponents.makeLegendBox(color, label);
@@ -848,44 +945,58 @@ function renderPopulationInfo(imgReClass, targetUi) {
 The last part is to setup all the supporting information on the Panel.
 
 ``` js
+// USER INTERFACE
+//---
+// Initialize UI Components
 function initializeUIComponents() {
   // Clear all process
   ui.root.clear();
   var mobileStyle = false;
 
   // ui.Select widget
-  var daySelect = ui.Select({
-    items: ['1 day', '2 days', '3 days', '4 days', '5 days']
+  uiComponents.daySelect = ui.Select({
+    // Number of simulation day
+    items: ['1 day', '2 days', '3 days', '4 days', '5 days'],
+    placeholder: 'Select number of days'
   });
-  // ui.Select first load
-  daySelect.setPlaceholder('Select number of days');
 
   // Setting date
   var today = ee.Date(new Date());
   var startDate = ee.Date('2019-07-01'); // First GFS data 1 Jul 2015
 
   // ui.DateSlider widget
-  var dateSlider = ui.DateSlider({
+  uiComponents.dateSlider = ui.DateSlider({
     start: startDate,
     end: today.advance(1, 'day'),
+    value: today,
     period: 1, // the unit is day
     style: { width: '300px', padding: '10px', position: 'bottom-left' }
   });
-  // Set date to today during first load
-  dateSlider.setValue(today);
 
   // Add render button to ui
-  var renderButton = ui.Button({
+  uiComponents.renderButton = ui.Button({
     label: 'Render',
     onClick: render
   });
-
-  // Arrange the components
-  uiComponents.daySelect = daySelect;
-  uiComponents.dateSlider = dateSlider;
-  uiComponents.renderButton = renderButton;
+  
+  // Add download button to ui
+  uiComponents.downloadButton = ui.Button({
+    label: 'Download Data',
+    onClick: downloadMap
+  });
 
   // Warning if the parameters is not completed
+  uiComponents.NRTaffectedDate = ui.Panel({
+    style: {
+      fontWeight: 'bold'
+    },
+    widgets: [
+      ui.Label({
+        value: '!!! Select date and number of day then press Render button'
+      })
+    ]
+  });
+
   uiComponents.NRTaffectedPops = ui.Panel({
     style: {
       fontWeight: 'bold'
@@ -897,8 +1008,41 @@ function initializeUIComponents() {
     ]
   });
 
+  uiComponents.NRTaffectedCrops = ui.Panel({
+    style: {
+      fontWeight: 'bold'
+    },
+    widgets: [
+      ui.Label({
+        value: '!!! Select date and number of day then press Render button'
+      })
+    ]
+  });
+
   // Warning if the parameters is not completed
+  uiComponents.FCTaffectedDate = ui.Panel({
+    style: {
+      fontWeight: 'bold'
+    },
+    widgets: [
+      ui.Label({
+        value: '!!! Select date and number of day then press Render button'
+      })
+    ]
+  });
+
   uiComponents.FCTaffectedPops = ui.Panel({
+    style: {
+      fontWeight: 'bold'
+    },
+    widgets: [
+      ui.Label({
+        value: '!!! Select date and number of day then press Render button'
+      })
+    ]
+  });
+
+  uiComponents.FCTaffectedCrops = ui.Panel({
     style: {
       fontWeight: 'bold'
     },
@@ -929,7 +1073,7 @@ function initializeUIComponents() {
       layout: ui.Panel.Layout.Flow('horizontal')
     });
   };
-  
+
   // Paragraph intro in top of Panel
   var intro = ui.Panel({
     widgets: [
@@ -942,7 +1086,7 @@ function initializeUIComponents() {
           margin: '10px 5px',
         }
       }),
-      
+
       // Intro
       ui.Label({
         value: 'ERM is an app that are able to inform where is the estimated location of extreme rainfall ' +
@@ -959,22 +1103,59 @@ function initializeUIComponents() {
         }
       }).setUrl('https://wfpidn.github.io/ERM'),
       ui.Label({
+        value: 'The computation is over when you see number of affected population below for both near real-time ' +
+          'and forecasat, and the Render button enable. Every computation required at least a minute to complete ' +
+          'all the process. PLEASE BE PATIENT! ',
+        style: {
+          color: 'red',
+          fontSize: mobileStyle ? '18px' : '14px',
+        }
+      }),
+      ui.Label({
         value: '_________________________________________________',
         style: {
           fontSize: mobileStyle ? '18px' : '14px',
         }
-      }),
+      })
     ]
   });
-  
-  // Affected population label - near real-time
+
+  // Affected label - near real-time
   var NRTaffectedPanel = ui.Panel({
     widgets: [
       ui.Label({
-        value: 'Affected Populations - Near Real-Time',
+        value: 'Near Real-Time',
         style: {
           fontWeight: 'bold',
           fontSize: mobileStyle ? '18px' : '16px',
+          // margin: '10px 5px'
+        }
+      }),
+    ]
+  });
+
+  // Date information - near real-time
+  var NRTaffectedDatePanel = ui.Panel({
+    widgets: [
+      ui.Label({
+        value: '',
+        style: {
+          color: 'blue',
+          fontSize: mobileStyle ? '14px' : '12px',
+          // margin: '10px 5px'
+        }
+      }),
+      uiComponents.NRTaffectedDate
+    ]
+  });
+
+  var NRTaffectedPopPanel = ui.Panel({
+    widgets: [
+      ui.Label({
+        value: 'Population affected',
+        style: {
+          // fontWeight: 'bold',
+          fontSize: mobileStyle ? '16px' : '14px',
           margin: '10px 5px'
         }
       }),
@@ -982,21 +1163,79 @@ function initializeUIComponents() {
     ]
   });
 
-  // Affected population label - near real-time
+  var NRTaffectedCropPanel = ui.Panel({
+    widgets: [
+      ui.Label({
+        value: 'Cropland affected (Hectares)',
+        style: {
+          // fontWeight: 'bold',
+          fontSize: mobileStyle ? '16px' : '14px',
+          margin: '10px 5px'
+        }
+      }),
+      uiComponents.NRTaffectedCrops
+    ]
+  });
+
+
+  // Affected label - near real-time
   var FCTaffectedPanel = ui.Panel({
     widgets: [
       ui.Label({
-        value: 'Affected Populations - Forecast',
+        value: 'Forecast',
         style: {
           fontWeight: 'bold',
           fontSize: mobileStyle ? '18px' : '16px',
+          // margin: '10px 5px'
+        }
+      }),
+    ]
+  });
+
+  // Date information - forecast
+  var FCTaffectedDatePanel = ui.Panel({
+    widgets: [
+      ui.Label({
+        value: '',
+        style: {
+          color: 'blue',
+          fontSize: mobileStyle ? '14px' : '12px',
+          // margin: '10px 5px'
+        }
+      }),
+      uiComponents.FCTaffectedDate
+    ]
+  });
+
+  var FCTaffectedPopPanel = ui.Panel({
+    widgets: [
+      ui.Label({
+        value: 'Population affected',
+        style: {
+          // fontWeight: 'bold',
+          fontSize: mobileStyle ? '16px' : '14px',
           margin: '10px 5px'
         }
       }),
       uiComponents.FCTaffectedPops
     ]
   });
+
+  var FCTaffectedCropPanel = ui.Panel({
+    widgets: [
+      ui.Label({
+        value: 'Crop affected (Hectares)',
+        style: {
+          // fontWeight: 'bold',
+          fontSize: mobileStyle ? '16px' : '14px',
+          margin: '10px 5px'
+        }
+      }),
+      uiComponents.FCTaffectedCrops
+    ]
+  });
   
+  // Legend information for all layers
   var legendintro = ui.Panel({
     widgets: [
       // Line divider
@@ -1008,7 +1247,7 @@ function initializeUIComponents() {
           margin: '10px 5px',
         }
       }),
-      
+
       // Legend label
       ui.Label({
         value: 'Legend ',
@@ -1020,7 +1259,8 @@ function initializeUIComponents() {
       })
     ]
   });
-
+  
+  // Make a legend, style, color, boxes in a panel
   function makeLegend(title, boxes) {
     return ui.Panel({
       widgets: [
@@ -1047,7 +1287,7 @@ function initializeUIComponents() {
     });
   }
 
-  // Legend for others
+  // Color codes
   var legendRainfall = makeLegend('Rainfall', [
     ['ffffff', 'No Rain ~ No color'],
     ['cccccc', '1 - 3 milimeters'],
@@ -1072,11 +1312,11 @@ function initializeUIComponents() {
   ]);
 
   var legendProbability = makeLegend('Likelihood', [
-    ['e5f5e0', 'Low'],
-    ['a1d99b', 'Moderate'],
+    ['f7fcb9', 'Low'],
+    ['addd8e', 'Moderate'],
     ['31a354', 'High']
   ]);
-  
+
   var legendAlert = makeLegend('Flood Alert', [
     ['97D700', 'Green'],
     ['ffeda0', 'Yellow (Category 1 - 3)'],
@@ -1088,7 +1328,13 @@ function initializeUIComponents() {
     widgets: [
       intro,
       NRTaffectedPanel,
+      NRTaffectedDatePanel,
+      NRTaffectedPopPanel,
+      NRTaffectedCropPanel,
       FCTaffectedPanel,
+      FCTaffectedDatePanel,
+      FCTaffectedPopPanel,
+      FCTaffectedCropPanel,
       legendintro,
       ui.Panel({
         layout: ui.Panel.Layout.flow('horizontal'),
@@ -1115,21 +1361,142 @@ function initializeUIComponents() {
     mainPanel, mainMap
   ]);
   ui.root.setLayout(ui.Panel.Layout.flow('horizontal'));
-
   mainMap.setControlVisibility(true);
   mainMap.setCenter(118.2, -2.5, 5.4);
   mainMap.add(ui.Panel({
-    widgets: [daySelect, renderButton],
-    style: {position: 'bottom-left'}
+    widgets: [
+      uiComponents.daySelect,
+      uiComponents.renderButton,
+      uiComponents.downloadButton,
+    ],
+    layout: ui.Panel.Layout.Flow('horizontal'),
+    style: { position: 'bottom-left' }
   }));
-  mainMap.add(dateSlider);
+  mainMap.add(uiComponents.dateSlider);
 }
 
 initializeUIComponents();
 
 ```
 
-End of script. Find the complete code via this link.
+## Data Downloads
+
+This download feature is not available in the app version, and only accessible via GEE code user interface. To access this feature, you must have an access to GEE.
+
+``` js
+// DATA DOWNLOADS
+//---
+// Download all layer output to Google Drive
+function downloadMap() {
+
+  var _numday = uiComponents.daySelect.getValue();
+  if (!_numday) {
+    return;
+  }
+
+  // Day of simulation
+  var numday = {
+    '1 day': 1,
+    '2 days': 2,
+    '3 days': 3,
+    '4 days': 4,
+    '5 days': 5
+  }[_numday];
+
+  // As the download request probably takes some time, we need to warn the user,
+  // so they not repeating click the download button
+  alert("If you see this message, the download request is started! Please go to Tasks, wait until the download list appear. Click RUN for each data you want to download");
+
+  // Downloading data
+  // Export the result to Google Drive
+  var download_date = ee.Date(uiComponents.dateSlider.getValue()[0]);
+  var dt = download_date;
+
+  // Near Real Time Result
+  var imageNRT = getRainfallExtremeImage({
+    date: dt,
+    numday: numday,
+    imgBase: getImergImage(dt, numday),
+    rainfallColumn: 'precipitationCal'
+  });
+  // Forecast Result
+  var imageFCT = getRainfallExtremeImage({
+    date: dt,
+    numday: numday,
+    imgBase: getGfsImage(dt, numday),
+    rainfallColumn: 'total_precipitation_surface'
+  });
+
+  // Near Real-Time Precipitation
+  Export.image.toDrive({
+    image: imageNRT.rainfall,
+    description: 'NRT_Precipitation_last_' + numday + 'day_as_of_' + download_date.format('yyyy-MM-dd').getInfo(),
+    scale: IMERGprojection.nominalScale(),
+    maxPixels: 1e12
+  });
+
+  // Forecast Precipitation
+  Export.image.toDrive({
+    image: imageFCT.rainfall,
+    description: 'FCT_Precipitation_' + numday + 'day_ahead_issued_on_' + download_date.format('yyyy-MM-dd').getInfo(),
+    scale: IMERGprojection.nominalScale(),
+    maxPixels: 1e12
+  });
+
+  // Near Real-Time Extreme Precipitation (exceeding the threshold)
+  Export.image.toDrive({
+    image: imageNRT.impact,
+    description: 'NRT_ExtremePrecip_last_' + numday + 'day_as_of_' + download_date.format('yyyy-MM-dd').getInfo(),
+    scale: IMERGprojection.nominalScale(),
+    maxPixels: 1e12
+  });
+
+  // Forecast Extreme Precipitation (exceeding the threshold)
+  Export.image.toDrive({
+    image: imageFCT.impact,
+    description: 'FCT_ExtremePrecip_' + numday + 'day_ahead_issued_on_' + download_date.format('yyyy-MM-dd').getInfo(),
+    scale: IMERGprojection.nominalScale(),
+    maxPixels: 1e12
+  });
+
+  // Near Real-Time Likelihood of Pixel will be Inundated
+  Export.image.toDrive({
+    image: imageNRT.prob,
+    description: 'NRT_Likelihood_last_' + numday + 'day_as_of_' + download_date.format('yyyy-MM-dd').getInfo(),
+    scale: IMERGprojection.nominalScale(),
+    maxPixels: 1e12
+  });
+
+  // Forecast Likelihood of Pixel will be Inundated
+  Export.image.toDrive({
+    image: imageFCT.prob,
+    description: 'FCT_Likelihood_' + numday + 'day_ahead_issued_on_' + download_date.format('yyyy-MM-dd').getInfo(),
+    scale: IMERGprojection.nominalScale(),
+    maxPixels: 1e12
+  });
+
+  // Near Real-Time Extreme Rainfall-triggering Flood
+  Export.image.toDrive({
+    image: imageNRT.re,
+    description: 'NRT_FloodAlert_last_' + numday + 'day_as_of_' + download_date.format('yyyy-MM-dd').getInfo(),
+    scale: IMERGprojection.nominalScale(),
+    maxPixels: 1e12
+  });
+
+  // Forecast Extreme Rainfall-triggering Flood
+  Export.image.toDrive({
+    image: imageFCT.re,
+    description: 'FCT_FloodAlert_' + numday + 'day_ahead_issued_on_' + download_date.format('yyyy-MM-dd').getInfo(),
+    scale: IMERGprojection.nominalScale(),
+    maxPixels: 1e12
+  });
+
+  print('Data Downloaded!', download_date);
+}
+
+```
+
+End of script. Find the complete code via this link [https://code.earthengine.google.com/fa0f314ab50bcd59f34e5d9e1a456c1c](https://code.earthengine.google.com/fa0f314ab50bcd59f34e5d9e1a456c1c)
 
 **Notes**
 

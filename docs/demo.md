@@ -13,3 +13,7 @@ It's very easy.
 - Click Render!
 
 Wait for a minutes, you will get the result.
+
+This app does not have download feature, it's only accessible via GEE code user interface. To access this feature you must have an access to GEE platform, then visit [https://code.earthengine.google.com/fa0f314ab50bcd59f34e5d9e1a456c1c](https://code.earthengine.google.com/fa0f314ab50bcd59f34e5d9e1a456c1c).
+
+If you does not have GEE account, please sign up via this link: [https://earthengine.google.com/signup/](https://earthengine.google.com/signup/)

@@ -2,6 +2,10 @@
 
 **Below is the example result for each output** during [Seroja Tropical Cyclone](https://en.wikipedia.org/wiki/Cyclone_Seroja) on 3 April 2021.
 
+User Interface Panel and Legend
+
+![legend](./img/legend.png)
+
 Rainfall accumulation, near real-time
 
 ![ex1](./img/ex1.png)

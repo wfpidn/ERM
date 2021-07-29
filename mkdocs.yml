@@ -89,6 +89,7 @@ nav:
         - Impact analysis: impact.md
         - Evaluating alert quality: eaq.md
         - Novelty, limitation and constraint: nlc.md
+        - Example case: case.md
     - How-to?: 
         - Pre-downloaded and processed data: pre.md
         - Acquire IMERG data: imerg.md
