@@ -6,13 +6,17 @@ Below is the example on how we translate all the process in GEE platform.
 
 First we need to declare the global variable like basemap and color codes. As the ERM result is colorful, it's better to use Grey Style basemap so the map result will clearly visible.
 
-ERM will produce 5 outputs:
+ERM will produce 4 outputs:
 
 - Rainfall
 - Rainfall exceeding the threshold
 - Likelihood of triggering flood
 - Extreme rainfall triggering a flood (Flood Alert)
+
+And impact analysis on
+
 - Number of affected population per alert category
+- Number of affected cropland per alert category
 
 And each output will visualize with different classification.
 
@@ -25,173 +29,99 @@ var uiComponents = {};
 
 // MAP STYLE
 //--
-// Grey style from Gennadii
+// Grey style from https://developers.google.com/maps/documentation/javascript/examples/style-selector
 function mapStyle() {
   return [
     {
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#f5f5f5"
-        }
-      ]
+      elementType: "geometry",
+      stylers: [{ color: "#f5f5f5" }],
     },
     {
-      "elementType": "labels.icon",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
+      elementType: "labels.icon",
+      stylers: [{ visibility: "off" }],
     },
     {
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#616161",
-          "visibility": "off"
-        }
-      ]
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#616161" }],
     },
     {
-      "elementType": "labels.text.stroke",
-      "stylers": [
-        {
-          "color": "#f5f5f5",
-          "visibility": "off"
-        }
-      ]
+      elementType: "labels.text.stroke",
+      stylers: [{ color: "#f5f5f5" }],
     },
     {
-      "featureType": "administrative.land_parcel",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#bdbdbd"
-        }
-      ]
+      featureType: "administrative.land_parcel",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#bdbdbd" }],
     },
     {
-      "featureType": "poi",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#eeeeee"
-        }
-      ]
+      featureType: "poi",
+      elementType: "geometry",
+      stylers: [{ color: "#eeeeee" }],
     },
     {
-      "featureType": "poi",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#757575"
-        }
-      ]
+      featureType: "poi",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#757575" }],
     },
     {
-      "featureType": "poi.park",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#e5e5e5"
-        }
-      ]
+      featureType: "poi.park",
+      elementType: "geometry",
+      stylers: [{ color: "#e5e5e5" }],
     },
     {
-      "featureType": "poi.park",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#9e9e9e"
-        }
-      ]
+      featureType: "poi.park",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#9e9e9e" }],
     },
     {
-      "featureType": "road",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#ffffff"
-        }
-      ]
+      featureType: "road",
+      elementType: "geometry",
+      stylers: [{ color: "#ffffff" }],
     },
     {
-      "featureType": "road.arterial",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#757575"
-        }
-      ]
+      featureType: "road.arterial",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#757575" }],
     },
     {
-      "featureType": "road.highway",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#dadada"
-        }
-      ]
+      featureType: "road.highway",
+      elementType: "geometry",
+      stylers: [{ color: "#dadada" }],
     },
     {
-      "featureType": "road.highway",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#616161"
-        }
-      ]
+      featureType: "road.highway",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#616161" }],
     },
     {
-      "featureType": "road.local",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#9e9e9e"
-        }
-      ]
+      featureType: "road.local",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#9e9e9e" }],
     },
     {
-      "featureType": "transit.line",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#e5e5e5"
-        }
-      ]
+      featureType: "transit.line",
+      elementType: "geometry",
+      stylers: [{ color: "#e5e5e5" }],
     },
     {
-      "featureType": "transit.station",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#eeeeee"
-        }
-      ]
+      featureType: "transit.station",
+      elementType: "geometry",
+      stylers: [{ color: "#eeeeee" }],
     },
     {
-      "featureType": "water",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#c9c9c9"
-        }
-      ]
+      featureType: "water",
+      elementType: "geometry",
+      stylers: [{ color: "#c9c9c9" }],
     },
     {
-      "featureType": "water",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#9e9e9e"
-        }
-      ]
-    }
+      featureType: "water",
+      elementType: "labels.text.fill",
+      stylers: [{ color: "#9e9e9e" }],
+    },
   ];
 }
 
-// Grey basemap from gena
+// Grey basemap
 mainMap.style().set('cursor', 'crosshair');
 mainMap.setOptions('Grey', { Grey: mapStyle() });
 
@@ -1496,7 +1426,7 @@ function downloadMap() {
 
 ```
 
-End of script. Find the complete code via this link [https://code.earthengine.google.com/fa0f314ab50bcd59f34e5d9e1a456c1c](https://code.earthengine.google.com/fa0f314ab50bcd59f34e5d9e1a456c1c)
+End of script. Find the complete code via this link [https://code.earthengine.google.com/bd7c885d66acd1877a2d1f6c505f8998](https://code.earthengine.google.com/bd7c885d66acd1877a2d1f6c505f8998)
 
 **Notes**
 
