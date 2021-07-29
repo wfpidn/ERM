@@ -10,9 +10,9 @@ This is the single-source documentation for ERM. It is intended to be a thorough
 
 ERM model developed by Benny Istanto and [Prof. Rizaldi Boer](https://scholar.google.com/citations?hl=en&user=jTPXEp8AAAAJ) of Climatology Laboratory - [Bogor Agricultural University](https://ipb.ac.id) as Scientific Advisor.
 
-![ERM1](./docs/img/erm1.png)
+![ERM1](./img/erm1.png)
 
-![ERM2](./docs/img/erm2.png)
+![ERM2](./img/erm2.png)
 
 ## Contact
 
