@@ -36,7 +36,7 @@ As an example, it is found that for pixel at (6,2) equation that can estimate th
 
 Using the above formula, with the availability of rainfall forecast for the X-days, the gi can be estimated and translated into probability of flood.
 
-For example, if the forecast at X-days reaches 300 mm (categorized as Extreme rainfall, exceeding Percentile 96) then:
+For example, if the forecast at X-days reaches 300 mm (categorized as **Extreme rainfall**, exceeding Percentile 96) then:
 
 	gt = 0.01888 * 300 - 4.0219
 
@@ -48,11 +48,13 @@ The corresponding probability
 	
 	pt = 0.837820
 
-categorized as High likelihood
+categorized as **High likelihood**
 
-Then  ALERT category 9  will release for this event.
+Then  **ALERT category 9**  will release for this event.
 
-Combination from Extreme Rainfall and High Likelihood
+Combination from **Extreme Rainfall** and **High Likelihood**
+
+## Matrix for final alert
 
 ![Alert](./img/alert.png)
 
