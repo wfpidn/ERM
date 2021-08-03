@@ -9,10 +9,11 @@ The  analysis  aims  to  answers  two  critical questions to initial programming
 - How many hectares crops affected?<br>
 
 But answers are not limit to the above three, if more information  has  been  collected  during or before disasters, analysis  could give answers to more question like, 
-What are the gender break down?<br>
-How many girls and boys at risk?<br>
-What is closest hospital/police station?<br>
-Are there any rescue teams around? etc.<br>
+
+- What are the gender break down?<br>
+- How many girls and boys at risk?<br>
+- What is closest hospital/police station?<br>
+- Are there any rescue teams around? etc.<br>
 
 The  calculation  is  using  spatial  analysis  by overlaying
 
@@ -35,6 +36,9 @@ Data source:
 - Flood forecast: NOAA Global Ensemble Forecast System<br>
 - Population: Facebook Population Density 2018<br>
 
+!!! note
+	For GEE application, the population data is using data from JRC Global Human Settlement Layer (GHSL).
+
 ## Crops
 
 Crops affected layer refers to a crop area (in hectares) which is forecasted to be affected by flood/landslide in the next 1-5 days. The indicator overlays the flood hazard forecast for all magnitude categories with a crop mask for the flood/landslide hazard forecast areas. 
@@ -46,3 +50,6 @@ Data source:
 - Flood near-real time: NASA GPM IMERG 30min<br>
 - Flood forecast: NOAA Global Ensemble Forecast System<br>
 - Crop extent:	USGS GFSAD30<br>
+
+!!! note
+	For GEE application, the cropland data is using data from MODIS MOD12Q1 global annual land cover.
