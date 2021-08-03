@@ -1,8 +1,10 @@
 # Developing event-identification threshold
 
-Inspired from ITHACA ERDS (Extreme Rainfall Detection System - [http://erds.ithacaweb.org](http://erds.ithacaweb.org)), The extreme rainfall detection is based on the concept of event-identification threshold: an alert is provided if the accumulated rainfall exceeds the threshold.
+Inspired from [ITHACA](https://ithacaweb.org) ERDS (Extreme Rainfall Detection System - [http://erds.ithacaweb.org](http://erds.ithacaweb.org)), The extreme rainfall detection is based on the concept of event-identification threshold: an alert is provided if the accumulated rainfall exceeds the threshold.
 
-**THRESHOLD is AMOUNT OF RAINFALL NEEDED TO TRIGGER A EVENT (flood/flash-flood/landslide) INDUCED BY EXTREME RAINFALL**
+!!! note "THRESHOLD"
+	**THRESHOLD is AMOUNT OF RAINFALL NEEDED TO TRIGGER A EVENT (flood/flash-flood/landslide) INDUCED BY EXTREME RAINFALL**
+
 
 ## Frequency analysis
 

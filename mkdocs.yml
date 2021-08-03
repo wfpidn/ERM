@@ -79,6 +79,7 @@ markdown_extensions:
 nav:
     - About: index.md
     - Revision History: history.md
+    - FAQ: faq.md
     - Overview: 
         - Hydrometeorological Disasters: hd.md
         - Remote Sensing Precipitation: rsp.md
@@ -99,3 +100,6 @@ nav:
         - Google Earth Engine: gee.md
         - Example: example.md
         - Demo: demo.md
+    - Development Plan:
+        - Landslide monitoring: ls.md
+        - Surface runoff accumulation: runoff.md
