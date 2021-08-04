@@ -1,4 +1,4 @@
-# Frequently Asked Question
+# Frequently Asked Questions
 
 **What is ERM?**
 : ERM is an experimental tool developed by the United Nations [World Food Programme](https://www.wfp.org/countries/indonesia) in Indonesia written in [Google Earth Engine](https://earthengine.google.com) (GEE) platform to monitor extreme rainfall that could trigger a flood, and the impact to population and cropland.
