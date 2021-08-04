@@ -36,16 +36,42 @@
 : Flood alert visualized into 4 categories: Green, Yellow, Orange and Red. See below explanation.
 
 **What do the colors on flood alert represent?**
-: ![#97D700](https://via.placeholder.com/15/97D700/000000?text=+) Green, is a condition when one of the following conditions is met: (1) Rainfall exceeding percentile 50 (Moderate rainfall) and the likelihood is less than 60% (Low). (2) Rainfall exceeding percentile 50 (Moderate rainfall) and the likelihood is 60-80% (Moderate). (3) Rainfall exceeding percentile 80 (Heavy rainfall) and the likelihood is less than 60% (Low).
-: ![#FFEDA0](https://via.placeholder.com/15/FFEDA0/000000?text=+) Yellow, is categorized into 3 class (**Alert class 1**, **2** and **3**) and a condition when one of the following conditions is met: (**Alert 1**) Rainfall exceeding percentile 50 (Moderate rainfall) and the likelihood is greater than 80% (High). (**Alert 2**) Rainfall exceeding percentile 80 (Heavy rainfall) and the likelihood is 60-80% (Moderate). (**Alert 3**) Rainfall exceeding percentile 90 (Intense rainfall) and the likelihood is less than 60% (Low).
-: ![#FEB24C](https://via.placeholder.com/15/FEB24C/000000?text=+) Orange, is categorized into 3 class (**Alert class 4**, **5** and **6**) and a condition when one of the following conditions is met: (**Alert 4**) Rainfall exceeding percentile 80 (Heavy rainfall) and the likelihood is greater than 80% (High). (**Alert 5**) Rainfall exceeding percentile 90 (Intense rainfall) and the likelihood is 60-80% (Moderate). (**Alert 6**) Rainfall exceeding percentile 96 (Extreme rainfall) and the likelihood is less than 60% (Low).
-: ![#F03B20](https://via.placeholder.com/15/F03B20/000000?text=+) Red, is categorized into 3 class (**Alert class 7**, **8** and **9**) and a condition when one of the following conditions is met: (**Alert 7**) Rainfall exceeding percentile 90 (Intense rainfall) and the likelihood is greater than 80% (High). (**Alert 8**) Rainfall exceeding percentile 96 (Extreme rainfall) and the likelihood is 60-80% (Moderate). (**Alert 9**) Rainfall exceeding percentile 96 (Extreme rainfall) and the likelihood is greater than 80% (High).
+: ![#97D700](https://via.placeholder.com/15/97D700/000000?text=+) Green, is a condition when one of the following conditions is met: 
+
+	- Rainfall exceeding percentile 50 (Moderate rainfall) and the likelihood is less than 60% (Low).<br>
+	- Rainfall exceeding percentile 50 (Moderate rainfall) and the likelihood is 60-80% (Moderate).<br>
+	- Rainfall exceeding percentile 80 (Heavy rainfall) and the likelihood is less than 60% (Low).<br>
+
+: ![#FFEDA0](https://via.placeholder.com/15/FFEDA0/000000?text=+) Yellow, is categorized into 3 class (**Alert class 1**, **2** and **3**) and a condition when one of the following conditions is met: 
+
+	- (**Alert 1**) Rainfall exceeding percentile 50 (Moderate rainfall) and the likelihood is greater than 80% (High).<br>
+	- (**Alert 2**) Rainfall exceeding percentile 80 (Heavy rainfall) and the likelihood is 60-80% (Moderate).<br>
+	- (**Alert 3**) Rainfall exceeding percentile 90 (Intense rainfall) and the likelihood is less than 60% (Low).<br>
+
+: ![#FEB24C](https://via.placeholder.com/15/FEB24C/000000?text=+) Orange, is categorized into 3 class (**Alert class 4**, **5** and **6**) and a condition when one of the following conditions is met: 
+
+	- (**Alert 4**) Rainfall exceeding percentile 80 (Heavy rainfall) and the likelihood is greater than 80% (High).<br> 
+	- (**Alert 5**) Rainfall exceeding percentile 90 (Intense rainfall) and the likelihood is 60-80% (Moderate).<br> 
+	- (**Alert 6**) Rainfall exceeding percentile 96 (Extreme rainfall) and the likelihood is less than 60% (Low).<br>
+
+: ![#F03B20](https://via.placeholder.com/15/F03B20/000000?text=+) Red, is categorized into 3 class (**Alert class 7**, **8** and **9**) and a condition when one of the following conditions is met:
+
+	- (**Alert 7**) Rainfall exceeding percentile 90 (Intense rainfall) and the likelihood is greater than 80% (High).<br> 
+	- (**Alert 8**) Rainfall exceeding percentile 96 (Extreme rainfall) and the likelihood is 60-80% (Moderate).<br> 
+	- (**Alert 9**) Rainfall exceeding percentile 96 (Extreme rainfall) and the likelihood is greater than 80% (High).<br>
+
 : If an areas experience a Green alert, we assume won't have any significant impact.
 : ERM use Alert 1 to 9, and included in the impact calculation.
 : See [Matrix for final alert](../rof/#matrix-for-final-alert)
 
 **How to read impact calculation?**
-: Both impact analysis using population and cropland are categorized into 3 class: ![#FFEDA0](https://via.placeholder.com/15/FFEDA0/000000?text=+) Yellow (Low), ![#FEB24C](https://via.placeholder.com/15/FEB24C/000000?text=+) Orange (Moderate) and ![#F03B20](https://via.placeholder.com/15/F03B20/000000?text=+) Red (High impact). These 3 class are consistence with flood alert class.
+: Both impact analysis using population and cropland are categorized into 3 class: 
+
+	- ![#FFEDA0](https://via.placeholder.com/15/FFEDA0/000000?text=+) Yellow (Low), 
+	- ![#FEB24C](https://via.placeholder.com/15/FEB24C/000000?text=+) Orange (Moderate) and 
+	- ![#F03B20](https://via.placeholder.com/15/F03B20/000000?text=+) Red (High impact). 
+
+	These 3 class are consistence with flood alert class.
 
 **Is ERM mobile friendly?**
 : No, ERM not optimized for mobile devices. Please use your computer or laptop to access it.

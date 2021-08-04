@@ -101,5 +101,6 @@ nav:
         - Example: example.md
         - Demo: demo.md
     - Development Plan:
-        - Landslide monitoring: ls.md
+        - Summary: devplan.md
+        - Landslide monitoring and early warning: ls.md
         - Surface runoff accumulation: runoff.md

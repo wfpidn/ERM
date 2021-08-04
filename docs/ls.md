@@ -1,4 +1,4 @@
-# Landslide monitoring
+# Landslide monitoring and early warning
 
 **This research and development is still ongoing!**
 
