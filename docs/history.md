@@ -34,13 +34,14 @@
 | 30 | 6 Dec 2020 | Test GFS data process in EarthEngine |
 | 31 | 23 Dec 2020 | Test IMERG data process in EarthEngine |
 | 32 | 10 Feb 2021 | Combine GFS and IMERG into single process in GEE, Ridwan[^7] starting refine the code to be more efficient and tidy |
-| 33 | 2 Apr 2021 | Check forecast for East Nusa Tenggara on tropical depression |
-| 34 | 6 Apr 2021 | Result looks promising for both near-real time and forecast |
-| 35 | 10 May 2021 | Refine GEE code, simplify some inefficient process |
-| 36 | 25 Jun 2021 | GEE code review on population, crop and urban area affected |
-| 37 | 29 Jun 2021 | Technical documentation available at Github |
-| 38 | 19 Jul 2021 | Affected population module, ui Panel and some feature completed by RM. Revising crop module and dynamic text is ongoing |
-| 39 | 29 Jul 2021 | Affected cropland module and dynamic text for date simulation completed |
+| 33 | 30 Mar 2021 | Surface runoff accumulation concept note and methodology completed by Diego[^8] |
+| 34 | 2 Apr 2021 | Check forecast for East Nusa Tenggara on tropical depression |
+| 35 | 6 Apr 2021 | Result looks promising for both near-real time and forecast |
+| 36 | 10 May 2021 | Refine GEE code, simplify some inefficient process |
+| 37 | 25 Jun 2021 | GEE code review on population, crop and urban area affected |
+| 38 | 29 Jun 2021 | Technical documentation available at Github |
+| 39 | 19 Jul 2021 | Affected population module, ui Panel and some feature completed by Ridwan. Revising crop module and dynamic text is ongoing |
+| 40 | 29 Jul 2021 | Affected cropland module and dynamic text for date simulation completed |
 
 
 
@@ -51,3 +52,4 @@
 [^5]: Michael Manalili. GIS Consultant. Geospatial Support Unit. EMEG HQ. UN World Food Programme
 [^6]: Jeffry Pupella. VAM Associate. Vulnerability Analysis and Mapping Unit. UN World Food Programme - Indonesia
 [^7]: Ridwan Mulyadi. System Developer. Vulnerability Analysis and Mapping Unit. UN World Food Programme - Indonesia
+[^8]: Diego Novoa. VAM Intern. Vulnerability Analysis and Mapping Unit. UN World Food Programme - Indonesia
