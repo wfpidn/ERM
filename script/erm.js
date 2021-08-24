@@ -1028,7 +1028,7 @@ function initializeUIComponents() {
         ]
       })
     ],
-    style: { width: '500px', padding: '8px' }
+    style: { width: '350px', padding: '8px' }
   });
 
   ui.root.widgets().reset([
