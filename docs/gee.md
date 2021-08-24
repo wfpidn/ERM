@@ -1284,7 +1284,7 @@ function initializeUIComponents() {
         ]
       })
     ],
-    style: { width: '500px', padding: '8px' }
+    style: { width: '350px', padding: '8px' }
   });
 
   ui.root.widgets().reset([
@@ -1426,7 +1426,7 @@ function downloadMap() {
 
 ```
 
-End of script. Find the complete code via this link [https://code.earthengine.google.com/bd7c885d66acd1877a2d1f6c505f8998](https://code.earthengine.google.com/bd7c885d66acd1877a2d1f6c505f8998)
+End of script. Find the complete code via this link [https://code.earthengine.google.com/9726f90319b509450dc752a02663c066](https://code.earthengine.google.com/9726f90319b509450dc752a02663c066)
 
 **Notes**
 
